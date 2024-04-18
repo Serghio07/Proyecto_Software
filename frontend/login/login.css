@@ -1,9 +1,9 @@
-body {
+/* Estilos generales y responsivos */
+body, html {
     margin: 0;
     padding: 0;
     font-family: Arial, sans-serif;
-    background-color: red;
-    color: white;
+    background: #f4f4f4;
 }
 
 .container {
@@ -11,58 +11,63 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100vh;
+    min-height: 100vh;
 }
 
 .welcome {
     text-align: center;
 }
 
-.restaurant-title {
-    color: yellow; /* Color amarillo */
-    font-size: 36px; /* Tamaño de fuente más grande */
-}
-
 .login-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: 50px;
-}
-
-.logo {
-    margin-right: 20px;
-}
-
-.login-form {
-    background-color: yellow;
+    background: white;
     padding: 20px;
-    border-radius: 10px;
-    width: 400px; /* Ajusta el ancho del recuadro amarillo según sea necesario */
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
 }
 
-.login-form h3 {
-    text-align: center;
-}
-
-input[type="text"],
-input[type="password"],
-button {
+.logo img {
+    width: 100px; /* Ajusta según el tamaño del logo */
     display: block;
-    width: calc(100% - 20px); /* Resta 20px para el margen del recuadro amarillo */
-    margin-bottom: 10px;
-    padding: 10px;
-    font-size: 16px;
+    margin: 0 auto;
 }
 
-button {
-    background-color: red;
+.login-form fieldset {
+    border: none;
+    margin: 10px;
+    padding: 0;
+}
+
+.login-form legend {
+    font-size: 1.5em;
+    color: black;
+}
+
+.login-form label {
+    display: block;
+    margin-top: 10px;
+}
+
+.login-form input[type="text"],
+.login-form input[type="password"] {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin: 5px 0;
+}
+
+#login-btn {
+    width: 100%;
+    padding: 10px;
+    background-color: #007BFF;
     color: white;
     border: none;
-    cursor: pointer;
     border-radius: 5px;
+    cursor: pointer;
 }
 
-button:hover {
-    background-color: darkred;
+@media (max-width: 768px) {
+    .login-container {
+        width: 90%;
+        margin: 0 auto;
+        border-radius: 10px     ;
+    }
 }

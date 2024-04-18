@@ -3,28 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>Login - Restaurante Liz</title>
     <link rel="stylesheet" href="login.css">
 </head>
 <body>
     <div class="container">
-        <div class="welcome">
+        <header class="welcome">
             <h1>Bienvenido</h1>
-            <h2 class="restaurant-title">RESTAURANTE LIZ</h2> <!-- Agregamos una clase -->
-        </div>
-        <div class="login-container">
+            <h2 class="restaurant-title">RESTAURANTE LIZ</h2>
+        </header>
+        <main class="login-container">
             <div class="logo">
-                <img src="logo_restaurante.png" alt="Logo Restaurante Liz">
+                <img src="logo_restaurante.png" alt="Logo Restaurante Liz" style="border-radius: 100px;">
             </div>
-            <div class="login-form">
-                <h3 style="color: black;">INGRESAR</h3>
-                <h1 style="color: black;">Usuario:</h1>
-                <input type="text" id="username" placeholder="Usuario">
-                <h1 style="color: black;">Código:</h1>
-                <input type="password" id="password" placeholder="Contraseña">
-                <button id="login-btn">Ingresar</button>
-            </div>
-        </div>
+            <form class="login-form">
+                <fieldset>
+                    <legend>INGRESAR</legend>
+                    <label for="username">Usuario:</label>
+                    <input type="text" id="username" placeholder="Usuario">
+                    <label for="password">Código:</label>
+                    <input type="password" id="password" placeholder="Contraseña">
+                    <button type="submit" id="login-btn">Ingresar</button>
+                </fieldset>
+            </form>
+        </main>
     </div>
     <script src="login.js"></script>
 </body>
