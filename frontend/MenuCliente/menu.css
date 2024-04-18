@@ -1,0 +1,95 @@
+body {
+    background-color: red;
+    display: flex;
+    justify-content: space-between;
+    height: 75vh;
+}
+
+.container {
+    margin-bottom: 80px;
+    border: 2px solid black;
+    box-sizing: border-box;
+    margin: 0 5px;
+    width: calc(33.33% - 10px);
+    position: relative; /* Agrega posición relativa */
+}
+
+.yellow {
+    background-color: rgb(255, 0, 0); 
+}
+
+.mini-rectangulo {
+    width: calc(100% - 20px); 
+    height: 210px;
+    margin-bottom: 20px;
+    background-color: #fff700;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    overflow: hidden; /* Oculta cualquier contenido fuera del rectángulo */
+    position: relative; /* Agrega posición relativa */
+}
+
+.plato-imagen {
+    margin-top: 30px;
+    width: 110px; /* Ancho de la imagen */
+    height: 70%; /* Altura igual al mini-rectángulo */
+    float: left; /* Hace que la imagen flote a la izquierda */
+    border-radius: 10px 0 0 10px; /* Borde redondeado en la esquina superior izquierda */
+}
+
+.plato-info {
+    padding: 10px;
+    margin-left: 110px; /* Margen a la izquierda para dejar espacio para la imagen */
+}
+
+.plato-info h3 {
+    margin-top: 0;
+    font-size: 28px;
+}
+
+.plato-info p {
+    margin-bottom: 10px;
+    font-size: 22px;
+}
+
+.pedido-btn {
+    background-color: #ff0000;
+    color: white;
+    font-size: 17px;
+    font-weight: bold;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 10px; /* Añade espacio debajo del botón */
+    display: inline-block
+}
+
+.plato-precio {
+    float: right; /* Alinea el precio a la derecha */
+    margin-top: 0; /* Elimina el margen superior */
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.pedido-btn:hover {
+    background-color: #45a049;
+}
+
+.sidebar {
+    width: 30%; 
+    background-color: #f0f0f0; 
+    padding: 10px;
+}
+
+.content {
+    padding: 10px;
+}
+
+.green {
+    background-color: green;
+}
+
+.blue {
+    background-color: blue;
+}
