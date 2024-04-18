@@ -31,15 +31,15 @@ body{
     transform: translate(-50%, -50%);
     border-radius: 20px;
     display: flex;
-    justify-content: space-between; /* Espacio entre los elementos */
+    justify-content: space-between;
     align-items: center;
-    padding: 0 20px; /* Espacio alrededor de los elementos */
+    padding: 0 20px; 
 }
 
 .timecuadro img {
     width: 50px;
     height: auto;
-    order: 1; /* Cambia el orden de la imagen a la derecha */
+    order: 1; 
 }
 
 h2 {
@@ -47,13 +47,24 @@ h2 {
     margin: 0; 
     order: 1; 
 }
-.contenido{
+.contenido {
     width: 105vh;
     height: 295px;
     background-color: rgb(57, 240, 7);
     position: fixed;
     top: 43%;
-    left:   50%;
+    left: 50%;
+    transform: translateX(-50%);
     border-radius: 20px;
     display: flex;
+    margin: 0 auto; 
+}
+
+.contenido p{
+    font-size: 24px;
+}
+.contenido img{
+    font-size: 30px;
+    margin: 0; 
+    order: -1; 
 }
