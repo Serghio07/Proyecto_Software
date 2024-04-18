@@ -1,7 +1,7 @@
 # Proyecto_Software
 Proyecto de software
 Equipo y Proyecto
-“Equipo: Sindicato Figueroa
+“Equipo: yo te compilo
 
 | Rol | Nombre | Responsabildades |
 
