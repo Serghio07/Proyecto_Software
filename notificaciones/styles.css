@@ -1,0 +1,59 @@
+body{
+    background-color: rgb(208, 6, 6);
+    padding: 20px;
+    border-radius: 10px;
+}
+.notificaciones h1 {
+    position: relative; 
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    color: yellow;
+    font-size: 50px;
+}
+
+.atras {
+    position: absolute; 
+    top: 10px; 
+    left: 10px; 
+    padding: 15px 30px; 
+    border-radius: 20px; 
+    font-size: 16px;
+    background-color: yellow    ;
+}
+.timecuadro {
+    width: 100vh;
+    height: 100px;
+    background-color: rgb(57, 240, 7);
+    position: fixed;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 20px;
+    display: flex;
+    justify-content: space-between; /* Espacio entre los elementos */
+    align-items: center;
+    padding: 0 20px; /* Espacio alrededor de los elementos */
+}
+
+.timecuadro img {
+    width: 50px;
+    height: auto;
+    order: 1; /* Cambia el orden de la imagen a la derecha */
+}
+
+h2 {
+    font-size: 30px;
+    margin: 0; 
+    order: 1; 
+}
+.contenido{
+    width: 105vh;
+    height: 295px;
+    background-color: rgb(57, 240, 7);
+    position: fixed;
+    top: 43%;
+    left:   50%;
+    border-radius: 20px;
+    display: flex;
+}
