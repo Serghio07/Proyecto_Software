@@ -23,16 +23,31 @@
     </div>
     <div>
         <div class="contenido">
-            <p> Su pedido fueentregado hace  2 minutos. 
-                Le gusto la atencion?
-                La comida llego tal y como la ordeno?
-                El servicio le parecio el adecuado?
-                Por favor califiquenos, si tiene observaciones
-                 sobre el servicio por favor haganos saber</p>
-                 <img src="img/klipartz.com (2).png" alt="notificaciones">
-
-
+            <img src="img/klipartz.com (2).png" alt="notificaciones">
+            <section class="pedido-entregado">
+                <h2>Su pedido fue entregado hace 2 minutos.</h2>
+            </section>
+            <section class="encuesta">
+                <h2>¿Le gustó la atención?</h2>
+                <p>¿La comida llegó tal y como la ordenó?</p>
+                <p>¿El servicio fue el adecuado?</p>
+                <p>Por favor, califíquenos. Si tiene observaciones sobre el servicio, por favor háganos saber.</p>
+                <form action="#">
+                    <div class="form-group">
+                        <label for="calificacion">Calificación (1 al 100):</label>
+                        <input type="number" id="calificacion" name="calificacion" min="1" max="100" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="comentario">Comentario (opcional):</label>
+                        <textarea id="comentario" name="comentario"></textarea>
+                    </div>
+                    <button type="submit">Enviar</button>
+                </form>
+            </section>
         </div>
+        
+        
+
     </div>
 </body>
 </html>
