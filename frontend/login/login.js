@@ -1,4 +1,4 @@
-document.getElementById("login-btn").addEventListener("click", function(event) {
+/* document.getElementById("login-btn").addEventListener("click", function(event) {
     event.preventDefault();
     
     var email = document.getElementById("email").value;
@@ -21,3 +21,4 @@ document.getElementById("login-btn").addEventListener("click", function(event) {
         alert("Credenciales incorrectas. Por favor, inténtalo de nuevo.");
     }
 });
+ */
