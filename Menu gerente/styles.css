@@ -1,0 +1,62 @@
+body {
+    background-color: red;
+}
+img {
+    width: 80px;
+    float: right;
+}
+.banner {
+    font-size: 23px;
+    color: yellow;
+    text-align: left;
+    padding: 20px;
+}
+.menu {
+    width: 597px;
+    margin: 33px;
+    height: 300px;
+    background-color: yellow;
+    border-radius: 20px;
+    text-align: center; 
+    padding: 20px;
+}
+
+.menu img {
+    width: 80px;
+    float: right;
+    height: auto;
+    border-radius: 20px;
+}
+.menu p {
+    font-size: 16px;
+    margin-bottom: 10px;
+    text-align: left;
+}
+.menu .acciones {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+.menu .acciones button {
+    padding: 10px 20px;
+    justify-content: space-around;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 10px 5px 0; 
+}
+
+.menu .acciones .Guardar {
+    background-color: #28a745;
+}
+
+.menu .acciones .eliminar {
+    background-color: #dc3545;
+}
+.menu .acciones .editar {
+    background-color: #28a745;
+}
+
