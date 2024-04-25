@@ -2,8 +2,8 @@
 body, html {
     margin: 0;
     padding: 0;
-    font-family: Arial, sans-serif;
-    background: #e63535;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    background: #fa3e3e; /* Fondo más suave */
 }
 
 .container {
@@ -12,58 +12,68 @@ body, html {
     align-items: center;
     justify-content: center;
     min-height: 100vh;
+    color: #333; /* Texto más suave */
 }
 
 .welcome {
     text-align: center;
+    margin-bottom: 20px; /* Espaciado agregado */
 }
 
 .login-container {
-    background: rgb(228, 190, 21);
-    padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    background: #f1e045; /* Amarillo más suave */
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1); /* Sombra más suave */
+    width: 300px; /* Tamaño fijo para contenedor */
 }
 
 .logo img {
-    width: 100px; /* Ajusta según el tamaño del logo */
+    width: 120px; /* Ajuste de tamaño según el logo */
     display: block;
-    margin: 0 auto;
+    margin-bottom: 30px; /* Espaciado agregado */
 }
 
 .login-form fieldset {
     border: none;
-    margin: 10px;
+    margin: 0;
     padding: 0;
 }
 
 .login-form legend {
-    font-size: 1.5em;
-    color: black;
+    font-size: 2em; /* Texto más grande */
+    color: #444; /* Color de texto más oscuro */
+    margin-bottom: 20px; /* Espaciado agregado */
 }
 
 .login-form label {
     display: block;
-    margin-top: 10px;
+    margin: 10px 0; /* Espaciado uniforme */
 }
 
 .login-form input[type="text"],
 .login-form input[type="email"],
-.login-form input[type="password"] 
-{
+.login-form input[type="password"] {
     width: calc(100% - 20px);
-    padding: 10px;
-    margin: 5px 0;
+    padding: 12px; /* Relleno más grande */
+    margin-bottom: 15px; /* Espaciado uniforme */
+    border: 1px solid #ffc107; /* Borde más definido */
+    border-radius: 5px; /* Bordes redondeados */
 }
 
 #login-btn {
     width: 100%;
-    padding: 10px;
-    background-color: #007BFF;
-    color: rgb(255, 255, 255);
+    padding: 12px; /* Relleno más grande */
+    background-color: #ffc107; /* Amarillo del botón */
+    color: #333; /* Texto más suave */
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    transition: background-color 0.2s; /* Transición más rápida */
+}
+
+#login-btn:hover {
+    background-color: #e0a800; /* Color al pasar el ratón */
 }
 
 .back-btn {
@@ -71,25 +81,21 @@ body, html {
     left: 20px;
     top: 20px;
     padding: 10px 20px;
-    background-color: #fff;
-    color: #ee6262;
-    border: 2px solid #ee6262;
+    background-color: #ffe345; /* Fondo más suave para el botón */
+    color: #721c24; /* Texto más oscuro para contraste */
+    border: 1px solid #f5c6cb; /* Borde más suave */
     border-radius: 5px;
-    font-size: 16px;
     cursor: pointer;
     transition: all 0.3s ease;
 }
 
 .back-btn:hover {
-    background-color: #ee6262;
-    color: #fff;
+    background-color: #f5c6cb; /* Color al pasar el ratón */
 }
-
 
 @media (max-width: 768px) {
     .login-container {
         width: 90%;
         margin: 0 auto;
-        border-radius: 10px     ;
     }
 }
