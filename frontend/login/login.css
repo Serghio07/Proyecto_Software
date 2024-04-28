@@ -64,7 +64,7 @@ body, html {
 #login-btn {
     width: 100%;
     padding: 12px; /* Relleno más grande */
-    background-color: #ffc107; /* Amarillo del botón */
+    background-color: #1e80db; /* Amarillo del botón */
     color: #333; /* Texto más suave */
     border: none;
     border-radius: 5px;

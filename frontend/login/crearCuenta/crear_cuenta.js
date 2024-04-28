@@ -13,10 +13,9 @@ document.getElementById("signup-btn").addEventListener("click", function(event) 
     }
 
     // Verificar si el correo tiene la terminación correcta
-    var emailRegex = /@gerente\.com$|@usuario\.com$/;
-    if (!emailRegex.test(email)) {
+    if (!email.endsWith("@usuario.com")) {
         var message = document.getElementById("message");
-        message.textContent = "El correo debe tener la terminación '@gerente.com' o '@usuario.com'.";
+        message.textContent = "El correo debe tener la terminación '@usuario.com'.";
         return;
     }
 
@@ -27,10 +26,21 @@ document.getElementById("signup-btn").addEventListener("click", function(event) 
         return;
     }
 
+    // Verificar si el nombre de usuario ya existe
+    if (localStorage.getItem(username)) {
+        var message = document.getElementById("message");
+        message.textContent = "El nombre de usuario ya existe.";
+        return;
+    }
+
+    // Guardar el nombre de usuario para evitar duplicados
+    localStorage.setItem(username, true);
+
     // Aquí iría la lógica para crear la cuenta
     // Por ahora simplemente mostramos un mensaje de éxito
     var message = document.getElementById("message");
-    message.textContent = "Cuenta creada exitosamente";
+    message.textContent = "¡Cuenta creada exitosamente!";
+    message.style.color = "green";
 });
 
 // Función para validar la contraseña
@@ -39,3 +49,13 @@ function validatePassword(password) {
     var passwordRegex = /^(?=.*\d)(?=.*[A-Z])(?=.*[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?])(?=.*[a-z]).{8,}$/;
     return passwordRegex.test(password);
 }
+
+// Mostrar u ocultar la contraseña
+document.getElementById("show-password").addEventListener("change", function() {
+    var passwordInput = document.getElementById("password");
+    if (this.checked) {
+        passwordInput.type = "text";
+    } else {
+        passwordInput.type = "password";
+    }
+});

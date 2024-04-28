@@ -4,54 +4,21 @@ document.getElementById("reset-password-btn").addEventListener("click", function
     var username = document.getElementById("username").value;
     var email = document.getElementById("email").value;
 
-    // Verificar las credenciales del usuario
-    if (username === "Gerente" && email === "PruebaSIS@gerente.com") {
-        // Si las credenciales son correctas, mostrar una ventana emergente para ingresar una nueva contraseña
-        var newPassword = prompt("Ingrese su nueva contraseña:");
-        
-        // Validar la nueva contraseña
-        if (newPassword !== null && newPassword !== "") {
-            // Mostrar la ventana emergente para confirmar la nueva contraseña
-            var confirmNewPassword = prompt("Confirme su nueva contraseña:");
-
-            // Verificar si la contraseña coincide con la confirmación
-            if (confirmNewPassword !== null && confirmNewPassword !== "") {
-                if (newPassword === confirmNewPassword) {
-                    // Validar la contraseña
-                    if (validatePassword(newPassword)) {
-                        // Mostrar mensaje de éxito
-                        var message = document.getElementById("message");
-                        message.textContent = "Contraseña nueva guardada";
-                    } else {
-                        // Mostrar mensaje de error si la contraseña no cumple con los requisitos
-                        var message = document.getElementById("message");
-                        message.textContent = "La contraseña no cumple con los requisitos.";
-                    }
-                } else {
-                    // Mostrar mensaje de error si la contraseña no coincide con la confirmación
-                    var message = document.getElementById("message");
-                    message.textContent = "Las contraseñas no coinciden.";
-                }
-            } else {
-                // Mostrar mensaje si el usuario cancela la confirmación de la contraseña
-                var message = document.getElementById("message");
-                message.textContent = "Debe confirmar su nueva contraseña.";
-            }
-        } else {
-            // Mostrar mensaje si el usuario cancela la entrada de la nueva contraseña
+    // Verificar si el usuario tiene la terminación @usuario en el correo
+    if (email.endsWith("@usuario.com")) {
+        // Verificar si el usuario es "camilo" y el correo es "rm144@usuario.com"
+        if (username === "camilo" && email === "rm144@usuario.com") {
+            // Mostrar mensaje con el número de contacto para recuperar la contraseña
             var message = document.getElementById("message");
-            message.textContent = "Debe ingresar una nueva contraseña.";
+            message.textContent = "Para recuperar su contraseña, comuníquese al: 60515432";
+        } else {
+            // Mostrar mensaje de error si las credenciales no son correctas
+            var message = document.getElementById("message");
+            message.textContent = "Usuario o correo electrónico incorrectos.";
         }
     } else {
-        // Mostrar mensaje de error si las credenciales son incorrectas
+        // Mostrar mensaje de error si el correo no tiene la terminación correcta
         var message = document.getElementById("message");
-        message.textContent = "Usuario o correo electrónico incorrectos.";
+        message.textContent = "Solo los usuarios con correo '@usuario.com' pueden recuperar su contraseña por aquí.";
     }
 });
-
-// Función para validar la contraseña
-function validatePassword(password) {
-    // Requisitos de la contraseña: longitud mínima de 8 caracteres, al menos un número, una letra mayúscula y un carácter especial
-    var passwordRegex = /^(?=.*\d)(?=.*[A-Z])(?=.*[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?])(?=.*[a-z]).{8,}$/;
-    return passwordRegex.test(password);
-}
