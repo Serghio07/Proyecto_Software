@@ -2,23 +2,17 @@ body, html {
     margin: 0;
     padding: 0;
     font-family: Arial, sans-serif;
-    background-color: #ee3c3c;
+    background-color: #f84b4b;
 }
 
 .container {
     max-width: 400px;
     margin: 0 auto;
     padding: 20px;
-    background-color: #eccc3b;
+    background-color: #f0c44a;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
-
-label[for="show-password"] {
-    display: inline-block;
-    margin-left: 5px;
-}
-
 
 header {
     text-align: center;

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="login2.css">
+</head>
+<body>
+    <div id="app">
+        <div class="container">
+            <header class="welcome">
+                <h1>INICIO DE SESION</h1>
+                <h2>Altos cargos</h2>
+                <h2 class="restaurant-title">RESTAURANTE LIZ</h2>
+            </header>
+            <main class="login-container">
+                <div class="logo">
+                    <img src="logo_restaurante.png" alt="Logo Restaurante Liz" style="border-radius: 100px;">
+                </div>
+                <form class="login-form">
+                    <fieldset>
+                        <legend>INGRESAR</legend>
+
+                        <label for="username">Usuario:</label>
+                        <input type="text" id="username" placeholder="Usuario">
+
+                        <label for="email">Correo Electrónico:</label>
+                        <input type="email" id="email" placeholder="Correo Electrónico">
+
+                        <label for="password">Código:</label>
+                        <input type="password" id="password" placeholder="Contraseña">
+                        
+                        
+                        <a href="../RestablecerContrasenaAltosMandos/nuevo_codigo2.html">¿Olvidaste tu contraseña?</a>
+                        <button id="login-btn" @click="comprobar()">INGRESAR</button> 
+                        //Aqui mandan al menu de trabajadores o gerentes depende de como termine el correo 
+                        //q ingresaron en el login @trabajador o @gerente
+                      
+                    </fieldset>
+                </form>
+            </main>
+        </div>
+    </div>
+</body>
+</html>

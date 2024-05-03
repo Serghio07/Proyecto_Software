@@ -10,8 +10,8 @@
     <div id="app">
         <div class="container">
             <header class="welcome">
-                <a href="../BIenvenida/bienvenida.html"><button class="back-btn">Atrás</button></a>
-                <h1>INICIO DE SESION</h1>
+                <a href="/frontend/BIenvenida/bienvenida.html"></a>
+                <h1>INICIO DE SESION "CLIENTES"</h1>
                 <h2 class="restaurant-title">RESTAURANTE LIZ</h2>
             </header>
             <main class="login-container">
@@ -32,9 +32,9 @@
                         <input type="password" id="password" placeholder="Contraseña">
                         
                         
-                        <a href="./RestablecerContrasena/nuevo_codigo.html">¿Olvidaste tu contraseña?</a>
-                        <button id="login-btn" @click="comprobar()">INGRESAR</button>
-                        <a href="./crearCuenta/crear_cuenta.html">Crear cuenta</a>
+                        <a href="../RestablecerContrasenaUsuarios/nuevo_codigo.html">¿Olvidaste tu contraseña?</a>
+                        <button id="login-btn" @click="comprobar()">INGRESAR</button> // aqui mandan al menu de clientes, tuvo q poner @usuario en la terminacion de su correo
+                        <a href="../crearCuenta/crear_cuenta.html">Crear cuenta</a>
                     </fieldset>
                 </form>
             </main>

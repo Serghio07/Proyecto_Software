@@ -3,7 +3,7 @@ body, html {
     margin: 0;
     padding: 0;
     font-family: 'Helvetica Neue', Arial, sans-serif;
-    background: #fa3e3e; /* Fondo más suave */
+    background: #63aff7; /* Fondo más suave */
 }
 
 .container {
@@ -21,7 +21,7 @@ body, html {
 }
 
 .login-container {
-    background: #f1e045; /* Amarillo más suave */
+    background: #ddb70f; /* Amarillo más suave */
     padding: 40px;
     border-radius: 10px;
     box-shadow: 0 5px 15px rgba(0,0,0,0.1); /* Sombra más suave */
@@ -64,7 +64,7 @@ body, html {
 #login-btn {
     width: 100%;
     padding: 12px; /* Relleno más grande */
-    background-color: #1e80db; /* Amarillo del botón */
+    background-color: #1edb3e; /* Amarillo del botón */
     color: #333; /* Texto más suave */
     border: none;
     border-radius: 5px;
