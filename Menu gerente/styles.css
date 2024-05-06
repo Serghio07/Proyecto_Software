@@ -10,6 +10,9 @@ img {
     color: yellow;
     text-align: left;
     padding: 20px;
+    width: 975px;
+height: 116px;
+top: 49px;
 }
 .menu {
     width: 597px;
@@ -22,13 +25,13 @@ img {
 }
 
 .menu img {
-    width: 80px;
+    width: 120px;
     float: right;
     height: auto;
     border-radius: 20px;
 }
 .menu p {
-    font-size: 16px;
+    font-size: 25px;
     margin-bottom: 10px;
     text-align: left;
 }
@@ -60,3 +63,56 @@ img {
     background-color: #28a745;
 }
 
+.contanier{
+    display: flex;
+    flex-wrap: wrap ;
+    flex-direction: row;
+
+}
+.editarm {
+    width: 40%; /* Reducido para coincidir con el contenido */
+    background-color: rgb(30, 130, 188);
+    border-radius: 20px;
+    text-align: left;
+    padding: 20px;
+}
+
+.editarm h2 {
+    font-size: 23px;
+    color: yellow;
+    text-align: center;
+    padding: 20px;
+}
+
+.producto {
+    background-color: yellow;
+    padding: 20px;
+    border-radius: 10px;
+    width: 95%; /* Ajustado para que se expanda según sea necesario */
+}
+
+.producto .acciones button {
+    padding: 10px 20px;
+    background-color: #28a745; 
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px; 
+}
+
+.lista-editar {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.lista-editar li {
+    margin-bottom: 10px;
+}
+
+.lista-editar label {
+    width: 150px; 
+    display: inline-block;
+}
