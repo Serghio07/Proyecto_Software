@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="Cuenta.css">
+    <title>Agregar Cuenta</title>
+</head>
+<body>
+    <div class="Agregar">
+        <button class="atras">Atrás</button>
+        <h1>Agregar Cuenta</h1>
+        <div class="formulario">
+            <form action="procesar.php" method="post">
+                <div class="campo">
+                    <label for="cargo">Cargo:</label>
+                    <select name="cargo" id="cargo">
+                        <option value="gerente">Gerente</option>
+                        <option value="trabajador">Trabajador</option>
+                    </select>
+                </div>
+
+                <div class="campo">
+                    <label for="foto_perfil">Foto de perfil:</label>
+                    <input type="file" name="foto_perfil" id="foto_perfil">
+                </div>
+
+                <div class="campo">
+                    <label for="usuario">Usuario:</label>
+                    <input type="text" name="usuario" id="usuario" required>
+                </div>
+
+                <div class="campo">
+                    <label for="codigo">Código:</label>
+                    <input type="text" name="codigo" id="codigo" required>
+                </div>
+
+                <div class="campo">
+                    <label for="correo_electronico">Correo electrónico:</label>
+                    <input type="email" name="correo_electronico" id="correo_electronico" required>
+                </div>
+
+                <div class="campo">
+                    <button type="submit">Crear</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
