@@ -72,3 +72,13 @@ button[type="submit"] {
 button[type="submit"]:hover {
     background-color: #45a049;
 }
+.imagen{
+    width: 547px;
+height: 543px;
+top: 294px;
+left: 1177px;
+gap: 0px;
+opacity: 0px;
+justify-content: space-around;
+
+}
