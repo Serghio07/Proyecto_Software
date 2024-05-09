@@ -24,7 +24,7 @@ document.getElementById("reset-password-btn").addEventListener("click", function
         message.textContent = "Solo los usuarios con correo '@trabajador.com' pueden recuperar su contraseña por aquí.";
         message.style.color = "red";
     }
-        document.getElementById('reset-password-btn').addEventListener('click', function(event) {
+    document.getElementById('reset-password-btn').addEventListener('click', function(event) {
             event.preventDefault(); // Evita que el formulario se envíe y recargue la página
             alert('Se ha enviado un mensaje al camilo para restablecer la contraseña');
         });
