@@ -1,0 +1,238 @@
+body {
+    background-color: red;
+    display: flex;
+    justify-content: space-between;
+    height: 75vh;
+}
+
+.container {
+    margin-bottom: 80px;
+    border: 2px solid black;
+    box-sizing: border-box;
+    margin: 0 5px;
+    width: calc(33.33% - 10px);
+    position: relative; /* Agrega posición relativa */
+}
+
+.container {
+    height: 103%; /* Cambiar la altura al 50% del contenedor padre */
+}
+
+.cerrar-sesion-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%; /* Hace que el botón sea circular */
+    background-color: rgb(0, 0, 0); /* Color de fondo */
+    color: white; /* Color del texto */
+    font-size: 24px; /* Tamaño del texto */
+    font-weight: bold; /* Negrita */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 20px; /* Ajusta la distancia desde la parte superior */
+    right: 20px; /* Ajusta la distancia desde el borde derecho */
+    cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+    z-index: 999; /* Asegura que esté por encima de otros elementos */
+}
+
+.cerrar-sesion-btn:hover {
+    background-color: darkred; /* Cambia el color de fondo al pasar el cursor */
+}
+
+
+.yellow {
+    background-color: rgb(255, 0, 0); 
+}
+
+
+.yellow {
+    background-color: rgb(255, 0, 0);
+    margin-top: 200px; /* Ajusta el margen superior según sea necesario */
+}
+
+
+
+.mini-rectangulo {
+    width: calc(100% - 20px); 
+    height: 210px;
+    margin-bottom: 20px;
+    background-color: #fff700;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    overflow: hidden; /* Oculta cualquier contenido fuera del rectángulo */
+    position: relative; /* Agrega posición relativa */
+}
+
+.plato-imagen {
+    margin-top: 30px;
+    width: 110px; /* Ancho de la imagen */
+    height: 70%; /* Altura igual al mini-rectángulo */
+    float: left; /* Hace que la imagen flote a la izquierda */
+    border-radius: 10px 0 0 10px; /* Borde redondeado en la esquina superior izquierda */
+}
+
+.plato-info {
+    padding: 10px;
+    margin-left: 110px; /* Margen a la izquierda para dejar espacio para la imagen */
+}
+
+.plato-info h3 {
+    margin-top: 0;
+    font-size: 28px;
+}
+
+.plato-info p {
+    margin-bottom: 10px;
+    font-size: 22px;
+}
+
+.pedido-btn {
+    background-color: #ff0000;
+    color: white;
+    font-size: 17px;
+    font-weight: bold;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 10px; /* Añade espacio debajo del botón */
+    display: inline-block
+}
+
+.plato-precio {
+    float: right; /* Alinea el precio a la derecha */
+    margin-top: 0; /* Elimina el margen superior */
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.pedido-btn:hover {
+    background-color: #45a049;
+}
+
+.sidebar {
+    width: 30%; 
+    background-color: #f0f0f0; 
+    padding: 10px;
+}
+
+.content {
+    padding: 10px;
+}
+
+.green {
+    background-color: green;
+}
+
+
+.green {
+    background-color: green;
+    margin-top: 200px; /* Ajusta el margen superior según sea necesario */
+}
+
+
+
+.container.green .mini-rectangulo:first-child .plato-info {
+    margin-top: 20px; /* Ajusta la distancia desde la parte superior */
+}
+
+.container.green .mini-rectangulo:first-child .plato-info p {
+    font-size: 30px; /* Cambia el tamaño de la letra */
+}
+
+.historial-titulo {
+    font-size: 40px; /* Tamaño de fuente deseado */
+    margin-top: 5px; /* Espacio superior */
+    text-align: left; /* Centrar el texto */
+    color: #fff700;
+}
+
+
+.mini-rectangulo {
+    width: calc(100% - 20px); 
+    height: 210px;
+    margin-bottom: 20px;
+    background-color: #fff700;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    overflow: hidden; /* Oculta cualquier contenido fuera del rectángulo */
+    position: relative; /* Agrega posición relativa */
+}
+
+
+.container.green .mini-rectangulo:nth-child(2) .plato-info p {
+    font-size: 25px; /* Cambia el tamaño de letra para el segundo mini rectángulo */
+}
+
+.container.green .mini-rectangulo:nth-child(2) {
+    height: 300px; /* Ajusta la altura del segundo mini rectángulo */
+}
+
+
+.container.green .mini-rectangulo:nth-child(2) .plato-imagen {
+    width: 110px; /* Tamaño específico para la imagen */
+    height: 130px; /* Tamaño específico para la imagen */
+}
+
+
+
+
+.mini-rectangulo {
+    width: calc(100% - 20px); 
+    height: 210px;
+    margin-bottom: 20px;
+    background-color: #fff700;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    overflow: hidden; /* Oculta cualquier contenido fuera del rectángulo */
+    position: relative; /* Agrega posición relativa */
+}
+
+.container.green .mini-rectangulo:nth-child(2) .plato-info label {
+    font-weight: bold; /* Pone en negrita la etiqueta */
+    color: #0800ff; /* Color celeste para el texto */
+}
+
+
+
+.blue {
+    background-color: blue;
+}
+
+.blue {
+    background-color: blue;
+    margin-top: 200px; /* Ajusta el margen superior según sea necesario */
+}
+
+.mini-rectangulo {
+    width: calc(100% - 20px); 
+    height: 280px;
+    margin-bottom: 20px;
+    background-color: #fff700;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    overflow: hidden; /* Oculta cualquier contenido fuera del rectángulo */
+    position: relative; /* Agrega posición relativa */
+}
+
+
+.lista-titulo {
+    font-size: 40px; /* Tamaño de fuente deseado */
+    margin-top: 10px; /* Espacio superior */
+    text-align: left; /* Centrar el texto */
+    color: #000000;
+}
+
+
+.plato-info p {
+    font-weight: bold; /* Añade negrita al texto */
+}
+
+
+.plato-imagen {
+    width: 130px; /* Ancho deseado */
+    height: 110; /* Altura automática para mantener la proporción */
+}
+
+
