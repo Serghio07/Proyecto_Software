@@ -5,64 +5,69 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="menuGerente.css">
   <title>Menú del Gerente</title>
-  <button onclick="window.location.href = 'Add.html';">Agregar Cuenta</button>
-  <img src="img/hombre.png" alt="perfil">
 </head>
 <body>
-  <div class="banner">
-     <h1>Gestión del Menú</h1>
-    
+  <header>
+    <div class="profile">
+      <img src="img/hombre.png" alt="perfil">
     </div>
-    
-<div class="contanier">
-  <div class="menu">
-    <img src="img/pollo.jpg" alt="Pollo Spiedo">
-    <p><strong>Imagen:</strong></p>
-    <p><strong>Titulo:</strong>Pollo Spiedo</p>
-    <p><strong>Descripción:</strong> 14 porciones de papas y arroz junto con un delicioso pollo acompañado de salsas.</p>
-    <p><strong>Precio:</strong> 15 bs</p>
-    <div class="acciones">
-      <button class="eliminar">Eliminar</button>
-      <button class="editar">Editar</button>
-      <button class="guardar-cambios">Guardar Cambios</button>
+    <div class="banner">
+      <h1>Gestión del Menú</h1>
     </div>
-  </div>
+    <button class="agregar" onclick="window.location.href = 'Add.html';">Agregar Cuenta</button>
+  </header>
 
-  <div class="editarm">
-    <h2>Editar Producto</h2>
-    <div class="producto">
-        <form>
-            <ul class="lista-editar">
-                <li>
-                    <label for="imagen">Imagen:</label>
-                    <input type="file" id="imagen" name="imagen">
-                </li>
-                <li>
-                    <label for="titulo">Título:</label>
-                    <input type="text" id="titulo" name="titulo" placeholder="">
-                </li>
-                <li>
-                    <label for="descripcion">Descripción:</label>
-                    <textarea id="descripcion" name="descripcion" placeholder=""></textarea>
-                </li>
-                <li>
-                    <label for="precio">Precio:</label>
-                    <input type="number" id="precio" name="precio" placeholder="">
-                </li>
-            </ul>
-        </form>
-        <div class="acciones">
+  <main>
+    <section class="menu">
+      <div class="item">
+        <img src="img/pollo.jpg" alt="Pollo Spiedo">
+        <div class="details">
+          <h2>Pollo Spiedo</h2>
+          <p>segios.</p>
+          <p><strong>Precio:</strong> 15 bs</p>
+          <div class="actions">
+            <button class="eliminar">Eliminar</button>
+            <button class="editar">Editar</button>
             <button class="guardar-cambios">Guardar Cambios</button>
+          </div>
         </div>
+      </div>
+    </section>
+
+    <aside class="editarm">
+      <h2>Editar Producto</h2>
+      <div class="producto">
+        <form>
+          <ul class="lista-editar">
+            <li>
+              <label for="imagen">Imagen:</label>
+              <input type="file" id="imagen" name="imagen">
+            </li>
+            <li>
+              <label for="titulo">Título:</label>
+              <input type="text" id="titulo" name="titulo" placeholder="">
+            </li>
+            <li>
+              <label for="descripcion">Descripción:</label>
+              <textarea id="descripcion" name="descripcion" placeholder=""></textarea>
+            </li>
+            <li>
+              <label for="precio">Precio:</label>
+              <input type="number" id="precio" name="precio" placeholder="">
+            </li>
+          </ul>
+          <div class="acciones">
+            <button class="guardar-cambios">Guardar Cambios</button>
+          </div>
+        </form>
+      </div>
+    </aside>
+  </main>
+
+  <footer>
+    <div class="Informacion">
+     
     </div>
-</div>
-<div class="Informacion">
-
-
-</div>
-
-</div>
-
-  </div>
+  </footer>
 </body>
 </html>

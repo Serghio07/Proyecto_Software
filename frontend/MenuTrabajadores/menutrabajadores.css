@@ -141,6 +141,13 @@ body {
     font-size: 30px; /* Cambia el tamaño de la letra */
 }
 
+.historial-titulo {
+    font-size: 40px; /* Tamaño de fuente deseado */
+    margin-top: 5px; /* Espacio superior */
+    text-align: left; /* Centrar el texto */
+    color: #fff700;
+}
+
 
 .mini-rectangulo {
     width: calc(100% - 20px); 
@@ -155,11 +162,11 @@ body {
 
 
 .container.green .mini-rectangulo:nth-child(2) .plato-info p {
-    font-size: 17px; /* Cambia el tamaño de letra para el segundo mini rectángulo */
+    font-size: 25px; /* Cambia el tamaño de letra para el segundo mini rectángulo */
 }
 
 .container.green .mini-rectangulo:nth-child(2) {
-    height: 500px; /* Ajusta la altura del segundo mini rectángulo */
+    height: 300px; /* Ajusta la altura del segundo mini rectángulo */
 }
 
 
@@ -187,17 +194,6 @@ body {
     color: #0800ff; /* Color celeste para el texto */
 }
 
-#comentario {
-    width: 300px; /* Ancho moderado */
-    height: 120px; /* Altura ajustable */
-    padding: 10px; /* Espacio interno */
-    border: 1px solid #ccc; /* Borde */
-    border-radius: 5px; /* Bordes redondeados */
-    resize: vertical; /* Permitir redimensionamiento vertical */
-    font-size: 16px; /* Tamaño de fuente */
-    line-height: 1.5; /* Altura de línea */
-}
-
 
 
 .blue {
@@ -211,7 +207,7 @@ body {
 
 .mini-rectangulo {
     width: calc(100% - 20px); 
-    height: 210px;
+    height: 280px;
     margin-bottom: 20px;
     background-color: #fff700;
     border: 1px solid #ddd;
@@ -221,11 +217,11 @@ body {
 }
 
 
-.historial-titulo {
-    font-size: 60px; /* Tamaño de fuente deseado */
+.lista-titulo {
+    font-size: 40px; /* Tamaño de fuente deseado */
     margin-top: 10px; /* Espacio superior */
     text-align: left; /* Centrar el texto */
-    color: #fff700;
+    color: #000000;
 }
 
 
