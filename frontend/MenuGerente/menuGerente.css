@@ -1,9 +1,39 @@
+
 body {
-    background-color: red; /* Fondo más claro */
+    background-color: red;
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-  }
+}
+
+
+@media only screen and (min-width: 768px) {
+    
+    header {
+        padding: 20px 40px;
+    }
+    
+    
+    .menu {
+        flex-basis: 60%;
+    }
+
+    .editarm {
+        flex-basis: 35%;
+    }
+}
+
+@media only screen and (max-width: 767px) {
+   
+    header {
+        padding: 10px 20px;
+    }
+
+   
+    .menu, .editarm {
+        flex-basis: 100%;
+    }
+}
   
   header {
     
