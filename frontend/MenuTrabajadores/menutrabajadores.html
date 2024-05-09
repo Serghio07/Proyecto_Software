@@ -87,5 +87,24 @@
         <!-- Contenedor azul sin mini rectángulos -->
     </div>
     <script src="platillos.js"></script><!-- Aquí puedes agregar tu contenido HTML -->
+    <script>
+        let tiempoInactividad =10000; 
+        let temporizador;
+    
+        function reiniciarTemporizador() {
+            clearTimeout(temporizador);
+            temporizador = setTimeout(() => {
+                alert("Tu sesión ha expirado por inactividad.");
+                window.location.href = 'login.html';
+            }, tiempoInactividad);
+        }
+        window.onload = reiniciarTemporizador;
+        window.onmousemove = reiniciarTemporizador;
+        window.onmousedown = reiniciarTemporizador; 
+        window.ontouchstart = reiniciarTemporizador; 
+        window.onclick = reiniciarTemporizador; 
+        window.onkeypress = reiniciarTemporizador;
+    
+    </script>
 </body>
 </html>
