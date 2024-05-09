@@ -8,7 +8,7 @@
 </head>
 <body>
     
-    <div class="Agregar">
+    <div id="app" class="Agregar">
         <button class="atras" onclick="window.location.href = 'menuGerente.html';">Atrás</button>
         <h1>Agregar Cuenta</h1>
         <div class="formulario">
@@ -22,17 +22,12 @@
                 </div>
 
                 <div class="campo">
-                    <label for="foto_perfil">Foto de perfil:</label>
-                    <input type="file" name="foto_perfil" id="foto_perfil">
-                </div>
-
-                <div class="campo">
                     <label for="usuario">Usuario:</label>
                     <input type="text" name="usuario" id="usuario" required>
                 </div>
 
                 <div class="campo">
-                    <label for="codigo">Código:</label>
+                    <label for="codigo">Contraseña:</label>
                     <input type="text" name="codigo" id="codigo" required>
                 </div>
 
@@ -42,7 +37,7 @@
                 </div>
 
                 <div class="campo">
-                    <button type="submit">Crear</button>
+                    <button @click="crear()">Crear</button>
                 </div>
             </form>
         
@@ -55,4 +50,97 @@
     </div>
    
 </body>
+
+<script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.js"
+  integrity="sha512-nqIFZC8560+CqHgXKez61MI0f9XSTKLkm0zFVm/99Wt0jSTZ7yeeYwbzyl0SGn/s8Mulbdw+ScCG41hmO2+FKw=="
+  crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.0.2/dist/sweetalert2.all.min.js"></script>
+
+<script>
+  let url = 'http://localhost:4000/users';
+  new Vue({
+    el: '#app',
+    vuetify: new Vuetify(),
+    data() {
+      return {
+        userss: [],
+        users: {
+          id: null,
+          nombre: '',
+          correo: '',
+          contrasena: '',
+          tipo: '',
+          contador: ''
+        }
+      }
+    },
+    created() {
+      this.mostrar()
+    },
+    methods: {
+      //MÉTODOS PARA EL CRUD
+      mostrar: function () {
+        axios.get(url)
+          .then(response => {
+            this.userss = response.data;
+            console.log(this.userss);
+          })
+      },
+      crear: function () {
+        event.preventDefault();
+        var tipoc = document.getElementById("cargo").value;
+        var usuarioc = document.getElementById("usuario").value;
+        var password = document.getElementById("codigo").value;
+        var email = document.getElementById("correo_electronico").value;
+        let parametros = { nombre: usuarioc, correo: email, contrasena: password, tipo: tipoc, contador: 0 };
+        console.log(parametros);
+        axios.post(url, parametros)
+          .then(response => {
+            this.mostrar();
+          });
+        document.getElementById("usuario").value="";
+        document.getElementById("codigo").value="";
+        document.getElementById("correo_electronico").value="";
+        
+        this.users.nombre = "";
+        this.users.correo = "";
+        this.users.contrasena = "";
+        this.users.tipo = "";
+        this.users.contador = "";
+        alert("Usuario creado con exito");
+      },
+      editar: function () {
+        let parametros = { nombre: this.users.nombre, correo: this.users.correo, contrasena: this.users.contrasena, tipo: this.users.tipo, contador: this.users.contador  };
+        //console.log(parametros);                   
+        axios.put(url + "/" + this.users.id, parametros)
+          .then(response => {
+            this.mostrar();
+          })
+          .catch(error => {
+            console.log(error);
+          });
+      },
+      borrar: function (id) {
+        Swal.fire({
+          title: '¿Confirma eliminar el registro?',
+          confirmButtonText: `Confirmar`,
+          showCancelButton: true,
+        }).then((result) => {
+          if (result.isConfirmed) {
+            //procedimiento borrar
+            axios.delete(url + "/" + id)
+              .then(response => {
+                this.mostrar();
+              });
+            Swal.fire('¡Eliminado!', '', 'success')
+          } else if (result.isDenied) {
+          }
+        });
+      },
+    }
+  });
+</script>
+
 </html>

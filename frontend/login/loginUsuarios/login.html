@@ -1,45 +1,44 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - Restaurante Liz</title>
-    <link rel="stylesheet" href="login.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - Restaurante Liz</title>
+  <link rel="stylesheet" href="login.css">
 </head>
+
 <body>
-    <div id="app">
-        <div class="container">
-            <header class="welcome">
-                <a href="/frontend/BIenvenida/bienvenida.html"></a>
-                <h1>INICIO DE SESION "CLIENTES"</h1>
-                <h2 class="restaurant-title">RESTAURANTE LIZ</h2>
-            </header>
-            <main class="login-container">
-                <div class="logo">
-                    <img src="logo_restaurante.png" alt="Logo Restaurante Liz" style="border-radius: 100px;">
-                </div>
-                <form class="login-form">
-                    <fieldset>
-                        <legend>INGRESAR</legend>
-
-                        <label for="username">Usuario:</label>
-                        <input type="text" id="username" placeholder="Usuario">
-
-                        <label for="email">Correo Electrónico:</label>
-                        <input type="email" id="email" placeholder="Correo Electrónico">
-
-                        <label for="password">Código:</label>
-                        <input type="password" id="password" placeholder="Contraseña">
-                        
-                        
-                        <a href="../RestablecerContrasenaUsuarios/nuevo_codigo.html">¿Olvidaste tu contraseña?</a>
-                        <button id="login-btn" @click="comprobar()">INGRESAR</button> // aqui mandan al menu de clientes, tuvo q poner @usuario en la terminacion de su correo
-                        <a href="../crearCuenta/crear_cuenta.html">Crear cuenta</a>
-                    </fieldset>
-                </form>
-            </main>
+  <div id="app">
+    <div class="container">
+      <header class="welcome">
+        <a href="/frontend/BIenvenida/bienvenida.html"></a>
+        <h1>INICIO DE SESION "CLIENTES"</h1>
+        <h2 class="restaurant-title">RESTAURANTE LIZ</h2>
+      </header>
+      <main class="login-container">
+        <div class="logo">
+          <img src="logo_restaurante.png" alt="Logo Restaurante Liz" style="border-radius: 100px;">
         </div>
+        <form class="login-form">
+          <fieldset>
+            <legend>INGRESAR</legend>
+
+            <label for="email">Correo Electrónico:</label>
+            <input type="email" id="email" placeholder="Correo Electrónico">
+
+            <label for="password">Código:</label>
+            <input type="password" id="password" placeholder="Contraseña">
+
+
+            <a href="../RestablecerContrasenaUsuarios/nuevo_codigo.html">¿Olvidaste tu contraseña?</a>
+            <button id="login-btn" @click="comprobar()">INGRESAR</button>
+            <a href="../crearCuenta/crear_cuenta.html">Crear cuenta</a>
+          </fieldset>
+        </form>
+      </main>
     </div>
+  </div>
 </body>
 
 <script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
@@ -51,6 +50,7 @@
 
 <script>
   let url = 'http://localhost:4000/users';
+  let url2 = 'http://localhost:4000/regis';
   new Vue({
     el: '#app',
     vuetify: new Vuetify(),
@@ -62,6 +62,14 @@
           nombre: '',
           correo: '',
           contrasena: '',
+          tipo: '',
+          contador: ''
+        },
+        regis: [],
+        reg: {
+          id: null,
+          id_usuario: '',
+          fecha_registro: ''
         }
       }
     },
@@ -74,11 +82,11 @@
         axios.get(url)
           .then(response => {
             this.userss = response.data;
-            
+
           })
       },
       crear: function () {
-        let parametros = { nombre: this.users.nombre, correo: this.users.correo, contrasena: this.users.contrasena };
+        let parametros = { nombre: this.users.nombre, correo: this.users.correo, contrasena: this.users.contrasena, tipo: this.users.tipo, contador: this.users.contador };
         axios.post(url, parametros)
           .then(response => {
             this.mostrar();
@@ -88,7 +96,7 @@
         this.users.contrasena = "";
       },
       editar: function () {
-        let parametros = { nombre: this.users.nombre, correo: this.users.correo, contrasena: this.users.contrasena };
+        let parametros = { nombre: this.users.nombre, correo: this.users.correo, contrasena: this.users.contrasena, tipo: this.users.tipo, contador: this.users.contador };
         //console.log(parametros);                   
         axios.put(url + "/" + this.users.id, parametros)
           .then(response => {
@@ -119,19 +127,32 @@
       comprobar: function () {
         event.preventDefault();
         var email = document.getElementById("email").value;
-        var username = document.getElementById("username").value;
         var password = document.getElementById("password").value;
         var flagin = false;
+        var idus;
         this.userss.forEach(usuario => {
-            if (username === usuario.nombre && password === usuario.contrasena && email === usuario.correo) {
-                flagin = true;
-            }
+          if (password === usuario.contrasena && email === usuario.correo) {
+            flagin = true;
+            idus=usuario.id;
+          }
         });
         if (flagin) {
-            console.log("si da");
-            window.location.href = "../MenuGerente/menuGerente.html";
-        } else {    
-            alert("Credenciales incorrectas. Por favor, inténtalo de nuevo.");
+          var fechaActual = new Date();
+
+          var dia = fechaActual.getDate();
+          var mes = fechaActual.getMonth() + 1;
+          var año = fechaActual.getFullYear();
+
+          var fechaFormateada = dia + '/' + mes + '/' + año;
+          let parametros = { id_usuario: idus, fecha_registro: fechaFormateada };
+          axios.post(url2, parametros)
+            .then(response => {
+              
+            });
+          window.location.href = "../../MenuCliente/menu.html";
+        } else {
+          alert("Credenciales incorrectas. Por favor, inténtalo de nuevo.");
+
         }
       },
     }

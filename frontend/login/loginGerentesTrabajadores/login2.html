@@ -22,9 +22,6 @@
                     <fieldset>
                         <legend>INGRESAR</legend>
 
-                        <label for="username">Usuario:</label>
-                        <input type="text" id="username" placeholder="Usuario">
-
                         <label for="email">Correo Electrónico:</label>
                         <input type="email" id="email" placeholder="Correo Electrónico">
 
@@ -34,8 +31,6 @@
                         
                         <a href="../RestablecerContrasenaAltosMandos/nuevo_codigo2.html">¿Olvidaste tu contraseña?</a>
                         <button id="login-btn" @click="comprobar()">INGRESAR</button> 
-                        //Aqui mandan al menu de trabajadores o gerentes depende de como termine el correo 
-                        //q ingresaron en el login @trabajador o @gerente
                       
                     </fieldset>
                 </form>
@@ -43,4 +38,126 @@
         </div>
     </div>
 </body>
+
+<script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.js"
+  integrity="sha512-nqIFZC8560+CqHgXKez61MI0f9XSTKLkm0zFVm/99Wt0jSTZ7yeeYwbzyl0SGn/s8Mulbdw+ScCG41hmO2+FKw=="
+  crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.0.2/dist/sweetalert2.all.min.js"></script>
+
+<script>
+  let url = 'http://localhost:4000/users';
+  let url2 = 'http://localhost:4000/regis';
+  new Vue({
+    el: '#app',
+    vuetify: new Vuetify(),
+    data() {
+      return {
+        userss: [],
+        users: {
+          id: null,
+          nombre: '',
+          correo: '',
+          contrasena: '',
+          tipo: '',
+          contador: ''
+        },
+        regis: [],
+        reg: {
+          id: null,
+          id_usuario: '',
+          fecha_registro: ''
+        }
+      }
+    },
+    created() {
+      this.mostrar()
+    },
+    methods: {
+      //MÉTODOS PARA EL CRUD
+      mostrar: function () {
+        axios.get(url)
+          .then(response => {
+            this.userss = response.data;
+            
+          })
+      },
+      crear: function () {
+        let parametros = { nombre: this.users.nombre, correo: this.users.correo, contrasena: this.users.contrasena, tipo: this.users.tipo, contador: this.users.contador };
+        axios.post(url, parametros)
+          .then(response => {
+            this.mostrar();
+          });
+        this.users.nombre = "";
+        this.users.correo = "";
+        this.users.contrasena = "";
+      },
+      editar: function () {
+        let parametros = { nombre: this.users.nombre, correo: this.users.correo, contrasena: this.users.contrasena, tipo: this.users.tipo, contador: this.users.contador  };
+        //console.log(parametros);                   
+        axios.put(url + "/" + this.users.id, parametros)
+          .then(response => {
+            this.mostrar();
+          })
+          .catch(error => {
+            console.log(error);
+          });
+      },
+      borrar: function (id) {
+        Swal.fire({
+          title: '¿Confirma eliminar el registro?',
+          confirmButtonText: `Confirmar`,
+          showCancelButton: true,
+        }).then((result) => {
+          if (result.isConfirmed) {
+            //procedimiento borrar
+            axios.delete(url + "/" + id)
+              .then(response => {
+                this.mostrar();
+              });
+            Swal.fire('¡Eliminado!', '', 'success')
+          } else if (result.isDenied) {
+          }
+        });
+      },
+
+      comprobar: function () {
+        event.preventDefault();
+        var email = document.getElementById("email").value;
+        var password = document.getElementById("password").value;
+        var flagin = false;
+        var idus;
+        this.userss.forEach(usuario => {
+            console.log(usuario.tipo);
+            console.log(password);
+            console.log(usuario.contrasena);
+            if (password === usuario.contrasena && email === usuario.correo && (usuario.tipo=="admin" || usuario.tipo=="trabajador")) {
+                idus=usuario.id;
+                flagin = true;
+            }
+        });
+        if (flagin) {
+            var fechaActual = new Date();
+
+          var dia = fechaActual.getDate();
+          var mes = fechaActual.getMonth() + 1;
+          var año = fechaActual.getFullYear();
+
+          var fechaFormateada = dia + '/' + mes + '/' + año;
+          let parametros = { id_usuario: idus, fecha_registro: fechaFormateada };
+          axios.post(url2, parametros)
+            .then(response => {
+              
+            });
+            window.location.href = "../../MenuGerente/menuGerente.html";
+        } else {    
+            alert("Credenciales incorrectas. Por favor, inténtalo de nuevo.");
+            
+        }
+      },
+    }
+  });
+</script>
+
 </html>
