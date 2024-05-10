@@ -30,4 +30,26 @@
         </section>
     </main>
 </body>
+<script>
+    let tiempoInactividad = 10000; 
+    let temporizador;
+  
+    function reiniciarTemporizador() {
+        clearTimeout(temporizador);
+        temporizador = setTimeout(() => {
+            alert("Tu sesión ha expirado por inactividad.");
+            window.location.href = '../login/loginGerentesTrabajadores/login2.html'; 
+        }, tiempoInactividad);
+    }
+  
+    // Eventos que reiniciarán el temporizador
+    window.onload = reiniciarTemporizador;
+    window.onmousemove = reiniciarTemporizador;
+    window.onmousedown = reiniciarTemporizador; 
+    window.ontouchstart = reiniciarTemporizador; 
+    window.onclick = reiniciarTemporizador;      
+    window.onkeypress = reiniciarTemporizador;
+  
+  </script>
+  
 </html>

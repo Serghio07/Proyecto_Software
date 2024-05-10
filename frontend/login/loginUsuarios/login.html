@@ -29,8 +29,6 @@
 
             <label for="password">Código:</label>
             <input type="password" id="password" placeholder="Contraseña">
-
-
             <a href="../RestablecerContrasenaUsuarios/nuevo_codigo.html">¿Olvidaste tu contraseña?</a>
             <button id="login-btn" @click="comprobar()">INGRESAR</button>
             <a href="../crearCuenta/crear_cuenta.html">Crear cuenta</a>
@@ -40,6 +38,14 @@
     </div>
   </div>
 </body>
+
+<script>
+  document.getElementById('reset-password-btn').addEventListener('click', function(event) {
+      event.preventDefault(); 
+      alert('Se ha enviado un mensaje a caminlo el genrente le mandara su contraesña.');
+  });
+  </script>
+  
 
 <script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
@@ -51,6 +57,7 @@
 <script>
   let url = 'http://localhost:4000/users';
   let url2 = 'http://localhost:4000/regis';
+  let contad = 0;
   new Vue({
     el: '#app',
     vuetify: new Vuetify(),
@@ -136,24 +143,30 @@
             idus=usuario.id;
           }
         });
-        if (flagin) {
-          var fechaActual = new Date();
+        if (contad<3) {
+          if (flagin) {
+            var fechaActual = new Date();
 
-          var dia = fechaActual.getDate();
-          var mes = fechaActual.getMonth() + 1;
-          var año = fechaActual.getFullYear();
+            var dia = fechaActual.getDate();
+            var mes = fechaActual.getMonth() + 1;
+            var año = fechaActual.getFullYear();
 
-          var fechaFormateada = dia + '/' + mes + '/' + año;
-          let parametros = { id_usuario: idus, fecha_registro: fechaFormateada };
-          axios.post(url2, parametros)
-            .then(response => {
-              
-            });
-          window.location.href = "../../MenuCliente/menu.html";
-        } else {
-          alert("Credenciales incorrectas. Por favor, inténtalo de nuevo.");
+            var fechaFormateada = dia + '/' + mes + '/' + año;
+            let parametros = { id_usuario: idus, fecha_registro: fechaFormateada };
+            axios.post(url2, parametros)
+              .then(response => {
+                
+              });
+            window.location.href = "../../MenuCliente/menu.html";
+          } else {
+            contad=contad+1;
+            alert("Credenciales incorrectas. Por favor, inténtalo de nuevo.");
 
+          }
+        }else{
+          alert("Intentos superados. Intente mas tarde");
         }
+        
       },
     }
   });
