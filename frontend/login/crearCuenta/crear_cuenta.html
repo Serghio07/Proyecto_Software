@@ -23,12 +23,12 @@
                 
                 <label for="password"><b>Contraseña:</b></label>
                 <input type="password" id="password" placeholder="Contraseña">
-                
-                <label for="show-password">Mostrar contraseña: </label>
-                <input type="checkbox" id="show-password">
-                <small id="password-hint" class="form-hint">La contraseña debe tener al menos 8 caracteres, incluyendo al menos una mayúscula, una minúscula, un número y un carácter especial.</small>
 
+                <small id="password-hint" class="form-hint">La contraseña debe tener al menos 8 caracteres, incluyendo al menos una mayúscula, una minúscula, un número y un carácter especial.</small>
+              
                 <button type="submit" @click="crear()" id="signup-btn">Crear Cuenta</button>
+
+                  
             </form>
             <div id="message"></div>
         </main>
@@ -78,17 +78,25 @@
         var password = document.getElementById("password").value;
         var email = document.getElementById("email").value;
 
-        let parametros = { nombre: usuarioc, correo: email, contrasena: password, tipo: "usuario", contador: 0 };
-        axios.post(url, parametros)
-          .then(response => {
-            this.mostrar();
-          });
-        this.users.nombre = "";
-        this.users.correo = "";
-        this.users.contrasena = "";
-        this.users.tipo = "";
-        this.users.contador = "";
-        alert("Usuario creado");
+        const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+        if (!regex.test(password)) {
+            event.preventDefault(); // Detiene el envío del formulario
+            alert('La contraseña debe tener al menos 8 caracteres, incluir al menos una mayúscula, una minúscula, un número y un carácter especial.');
+        }else{
+          let parametros = { nombre: usuarioc, correo: email, contrasena: password, tipo: "usuario", contador: 0 };
+          axios.post(url, parametros)
+            .then(response => {
+              this.mostrar();
+            });
+          this.users.nombre = "";
+          this.users.correo = "";
+          this.users.contrasena = "";
+          this.users.tipo = "";
+          this.users.contador = "";
+          alert("Usuario creado");
+        }
+
+        
       },
       editar: function () {
         let parametros = { nombre: this.users.nombre, correo: this.users.correo, contrasena: this.users.contrasena, tipo: this.users.tipo, contador: this.users.contador  };

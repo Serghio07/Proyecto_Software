@@ -1,0 +1,45 @@
+{
+  "default_branch": "main",
+  "branches": [
+    "Alex",
+    "Camilo",
+    "Fer",
+    "Quino",
+    "Serghio",
+    "camilo",
+    "main",
+    "master",
+    "maurici",
+    "origin",
+    "qewerty",
+    "si"
+  ],
+  "parent": {
+    "Alex": "main",
+    "Camilo": "main",
+    "Fer": "main",
+    "Quino": "main",
+    "Serghio": "main",
+    "camilo": "main",
+    "main": null,
+    "master": "main",
+    "maurici": "main",
+    "origin": "main",
+    "qewerty": "main",
+    "si": "main"
+  },
+  "order": [
+    "main",
+    "Alex",
+    "Camilo",
+    "Fer",
+    "Quino",
+    "Serghio",
+    "camilo",
+    "master",
+    "maurici",
+    "origin",
+    "qewerty",
+    "si"
+  ]
+}
