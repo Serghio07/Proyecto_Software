@@ -15,7 +15,7 @@ body {
     align-items: center;
     justify-content: center;
     height: 100vh;
-    background: linear-gradient(#430831, #ac18c0);
+    background: linear-gradient(orange, #c84177);
 }
 
 .container {
