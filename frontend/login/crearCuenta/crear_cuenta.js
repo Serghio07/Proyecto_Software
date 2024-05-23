@@ -12,7 +12,6 @@ document.getElementById("signup-btn").addEventListener("click", function(event) 
         return;
     }
 
-
     // Validar la contraseña
     if (!validatePassword(password)) {
         var message = document.getElementById("message");
@@ -20,22 +19,35 @@ document.getElementById("signup-btn").addEventListener("click", function(event) 
         return;
     }
 
-
     // Guardar el nombre de usuario para evitar duplicados
     localStorage.setItem(username, true);
 
-    // Aquí iría la lógica para crear la cuenta
-    // Por ahora simplemente mostramos un mensaje de éxito
-    var message = document.getElementById("message");
-    message.textContent = "¡Cuenta creada exitosamente!";
-    message.style.color = "green";
+    // Mostrar el modal de éxito
+    showModal();
+    
+    // Cerrar automáticamente el modal después de 4 segundos
+    setTimeout(closeModal, 3000);
 });
 
-// Función para validar la contraseña
 function validatePassword(password) {
     // Requisitos de la contraseña: longitud mínima de 8 caracteres, al menos un número, una letra mayúscula y un carácter especial
     var passwordRegex = /^(?=.*\d)(?=.*[A-Z])(?=.*[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?])(?=.*[a-z]).{8,}$/;
     return passwordRegex.test(password);
+}
+
+function showModal() {
+    var modal = document.getElementById("modal");
+    modal.style.display = "flex"; // Cambiar a 'flex' para centrarlo
+}
+
+function closeModal() {
+    var modal = document.getElementById("modal");
+    modal.style.display = "none";
+}
+
+// Ocultar la ventana modal al cargar la página
+window.onload = function() {
+    closeModal();
 }
 
 // Mostrar u ocultar la contraseña

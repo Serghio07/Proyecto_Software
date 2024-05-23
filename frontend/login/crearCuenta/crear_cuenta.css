@@ -1,24 +1,51 @@
+/* Estilos generales y responsivos */
 body, html {
     margin: 0;
     padding: 0;
-    font-family: Arial, sans-serif;
-    background-color: #ee3c3c;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    background: #fafafa; /* Fondo suave */
+    height: 100%;
 }
 
-.container {
-    max-width: 400px;
-    margin: 0 auto;
+.signup-page {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background: linear-gradient(135deg, #fa3e3e, #f1d145); /* Fondo degradado */
+}
+
+.signup-container {
+    display: flex;
+    width: 80%;
+    max-width: 1000px;
+    background: #ffffff; /* Fondo blanco */
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1); /* Sombra */
+    overflow: hidden;
+}
+
+.signup-left {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f1d145; /* Fondo amarillo */
     padding: 20px;
-    background-color: #eccc3b;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-label[for="show-password"] {
-    display: inline-block;
-    margin-left: 5px;
+.signup-left .signup-icon {
+    max-width: 80%;
+    height: auto;
 }
 
+.signup-right {
+    flex: 2;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
 
 header {
     text-align: center;
@@ -26,16 +53,19 @@ header {
 }
 
 h1 {
-    font-size: 24px;
+    font-size: 2em;
+    color: #444; /* Color de texto */
+    margin: 0;
 }
 
-form {
+.signup-form {
     display: flex;
     flex-direction: column;
 }
 
 label {
     margin-bottom: 5px;
+    color: #666; /* Color de texto */
 }
 
 input {
@@ -43,23 +73,98 @@ input {
     margin-bottom: 15px;
     border: 1px solid #ccc;
     border-radius: 5px;
+    box-sizing: border-box;
+    width: 100%;
 }
 
 button {
-    padding: 10px;
-    background-color: #007BFF;
-    color: #fff;
+    padding: 12px;
+    background-color: #6bb33b; /* Color del botón */
+    color: #fff; /* Texto blanco */
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    transition: background-color 0.3s; /* Transición */
+    font-size: 1em; /* Tamaño de fuente */
 }
 
 button:hover {
-    background-color: #0056b3;
+    background-color: #5aa32a; /* Color al pasar el ratón */
 }
 
 #message {
     text-align: center;
     margin-top: 20px;
-    color: #ff0000;
+    color: #ff0000; /* Color del mensaje */
+}
+
+/* Estilos para la ventana modal */
+.modal {
+    display: none; /* Oculto por defecto */
+    position: fixed; 
+    z-index: 1; 
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    overflow: auto; 
+    background-color: rgb(0,0,0); 
+    background-color: rgba(0,0,0,0.4); 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 400px;
+    text-align: center;
+    border-radius: 10px;
+    position: relative;
+}
+
+.modal-icon {
+    width: 100px;
+    height: auto;
+    margin-bottom: 20px;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    .signup-container {
+        flex-direction: column;
+    }
+
+    .signup-left, .signup-right {
+        width: 100%;
+    }
+
+    .signup-left {
+        padding: 20px;
+    }
+
+    .signup-right {
+        padding: 20px;
+    }
 }
