@@ -3,99 +3,136 @@ body, html {
     margin: 0;
     padding: 0;
     font-family: 'Helvetica Neue', Arial, sans-serif;
-    background: #fa3e3e; /* Fondo más suave */
+    background: #fafafa; /* Fondo suave */
+    height: 100%;
 }
 
-.container {
+.login-page {
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
-    min-height: 100vh;
-    color: #333; /* Texto más suave */
-}
-
-.welcome {
-    text-align: center;
-    margin-bottom: 20px; /* Espaciado agregado */
+    height: 100vh;
+    background: linear-gradient(135deg, #fa3e3e, #f1d145); /* Fondo degradado */
 }
 
 .login-container {
-    background: #f1d145; /* Amarillo más suave */
-    padding: 40px;
+    display: flex;
+    width: 80%;
+    max-width: 1200px;
+    background: #ffffff; /* Fondo blanco */
     border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1); /* Sombra más suave */
-    width: 300px; /* Tamaño fijo para contenedor */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1); /* Sombra */
+    overflow: hidden;
 }
 
-.logo img {
-    width: 120px; /* Ajuste de tamaño según el logo */
-    display: block;
-    margin-bottom: 30px; /* Espaciado agregado */
+.login-left {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f1d145; /* Fondo amarillo */
+    padding: 20px;
+}
+
+.login-left .logo {
+    max-width: 80%;
+    height: auto;
+}
+
+.login-right {
+    flex: 2;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+h1, h2 {
+    color: #444; /* Color de texto más oscuro */
+    margin: 0;
+}
+
+h1 {
+    font-size: 2em;
+    margin-bottom: 10px; /* Espaciado */
+}
+
+.restaurant-title {
+    font-size: 1.5em;
+    margin-bottom: 20px; /* Espaciado */
 }
 
 .login-form fieldset {
     border: none;
-    margin: 0;
     padding: 0;
+    margin: 0;
 }
 
 .login-form legend {
-    font-size: 2em; /* Texto más grande */
-    color: #444; /* Color de texto más oscuro */
-    margin-bottom: 20px; /* Espaciado agregado */
+    font-size: 1.5em; /* Tamaño de fuente */
+    color: #444; /* Color de texto */
+    margin-bottom: 20px; /* Espaciado */
 }
 
 .login-form label {
     display: block;
-    margin: 10px 0; /* Espaciado uniforme */
+    margin: 10px 0; /* Espaciado */
+    color: #666; /* Color de texto */
 }
 
 .login-form input[type="text"],
 .login-form input[type="email"],
 .login-form input[type="password"] {
-    width: calc(100% - 20px);
-    padding: 12px; /* Relleno más grande */
-    margin-bottom: 15px; /* Espaciado uniforme */
-    border: 1px solid #ffc107; /* Borde más definido */
+    width: 100%;
+    padding: 10px; /* Relleno */
+    margin-bottom: 15px; /* Espaciado */
+    border: 1px solid #ccc; /* Borde */
     border-radius: 5px; /* Bordes redondeados */
+    box-sizing: border-box;
 }
 
 #login-btn {
     width: 100%;
-    padding: 12px; /* Relleno más grande */
-    background-color: #6bb33b; /* Amarillo del botón */
-    color: #333; /* Texto más suave */
+    padding: 12px; /* Relleno */
+    background-color: #6bb33b; /* Color del botón */
+    color: #fff; /* Texto blanco */
     border: none;
-    border-radius: 5px;
+    border-radius: 5px; /* Bordes redondeados */
     cursor: pointer;
-    transition: background-color 0.2s; /* Transición más rápida */
+    transition: background-color 0.3s; /* Transición */
+    font-size: 1em; /* Tamaño de fuente */
 }
 
 #login-btn:hover {
-    background-color: #e0a800; /* Color al pasar el ratón */
+    background-color: #5aa32a; /* Color al pasar el ratón */
 }
 
-.back-btn {
-    position: absolute;
-    left: 20px;
-    top: 20px;
-    padding: 10px 20px;
-    background-color: #ffe345; /* Fondo más suave para el botón */
-    color: #721c24; /* Texto más oscuro para contraste */
-    border: 1px solid #f5c6cb; /* Borde más suave */
-    border-radius: 5px;
-    cursor: pointer;
-    transition: all 0.3s ease;
+a {
+    display: block;
+    margin: 10px 0; /* Espaciado */
+    color: #fa3e3e; /* Color de enlace */
+    text-decoration: none; /* Sin subrayado */
+    font-size: 0.9em; /* Tamaño de fuente */
 }
 
-.back-btn:hover {
-    background-color: #f5c6cb; /* Color al pasar el ratón */
+a:hover {
+    text-decoration: underline; /* Subrayado al pasar el ratón */
 }
 
 @media (max-width: 768px) {
     .login-container {
-        width: 90%;
-        margin: 0 auto;
+        flex-direction: column;
+    }
+
+    .login-left, .login-right {
+        width: 100%;
+    }
+
+    .login-left {
+        padding: 20px;
+    }
+
+    .login-right {
+        padding: 20px;
     }
 }

@@ -1,17 +1,50 @@
+/* Estilos generales y responsivos */
 body, html {
     margin: 0;
     padding: 0;
-    font-family: Arial, sans-serif;
-    background-color: #f84b4b;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    background: #fafafa; /* Fondo suave */
+    height: 100%;
 }
 
-.container {
-    max-width: 400px;
-    margin: 0 auto;
+.reset-page {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background: linear-gradient(135deg, #fa3e3e, #f1d145); /* Fondo degradado */
+}
+
+.reset-container {
+    display: flex;
+    width: 80%;
+    max-width: 1000px;
+    background: #ffffff; /* Fondo blanco */
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1); /* Sombra */
+    overflow: hidden;
+}
+
+.reset-left {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f1d145; /* Fondo amarillo */
     padding: 20px;
-    background-color: #f0c44a;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.reset-left .reset-icon {
+    max-width: 80%;
+    height: auto;
+}
+
+.reset-right {
+    flex: 2;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 header {
@@ -20,16 +53,19 @@ header {
 }
 
 h1 {
-    font-size: 24px;
+    font-size: 2em;
+    color: #444; /* Color de texto */
+    margin: 0;
 }
 
-form {
+.reset-password-form {
     display: flex;
     flex-direction: column;
 }
 
 label {
     margin-bottom: 5px;
+    color: #666; /* Color de texto */
 }
 
 input {
@@ -37,23 +73,45 @@ input {
     margin-bottom: 15px;
     border: 1px solid #ccc;
     border-radius: 5px;
+    box-sizing: border-box;
+    width: 100%;
 }
 
 button {
-    padding: 10px;
-    background-color: #007BFF;
-    color: #fff;
+    padding: 12px;
+    background-color: #6bb33b; /* Color del botón */
+    color: #fff; /* Texto blanco */
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    transition: background-color 0.3s; /* Transición */
+    font-size: 1em; /* Tamaño de fuente */
 }
 
 button:hover {
-    background-color: #0056b3;
+    background-color: #5aa32a; /* Color al pasar el ratón */
 }
 
 #message {
     text-align: center;
     margin-top: 20px;
-    color: #ff0000;
+    color: #ff0000; /* Color del mensaje */
+}
+
+@media (max-width: 768px) {
+    .reset-container {
+        flex-direction: column;
+    }
+
+    .reset-left, .reset-right {
+        width: 100%;
+    }
+
+    .reset-left {
+        padding: 20px;
+    }
+
+    .reset-right {
+        padding: 20px;
+    }
 }
