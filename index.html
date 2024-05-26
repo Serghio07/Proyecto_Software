@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha384-oNR3ivfesWjCkOwCUJKULPfn8V5AWyF8MTkFiYlZ7k4AB2Q9poh5f+Jw+tx1yGJp" crossorigin="anonymous">
+</head>
+    <title>Nuevesito de Paquete</title>
+</head>
+<body>
+
+    <div class="head">
+        <div class="logo">
+            <img src="foticos/loggo.jpg" alt="Tu Logotipo">
+        </div>
+
+        <nav class="navbar">
+            <a href="#">Inicio</a>
+            <a href="#">Menu</a>
+            <a href="#">Notificaciones</a>
+            <a href="#">Historial</a>
+            <a href="#">Salir</a>
+        </nav>
+    </div>
+
+    <header class="content header">
+        <h2 class="title">Inicio</h2>
+        <p>
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Exercitationem asperiores qui quidem unde error ad cum expedita impedit officiis doloribus in veniam mollitia harum, possimus deserunt repellat delectus consequatur voluptatibus.
+        </p>
+        
+        <div class="btn-home">
+            <a href="#" class="btn">Saber mas</a>
+            <a href="#" class="btn">Saber mas</a>
+        </div>
+    </header>
+
+    <section class="content sau">  
+        <h2 class="title">Menu</h2>
+
+
+        <div class="box-container">
+            <div class="box">
+                <img src="foticos/llopo.jpg" alt="Tu Logotipo">
+                <h3>Pollo Frito Bs20</h3>
+                <p>1/4 de pollo, papas y refresco</p>
+                <button class="btn-pedir" onclick="openPopup()">Pedir</button>
+            </div>
+
+            <div class="box">
+                <img src="foticos/guerbur.jpg" alt="Tu Logotipo">
+                <h3>Hamburguesa Bs20</h3>
+                <p>Hamburguesa, papas y refresco</p>
+                <button class="btn-pedir" onclick="openPopup()">Pedir</button>
+            </div>
+
+            <div class="box">
+                <img src="foticos/getsnu.jpg" alt="Tu Logotipo">
+                <h3>Chicken Nuggets Bs18</h3>
+                <p>Nuggets, papas y refresco</p>
+                <button class="btn-pedir" onclick="openPopup()">Pedir</button>
+            </div>
+
+            <div class="box">
+                <img src="foticos/neza.jpg" alt="Tu Logotipo">
+                <h3>Milaneza Clasica Bs20</h3>
+                <p>Milaneza en sandwich, jamon y queso</p>
+                <button class="btn-pedir" onclick="openPopup()">Pedir</button>
+            </div>
+
+            <div class="box">
+                <img src="foticos/pancho.jpg" alt="Tu Logotipo">
+                <h3>Silpancho Bs20</h3>
+                <p>Plato tradicional de Cochabamba</p>
+                <button class="btn-pedir" onclick="openPopup()">Pedir</button>
+            </div>
+
+            <div class="box">
+                <img src="foticos/jkl.jpg" alt="Tu Logotipo">
+                <h3>Churrasco 20Bs</h3>
+                <p>Churrasco con guarniciones</p>
+                <button class="btn-pedir" onclick="openPopup()">Pedir</button>
+            </div>
+        </div>
+
+
+        <div class="final-order-btn-container">
+            <button class="btn-final-order" onclick="openFinalOrder()">VER MI PEDIDO</button>
+        </div>
+
+
+
+    </section>
+
+    <div id="popup" class="popup">
+        <div class="popup-content">
+            <span class="close" onclick="closePopup()">&times;</span>
+            <h2>Confirmar Pedido</h2>
+            <p>¿Desea confirmar su pedido de __________?</p>
+            <button class="btn">Confirmar</button>
+        </div>
+    </div>
+
+    <section class="content about">
+        <div class="container green">
+            <div class="content">
+                <div class="mini-rectangulo">
+                    <div class="plato-info">
+                        <p style="font-weight: bold;">Su pedido estará listo en N minutos</p>
+                    </div>
+                </div>
+                <div class="mini-rectangulo">
+                    <div class="plato-info">
+                        <p>Su pedido fue entregado hace N minutos
+                        ¿Le gustó la atención?
+                        ¿La comida llegó tal como la ordenó?
+                        ¿El servicio le pareció adecuado?
+                        Por favor califíquenos, si tiene observaciones sobre el servicio háganos saber</p>
+                        <label for="calificacion">Califíquenos del 1 al 10:</label>
+                        <input type="number" id="calificacion" name="calificacion" min="1" max="10">
+                        <p>Deje un comentario sobre el servicio (Opcional):</p>
+                        <textarea id="comentario" name="comentario" rows="2" cols="15"></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        function openPopup() {
+            document.getElementById('popup').style.display = 'flex';
+        }
+
+        function closePopup() {
+            document.getElementById('popup').style.display = 'none';
+        }
+    </script>
+
+<section class="content sau historial-container">  
+    <h2 class="title">HISTORIAL DE PEDIDOS</h2>
+    <p>Aca tienes tu historial de compras anteriores</p>
+
+    <div class="box-container">
+        <div class="box">
+            <h3>Plato(s):_____________<br>
+            FECHA: __/__/_____<br>
+            CANTIDAD: _________<br>
+            TOTAL __Bs</h3>
+        </div>
+
+        <div class="box">
+            <h3>Plato(s):_____________<br>
+            FECHA: __/__/_____<br>
+            CANTIDAD: _________<br>
+            TOTAL __Bs</h3>
+        </div>        
+        <div class="box">
+            <h3>Plato(s):_____________<br>
+            FECHA: __/__/_____<br>
+            CANTIDAD: _________<br>
+            TOTAL __Bs</h3>
+        </div>                  
+    </div>
+
+</section>
+
+<script>
+    function openPopup() {
+        document.getElementById('popup').style.display = 'flex';
+    }
+
+    function closePopup() {
+        document.getElementById('popup').style.display = 'none';
+    }
+
+    function openFinalOrder() {
+        window.open('verPedido.html', '_blank');
+    }
+</script>
+
+</body>
+</html>
+
+
