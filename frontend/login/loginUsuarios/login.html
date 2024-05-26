@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Login - Restaurante Liz</title>
   <link rel="stylesheet" href="login.css">
 </head>
+
 <body>
   <div id="app" class="login-page">
     <div class="login-container">
@@ -23,7 +25,7 @@
             <label for="password">Código:</label>
             <input type="password" id="password" placeholder="Contraseña" required>
             <a href="../RestablecerContrasenaUsuarios/nuevo_codigo.html">¿Olvidaste tu contraseña?</a>
-            <button id="login-btn" @click="comprobar()">INGRESAR</button>
+            <button id="login-btn" @click.prevent="comprobar()">INGRESAR</button>
             <a href="../crearCuenta/crear_cuenta.html">Crear cuenta</a>
           </fieldset>
         </form>
@@ -33,7 +35,9 @@
 </body>
 <script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.js" integrity="sha512-nqIFZC8560+CqHgXKez61MI0f9XSTKLkm0zFVm/99Wt0jSTZ7yeeYwbzyl0SGn/s8Mulbdw+ScCG41hmO2+FKw==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.js"
+  integrity="sha512-nqIFZC8560+CqHgXKez61MI0f9XSTKLkm0zFVm/99Wt0jSTZ7yeeYwbzyl0SGn/s8Mulbdw+ScCG41hmO2+FKw=="
+  crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.0.2/dist/sweetalert2.all.min.js"></script>
 <script>
   let url = 'http://localhost:4000/users';
@@ -106,7 +110,6 @@
         });
       },
       comprobar: function (event) {
-        event.preventDefault();
         var email = document.getElementById("email").value;
         var password = document.getElementById("password").value;
         var flagin = false;
@@ -126,7 +129,15 @@
           let parametros = { id_usuario: idus, fecha_registro: fechaFormateada };
           axios.post(url2, parametros)
             .then(response => { });
-          window.location.href = "../../MenuCliente/menu.html";
+          if (this.userss[idus].tipo == "admin" || this.userss[idus].tipo == "trabajador") {
+            console.log("depende");
+            window.location.href = "../../MenuGerente/menuGerente1.html";
+          }
+          if (this.userss[idus].tipo == "cliente") {
+            console.log("si da");
+            window.location.href = "../../MenuCliente/menu.html";
+          }
+
         } else {
           alert("Credenciales incorrectas. Por favor, inténtalo de nuevo.");
         }
@@ -134,4 +145,5 @@
     }
   });
 </script>
+
 </html>
