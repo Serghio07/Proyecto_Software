@@ -3,6 +3,8 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
+    display: flex;
+    
 }
 
 .Agregar {
@@ -72,14 +74,14 @@ button[type="submit"] {
 button[type="submit"]:hover {
     background-color: #45a049;
 }
-.imagen{
+.imagen {
+    float: right; /* Mover la imagen a la derecha */
+    margin-left: 20px; /* Agregar un margen a la izquierda para separar del contenido */
     width: 547px;
-height: 543px;
-top: 294px;
-left: 1177px;
-gap: 0px;
-opacity: 0px;
-justify-content: space-around;
-
+    height: 543px;
+    gap: 0px;
+    opacity: 1; /* Cambiado a 1 para hacer la imagen visible */
 }
+
+
 

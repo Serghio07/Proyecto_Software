@@ -6,71 +6,66 @@
     <title>Gestión de Menú</title>
     <link rel="stylesheet" href="menuGerente1.css">
 </head>
+
 <body>
-    <div class="container">
-        <header>
-            <h1>GESTION DE MENU</h1>
-            <div class="header-icons">
-                <button class="cuentas" onclick="window.location.href = 'Tabla.html';">Cuentas</button>
-                <button class="agregar" onclick="window.location.href = 'Add.html';">Agregar Cuenta</button>
-                <button class="perfil" onclick="window.location.href = 'perfil.html';">Mi perfil</button>
+    <header>
+        <div class="Logo">
+            <img src="/frontend/MenuGerente/img/logo.png" alt="Logo">
+        </div>
+        <h1>GESTION DE MENU</h1>
+        <div class="header-icons">
+            <button class="cuentas" onclick="window.location.href = 'Tabla.html';">
+                <img src="/frontend/MenuGerente/img/personas.png" alt="Cuentas">
+            </button>
+            <button class="agregar" onclick="window.location.href = 'Add.html';">
+                <img src="/frontend/MenuGerente/img/seguidores.png" alt="Agregar Cuenta">
+            </button> <button class="perfil" onclick="window.location.href = 'perfil.html';">
+                <img src="/frontend/MenuGerente/img/pollo.png" alt="Mi perfil">
+            </button>
+        </div>
+    </header>
+    <div class="card">
+        <div class="face front">
+            <img src="/frontend/MenuGerente/img/comidas.jpg" alt="">
+            <h3>Comidas</h3>
+        </div>
+        <div class="face back">
+            <h3>Comidas</h3>
+            <p>Edicion y elimincaion </p>
+            <div class="link">
+                <a href="comidaGerente.html">Ingresar</a>
             </div>
-        </header>
-        <main>
-            <section class="product-management">
-                <div class="product-info">
-                    <div class="product-image">
-                        <img src="/frontend/MenuGerente/img/pollo.jpg" alt="Pollo Spiedo">
-                    </div>
-                    <div class="product-details">
-                        <h2>Titulo: Pollo Spiedo</h2>
-                        <p><strong>Descripcion:</strong> Porcion de papas, arroz junto a un 1/4 de pollo acompañado de salsas</p>
-                        <p><strong>Precio:</strong> 15 bs</p>
-                        <button class="delete-button">Eliminar</button>
-                        <button class="edit-button">Editar producto</button>
-                    </div>
-                </div>
-                
-                <div class="add-product">
-                    <h2>Agregar producto</h2>
-                    <form>
-                        
-                        <label for="imagen">Imagen:</label>
-                        <input type="file" id="imagen" name="imagen">
-                        <input type="text" id="product-image" name="product-image">
-                        <label for="product-title">Titulo:</label>
-                        <input type="text" id="product-title" name="product-title">
-                        <label for="product-description">Descripcion:</label>
-                        <input type="text" id="product-description" name="product-description">
-                        <label for="product-price">Precio:</label>
-                        <input type="text" id="product-price" name="product-price">
-                        <button type="submit" class="save-button">Guardar producto</button>
-                    </form>
-                </div>
-            </section>
-            <section class="sales-info">
-                <h2>MIS VENTAS</h2>
-                <div class="daily-sales">
-                    <h3>Dia (fecha) :</h3>
-                    <p>plato1: ....</p>
-                    <p>plato2: ....</p>
-                    <p>plato3: ....</p>
-                    <p>refresco1: ....</p>
-                    <p>TOTAL: ....</p>
-                </div>
-                <div class="monthly-sales">
-                    <h3>Mensual:</h3>
-                    <p>plato mas vendido: ....</p>
-                    <p>plato menos vendido: ....</p>
-                    <p>refresco mas vendido: ....</p>
-                    <p>refresco menos vendido: ....</p>
-                    <p>GANANCIAS MENSUALES: ....</p>
-                </div>
-            </section>
-        </main>
+        </div>
+    </div>
+    <div class="card">
+        <div class="face front">
+            <img src="/frontend/MenuGerente/img/añadir.jpg" alt="">
+            <h3>Agregar Platos</h3>
+        </div>
+        <div class="face back">
+            <h3>Agregar</h3>
+            <p>Desea añadir nuevos platos?</p>
+            <div class="link">
+                <a href="comidaGerente.html">Ingresar</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="face front">
+            <img src="/frontend/MenuGerente/img/venras.jpg" alt="">
+            <h3>Registro de mis Ventas</h3>
+        </div>
+        <div class="face back">
+            <h3>Registrp</h3>
+            <p>Registro de todas mis ventas</p>
+            <div class="link">
+                <a href="#">Ingresar</a>
+            </div>
+        </div>
     </div>
     <script>
-        let tiempoInactividad =10000; 
+        let tiempoInactividad =900000; 
         let temporizador;
     
         function reiniciarTemporizador() {

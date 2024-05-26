@@ -6,7 +6,7 @@
 
 body {
     font-family: Arial, sans-serif;
-    background: linear-gradient(orange, #dfc55d);
+    background: linear-gradient(135deg, #fa3e3e, #f1d145);
     color: #333;
     margin: 0;
     padding: 0;
@@ -26,18 +26,18 @@ nav {
 
 button.atras {
     background-color: transparent;
-    color: white;
+    color: blawhite;
     font-size: 16px;
     padding: 10px 20px;
-    border: 2px solid white;
+    border: 2px solid rgb(28, 25, 25);
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 button.atras:hover {
-    background-color: white;
-    color: #c84177;
+    background-color: blackwhite;
+    color: #1f1b1d;
 }
 
 .perfil {
