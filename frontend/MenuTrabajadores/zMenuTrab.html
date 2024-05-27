@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="zMenuTrab.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha384-oNR3ivfesWjCkOwCUJKULPfn8V5AWyF8MTkFiYlZ7k4AB2Q9poh5f+Jw+tx1yGJp" crossorigin="anonymous">
+    <title>Nuevesito de Paquete</title>
+</head>
+<body>
+
+    <div class="head">
+        <div class="logo">
+            <img src="foticos/mesero.jpg" alt="Tu Logotipo">
+        </div>
+
+        <nav class="navbar">
+            <a href="#">Inicio</a>
+            <a href="#">Menu</a>
+            <a href="#">Por hacer</a>
+            <a href="#">Historial ventas</a>
+            <a href="#">Salir</a>
+        </nav>
+    </div>
+
+    <section class="content sau">  
+        <h2 class="title">Menu</h2>
+
+        <div class="box-container">
+            <div class="box">
+                <img src="foticos/llopo.jpg" alt="Tu Logotipo">
+                <h3>Pollo Frito Bs20</h3>
+                <p>1/4 de pollo, papas y refresco</p>
+                <button class="btn-pedir" onclick="openPopup()">Pedir</button>
+            </div>
+
+            <div class="box">
+                <img src="foticos/guerbur.jpg" alt="Tu Logotipo">
+                <h3>Hamburguesa Bs20</h3>
+                <p>Hamburguesa, papas y refresco</p>
+                <button class="btn-pedir" onclick="openPopup()">Pedir</button>
+            </div>
+
+            <div class="box">
+                <img src="foticos/getsnu.jpg" alt="Tu Logotipo">
+                <h3>Chicken Nuggets Bs18</h3>
+                <p>Nuggets, papas y refresco</p>
+                <button class="btn-pedir" onclick="openPopup()">Pedir</button>
+            </div>
+
+            <div class="box">
+                <img src="foticos/neza.jpg" alt="Tu Logotipo">
+                <h3>Milaneza Clasica Bs20</h3>
+                <p>Milaneza en sandwich, jamon y queso</p>
+                <button class="btn-pedir" onclick="openPopup()">Pedir</button>
+            </div>
+
+            <div class="box">
+                <img src="foticos/pancho.jpg" alt="Tu Logotipo">
+                <h3>Silpancho Bs20</h3>
+                <p>Plato tradicional de Cochabamba</p>
+                <button class="btn-pedir" onclick="openPopup()">Pedir</button>
+            </div>
+
+            <div class="box">
+                <img src="foticos/jkl.jpg" alt="Tu Logotipo">
+                <h3>Churrasco 20Bs</h3>
+                <p>Churrasco con guarniciones</p>
+                <button class="btn-pedir" onclick="openPopup()">Pedir</button>
+            </div>
+        </div>
+
+        <div class="final-order-btn-container">
+            <button class="btn-final-order" onclick="openFinalOrder()">VER ORDENES</button>
+        </div>
+    </section>
+
+    <div id="popup" class="popup">
+        <div class="popup-content">
+            <span class="close" onclick="closePopup()">&times;</span>
+            <h2>Confirmar Pedido</h2>
+            <p>¿Desea confirmar su pedido de __________?</p>
+            <button class="btn">Confirmar</button>
+        </div>
+    </div>
+
+    <section class="content sau historial-container">  
+        <h2 class="title">LISTA DE ORDENES</h2>
+        <p>Lista de ordenes por hacer //Lo puse asi para poder visualizar el orden</p>
+    
+        <div class="box-containerato">
+            <div class="boxato">
+                <h3>ORDEN #_____________<br>
+                CLIENTE:__________<br>
+                C.I: #_____________<br>
+                FECHA: __/__/_____</h3>
+                <button class="btn-edit">Entregada</button>
+                <button class="btn-delete">Cancelada</button>
+                <button class="btn-complete">Notificar</button>
+            </div>
+    
+            <div class="boxato">
+                <h3>ORDEN #_____________<br>
+                CLIENTE:__________<br>
+                C.I: #_____________<br>
+                FECHA: __/__/_____</h3>
+                <button class="btn-edit">Entregada</button>
+                <button class="btn-delete">Cancelada</button>
+                <button class="btn-complete">Notificar</button>
+            </div>
+    
+            <div class="boxato">
+                <h3>ORDEN #_____________<br>
+                CLIENTE:__________<br>
+                C.I: #_____________<br>
+                FECHA: __/__/_____</h3>
+                <button class="btn-edit">Entregada</button>
+                <button class="btn-delete">Cancelada</button>
+                <button class="btn-complete">Notificar</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="content sau historial-container">  
+        <h2 class="title">HISTORIAL de ventas</h2>
+        <p>Historial de ventas hechas</p>
+
+        <div class="box-container">
+            <div class="box">
+                <h3>Plato(s):_____________<br>
+                CI CLIENTE: _________<br>
+                FECHA: __/__/_____<br>
+                TOTAL __Bs</h3>
+            </div>
+
+            <div class="box">
+                <h3>Plato(s):_____________<br>
+                CI CLIENTE: _________<br>
+                FECHA: __/__/_____<br>
+                TOTAL __Bs</h3>
+            </div>
+
+            <div class="box">
+                <h3>Plato(s):_____________<br>
+                CI CLIENTE: _________<br>
+                FECHA: __/__/_____<br>
+                TOTAL __Bs</h3>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        function openPopup() {
+            document.getElementById('popup').style.display = 'flex';
+        }
+
+        function closePopup() {
+            document.getElementById('popup').style.display = 'none';
+        }
+
+        function openFinalOrder() {
+            window.open('zVerOrdenes.html', '_blank');
+        }
+    </script>
+
+</body>
+</html>
