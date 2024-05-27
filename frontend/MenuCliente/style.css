@@ -1,0 +1,415 @@
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100; /* Cambiado a valor válido como '100%' */
+    vertical-align: baseline;
+}
+
+body {
+    text-align: center;
+    font-family: sans-serif;
+}
+
+.head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 63px;
+    background: red;
+    position: fixed;
+    width: 100%;
+    z-index: 100;
+}
+
+.navbar {
+    display: flex;
+    margin-right: 10px;
+}
+
+.logo {
+    margin-left: 30px;
+}
+
+.logo a {
+    text-decoration: none;
+    color: white;
+    text-transform: uppercase;
+    font-size: 20px;
+}
+
+.logo img {
+    width: 200px; /* Cambia este valor al ancho deseado */
+    height: 200px;
+    margin-top: 120px; /* Esto mantiene la proporción del logotipo */
+}
+
+.navbar a {
+    display: block;
+    padding: 23px 20px;
+    color: white;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 20px;
+}
+
+.navbar a:hover {
+    background: rgb(255, 153, 0);
+}
+
+header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.header {
+    height: 60vh !important;
+    background-color: rgb(242, 186, 17);
+    background-size: cover;
+}
+
+.title {
+    margin-bottom: 40px;
+    font-size: 60px;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: rgb(255, 255, 255);
+    text-shadow: -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000, 2px 2px 0 #000;
+}
+
+p {
+    margin-bottom: 40px;
+    font-size: 18px;
+    color: white;
+    padding: 0 100px;
+}
+
+.btn {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 10px 40px;
+    border: 2px solid rgb(255, 153, 0);
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+    background: rgb(255, 123, 0);
+}
+
+.btn:hover {
+    background: none;
+}
+
+.btn-home {
+    display: flex;
+    justify-content: center;
+}
+
+.btn-home a {
+    margin: 0 10px;
+}
+
+.box-container .box img {
+    width: 100px; /* Cambia este valor al ancho deseado */
+    height: auto; /* Esto mantiene la proporción de la imagen AQUI FOTO PLATILOO*/
+}
+
+.content {
+    height: 50vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.sau {
+    padding: 30px;
+    background: rgb(215, 16, 16);
+}
+
+.box-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    text-align: center;
+}
+
+.box-container .box {
+    height: 11rem;
+    width: 17rem;
+    background: black;
+    text-align: center;
+    border-radius: 1rem;
+    box-shadow: 0.3rem 5rem rgba(0, 0, 0, 0.5);
+    margin: 2rem;
+}
+
+.box-container .box i {
+    height: 3rem;
+    width: 3rem;
+    line-height: 3rem;
+    text-align: center;
+    border-radius: 50%;
+    color: white;
+    background: yellow;
+    font-size: 2rem;
+    margin: 1rem 0;
+}
+
+.box-container .box h3 {
+    font-size: 20px;
+    color: yellow;
+}
+
+.box-container .box p {
+    font-size: 16px;
+    color: white;
+}
+
+.box-container .box {
+    padding: 0 15px;
+    font-size: 16px;
+}
+
+.about {
+    background: rgb(242, 186, 17);
+}
+
+.contact {
+    padding-top: 20px;
+    background: black;
+    padding-bottom: 0;
+}
+
+.btn-home {
+    margin-top: 20px; /* Espacio entre el botón y el encabezado */
+    display: flex;
+    justify-content: center;
+}
+
+.btn-home a {
+    margin: 0 10px; /* Espacio entre los botones */
+}
+
+.content.sau {
+    padding: 30px;
+    background: rgb(255, 0, 0);
+}
+
+.box-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    text-align: center;
+}
+
+.box-container .box {
+    height: 11rem;
+    width: 17rem;
+    background: black;
+    text-align: center;
+    border-radius: 1rem;
+    box-shadow: 0.3rem 5rem rgba(0, 0, 0, 0.5);
+    margin: 2rem;
+}
+
+.box-container .box i {
+    height: 3rem;
+    width: 3rem;
+    line-height: 3rem;
+    text-align: center;
+    border-radius: 50%;
+    color: white;
+    background: yellow;
+    font-size: 2rem;
+    margin: 1rem 0;
+}
+
+.box-container .box h3 {
+    font-size: 20px;
+    color: yellow;
+}
+
+.box-container .box p {
+    font-size: 16px;
+    color: white;
+}
+
+.box-container .box {
+    padding: 0 15px;
+    font-size: 16px;
+}
+
+
+.btn-pedir {
+    background-color: rgb(255, 0, 0); 
+    color: white; 
+    border: none; 
+    padding: 10px 20px; 
+    border-radius: 10px; 
+    cursor: pointer; 
+    position: relative; 
+    top: -30px; 
+}
+
+.btn-pedir:hover {
+    background-color: rgb(98, 255, 0); 
+}
+
+
+
+
+/* Estilos para el popup */
+.popup {
+    display: none;
+    position: fixed;
+    z-index: 999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: auto;
+    overflow: auto;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.4);
+}
+.popup-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 500px;
+    text-align: center;
+    border-radius: 10px;
+}
+.popup-content p {
+    color: rgb(0, 0, 0);
+}
+.popup-content h2 {
+    margin-bottom: 50px; 
+}
+.close {
+    color: #ff0000;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
+/* pedido final btn*/
+
+.final-order-btn-container {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.btn-final-order {
+    display: inline-block;
+    padding: 10px 20px;
+    border: 7px solid rgb(255, 255, 255);
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+    font-size: 30px;
+    background: rgb(0, 221, 255);
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn-final-order:hover {
+    background: rgb(255, 0, 0);
+    color: rgb(0, 255, 234);
+}
+
+
+
+/* Estilos para las notificaciones */
+.container.green .mini-rectangulo:first-child .plato-info {
+    margin-top: 20px;
+}
+
+.container.green .mini-rectangulo:first-child .plato-info p {
+    font-size: 40px;
+}
+
+.mini-rectangulo {
+    width: calc(100% - 20px);
+    height: 90px;
+    margin-bottom: 20px;
+    background-color: rgb(255,153, 0);
+    border: 10px solid #ff6f00;
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+}
+.container.green .mini-rectangulo:nth-child(2) .plato-info p {
+    font-size: 20px;
+}
+
+.container.green .mini-rectangulo:nth-child(2) {
+    height: 250px;
+}
+
+.container.green .mini-rectangulo:nth-child(2) .plato-imagen {
+    width: 130px;
+    height: auto;
+}
+
+.container.green .mini-rectangulo:nth-child(2) .plato-info label {
+    font-weight: bold;
+    color: #ffffff;
+}
+
+#comentario {
+    width: 500px;
+    height: 50px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    resize: vertical;
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+
+.historial-container .box-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    text-align: center;
+    width: 100%;
+}
+
+.historial-container .box {
+    height: 11rem;
+    width: 17rem;
+    background: black;
+    text-align: center;
+    border-radius: 1rem;
+    box-shadow: 0.3rem 5rem rgba(0, 0, 0, 0.5);
+    margin: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+@media (max-width: 768px) {
+    .title {
+        margin-bottom: 0;
+        font-size: 40px;
+    }
+
+    .sau {
+        height: 120vh;
+    }
+
+    .navbar {
+        display: none;
+    }
+}
