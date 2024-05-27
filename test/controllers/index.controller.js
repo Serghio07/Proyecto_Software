@@ -120,13 +120,16 @@ const getComidaById = async (req, res) => {
 };
 
 const createComida = async (req, res) => {
-    const { nombre, descripcion, precio } = req.body;
-    const response = await pool.query('INSERT INTO comidas (nombre, descripcion, precio) VALUES ($1, $2, $3)', [nombre, descripcion, precio]);
+    const { foto_comida, nombre, descripcion, precio } = req.body;
+    const response = await pool.query(
+        'INSERT INTO comidas (foto_comida, nombre, descripcion, precio) VALUES ($1, $2, $3, $4)',
+        [foto_comida, nombre, descripcion, precio]
+    );
     console.log(response);
     res.json({
         message: 'Comida Added Successfully',
         body: {
-            comida: { nombre, descripcion, precio }
+            comida: { foto_comida, nombre, descripcion, precio }
         }
     });
 };
@@ -140,55 +143,13 @@ const deleteComida = async (req, res) => {
 
 const updateComida = async (req, res) => {
     const id = req.params.id;
-    const { nombre, descripcion, precio } = req.body;
-    const response = await pool.query('UPDATE comidas SET nombre = $2, descripcion = $3, precio = $4 WHERE id = $1', [id, nombre, descripcion, precio]);
+    const { foto_comida, nombre, descripcion, precio } = req.body;
+    const response = await pool.query(
+        'UPDATE comidas SET foto_comida = $2, nombre = $3, descripcion = $4, precio = $5 WHERE id = $1',
+        [id, foto_comida, nombre, descripcion, precio]
+    );
     console.log(response);
     res.json('Comida updated successfully');
-};
-
-//ORDENES
-
-const getOrdenes = async (req, res) => {
-    try {
-        const response = await pool.query('SELECT * FROM ordenes');
-        res.status(200).json(response.rows);
-    } catch (error) {
-        console.log(error);
-        res.send("Error: " + error);
-    }
-};
-
-const getOrdenById = async (req, res) => {
-    const id = req.params.id;
-    const response = await pool.query('SELECT * FROM ordenes WHERE numero_pedido = $1', [id]);
-    res.json(response.rows);
-};
-
-const createOrden = async (req, res) => {
-    const { nombre_cliente, ci, fecha } = req.body;
-    const response = await pool.query('INSERT INTO ordenes (nombre_cliente, ci, fecha) VALUES ($1, $2, $3)', [nombre_cliente, ci, fecha]);
-    console.log(response);
-    res.json({
-        message: 'Orden Added Successfully',
-        body: {
-            orden: { nombre_cliente, ci, fecha }
-        }
-    });
-};
-
-const deleteOrden = async (req, res) => {
-    const id = req.params.id;
-    const response = await pool.query('DELETE FROM ordenes WHERE numero_pedido = $1', [id]);
-    console.log(response);
-    res.json(`Orden ${id} deleted successfully`);
-};
-
-const updateOrden = async (req, res) => {
-    const id = req.params.id;
-    const { nombre_cliente, ci, fecha } = req.body;
-    const response = await pool.query('UPDATE ordenes SET nombre_cliente = $2, ci = $3, fecha = $4 WHERE numero_pedido = $1', [id, nombre_cliente, ci, fecha]);
-    console.log(response);
-    res.json('Orden updated successfully');
 };
 
 //RESERVAS
