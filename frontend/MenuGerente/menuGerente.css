@@ -97,7 +97,7 @@ body {
   }
   
   .menu .actions button {
-    background-color: #007bff;
+    background-color: rgb(255, 251, 10);
     color: #fff;
     border: none;
     border-radius: 5px;

@@ -122,12 +122,12 @@ body {
 }
 
 .green {
-    background-color: green;
+    background-color: rgb(255, 251, 10);
 }
 
 
 .green {
-    background-color: green;
+    background-color: rgb(255, 251, 0);
     margin-top: 200px; /* Ajusta el margen superior según sea necesario */
 }
 
@@ -184,7 +184,7 @@ body {
 
 .container.green .mini-rectangulo:nth-child(2) .plato-info label {
     font-weight: bold; /* Pone en negrita la etiqueta */
-    color: #0800ff; /* Color celeste para el texto */
+    color: #dce131; /* Color celeste para el texto */
 }
 
 #comentario {
@@ -201,11 +201,11 @@ body {
 
 
 .blue {
-    background-color: blue;
+    background-color: rgb(255, 251, 0);
 }
 
 .blue {
-    background-color: blue;
+    background-color: rgb(255, 251, 0);
     margin-top: 200px; /* Ajusta el margen superior según sea necesario */
 }
 
