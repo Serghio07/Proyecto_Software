@@ -1,0 +1,109 @@
+body {
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #FAEBD7;
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+
+header {
+  width: 100%;
+  background-color: #333;
+  color: #fff;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Distribuye espacio entre los elementos */
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+}
+
+header h1 {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  margin: 0;
+  color: white;
+}
+
+.atras {
+  background-color: #D9D9D9;
+  color: black;
+  font-size: 16px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer; /* Añadido cursor pointer para mejor UX */
+}
+
+.atras:hover {
+  background-color: #bbb;
+}
+h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.ventas-dia,
+.ventas-mes {
+    margin-bottom: 20px;
+}
+
+h2 {
+    color: #007bff;
+    margin-bottom: 10px;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+li {
+    margin-bottom: 10px;
+}
+
+span {
+    font-weight: bold;
+}
+
+#fecha-dia,
+#plato1-dia,
+#plato2-dia,
+#plato3-dia,
+#refresco1-dia,
+#total-dia,
+#plato-mas-vendido,
+#plato-menos-vendido,
+#refresco-mas-vendido,
+#refresco-menos-vendido,
+#total-mes,
+#ganancias-mensuales {
+    color: #333;
+}
+header {
+  background-color: #333;
+  color: #fff;
+  padding: 10px 0;
+  text-align: center;
+}
+
+/* Estilo del título */
+h1 {
+  margin: 0;
+  font-size: 24px;
+}
+
+/* Estilo del área de navegación 
