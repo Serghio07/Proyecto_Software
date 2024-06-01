@@ -5,6 +5,7 @@ let modeloSeleccionado = document.getElementById("modelo");
 let descripSeleccionada = document.getElementById("descripcion");
 let precioSeleccionado = document.getElementById("precio");
 
+
 function cargar(item){
     quitarBordes();
     mostrador.style.width = "60%";
@@ -34,3 +35,6 @@ function quitarBordes(){
         items[i].style.border = "none";
     }
 }
+
+
+
