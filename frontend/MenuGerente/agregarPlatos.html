@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agregar platos</title>
+    <link rel="stylesheet" href="agregarPlato.css">
+</head>
+<body>
+
+    <div class="contanier">
+        <button class="atras" onclick="window.location.href = 'menuGerente1.html';">Atrás</button>
+        <div class="tittle">Agregar platos</div>
+        <form id="form-validacion" novalidate>
+            <div class="tabla">
+                <span>Titulo</span>
+                <input type="text" placeholder="Ingrese el nombre del plato" required>
+                <small>Por favor Ingrese el nombre del plato</small>
+            </div>
+            <div class="tabla">
+                <span>Descripcion</span>
+                <input type="text" placeholder="Descripcion del plato" required>
+                <small>Por favor Ingrese la descripcion del plato</small> 
+            </div>
+            <div class="tabla">
+                <span>Precio</span>
+                <input type="number" id="precio" value="15" >
+            </div>
+            <div class="tabla">
+                <label for="imagen">Imagen:</label>
+                <input type="file" id="imagen" name="imagen">
+                <small>Por favor Ingrese la imagen del plato</small>
+            </div>
+
+            <div class="button">
+                <input type="button" value="Agregar Producto">
+            </div>
+            
+
+        </form>
+    </div>
+</body>
+</html>
