@@ -1,52 +1,74 @@
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profile Card</title>
-    <link rel="stylesheet" href="perfil.css">
+    <title>perfil</title>
+    <link rel="stylesheet" type="text/css" href="perfil.css">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
 </head>
+
 <body>
     <header>
         <nav>
             <button class="atras" onclick="window.location.href = 'menuGerente1.html';">Atrás</button>
         </nav>
     </header>
-    <main>
-        <section class="perfil">
-            <h1>Mi perfil</h1>
-            <div class="tarjeta">
-                <div class="imagen">
-                    <img src="img/empresario.png" alt="Foto de perfil">
-                </div>
-                <div class="informacion">
-                    <p><strong>Foto de perfil:</strong></p>
-                    <p><strong>Cargo:</strong> Gerente</p>
-                    <p><strong>Usuario:</strong> Pepito Perez</p>
-                    <p><strong>Código:</strong> 2345Rm$</p>
-                    <p><strong>Correo electrónico:</strong> Pepito.perez@gerente.com</p>
+    <section class="seccion-perfil-usuario">
+        <div class="perfil-usuario-header">
+            <div class="perfil-usuario-portada">
+                <div class="perfil-usuario-avatar">
+                    <img src="" alt="img-avatar">
+                    <button type="button" class="boton-avatar">
+                        <i class="far fa-image"></i>
+                    </button>
                 </div>
             </div>
-        </section>
-    </main>
-    <script>
-        let tiempoInactividad = 10000; 
-        let temporizador;
+        </div>
+        <div class="perfil-usuario-body">
+            <div class="perfil-usuario-bio">
+                <h3 class="titulo">Camilo Mendez</h3>
+                <p class="texto">Estudiante del alto</p>
+            </div>
+            <div class="perfil-usuario-footer">
+                <ul class="lista-datos">
+                    <li>Cargo:</li>
+                    <li>Usuario:</li>
+                    <li> Codigo:</li>
+                    <li> Correo electronico:</li>
+                </ul>
+                
+            </div>
+            <div class="redes-sociales">
+                <a href="" class="boton-redes facebook fab fa-facebook-f"><i class="icon-facebook"></i></a>
+                <a href="" class="boton-redes twitter fab fa-twitter"><i class="icon-twitter"></i></a>
+                <a href="" class="boton-redes instagram fab fa-instagram"><i class="icon-instagram"></i></a>
+            </div>
+        </div>
+    </section>
+</div>
+<script>
+    let tiempoInactividad = 10000; 
+    let temporizador;
 
-        function reiniciarTemporizador() {
-            clearTimeout(temporizador);
-            temporizador = setTimeout(() => {
-                alert("Tu sesión ha expirado por inactividad.");
-                window.location.href = '../login/loginGerentesTrabajadores/login2.html';
-            }, tiempoInactividad);
-        }
-        
-        window.onload = reiniciarTemporizador;
-        window.onmousemove = reiniciarTemporizador;
-        window.onmousedown = reiniciarTemporizador; 
-        window.ontouchstart = reiniciarTemporizador; 
-        window.onclick = reiniciarTemporizador; 
-        window.onkeypress = reiniciarTemporizador;
-    </script>
+    function reiniciarTemporizador() {
+        clearTimeout(temporizador);
+        temporizador = setTimeout(() => {
+            alert("Tu sesión ha expirado por inactividad.");
+            window.location.href = '../login/loginGerentesTrabajadores/login2.html';
+        }, tiempoInactividad);
+    }
+    
+    window.onload = reiniciarTemporizador;
+    window.onmousemove = reiniciarTemporizador;
+    window.onmousedown = reiniciarTemporizador; 
+    window.ontouchstart = reiniciarTemporizador; 
+    window.onclick = reiniciarTemporizador; 
+    window.onkeypress = reiniciarTemporizador;
+</script>
+
 </body>
+
 </html>
