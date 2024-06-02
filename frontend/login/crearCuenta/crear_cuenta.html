@@ -5,8 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Crear Cuenta - Restaurante Liz</title>
     <link rel="stylesheet" href="crear_cuenta.css">
+    <style>
+        .back-btn {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background-color: #35853f;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .back-btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
 <body>
+    <button class="back-btn" onclick="window.location.href = '../loginUsuarios/login.html';">Atrás</button>
     <div id="app" class="signup-page">
         <div class="signup-container">
             <div class="signup-left">
@@ -40,12 +58,12 @@
         </div>
     </div>
     <div id="modal" class="modal">
-      <div class="modal-content">
-          <!-- Eliminado el botón de cierre -->
-          <img src="icono_bien.webp" alt="Éxito" class="modal-icon">
-          <p>¡Cuenta creada exitosamente!</p>
-      </div>
-  </div>
+        <div class="modal-content">
+            <!-- Eliminado el botón de cierre -->
+            <img src="icono_bien.webp" alt="Éxito" class="modal-icon">
+            <p>¡Cuenta creada exitosamente!</p>
+        </div>
+    </div>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.js" integrity="sha512-nqIFZC8560+CqHgXKez61MI0f9XSTKLkm0zFVm/99Wt0jSTZ7yeeYwbzyl0SGn/s8Mulbdw+ScCG41hmO2+FKw==" crossorigin="anonymous"></script>
