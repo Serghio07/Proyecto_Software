@@ -216,12 +216,6 @@ module.exports = {
     deleteComida,
     updateComida,
 
-    getOrdenes,
-    getOrdenById,
-    createOrden,
-    deleteOrden,
-    updateOrden,
-
     getReservas,
     getReservaById,
     createReserva,

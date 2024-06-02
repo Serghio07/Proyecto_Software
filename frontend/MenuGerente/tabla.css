@@ -112,3 +112,64 @@ td img {
     background-color: #28a745;
     color: #fff;
 }
+
+
+.Agregar {
+    max-width: 600px;
+    margin: 50px auto;
+    background-color: #F9C818;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.Agregar h1 {
+    font-size: 24px;
+    color: black    ;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+
+
+.formulario {
+    width: 100%;
+}
+
+.campo {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    font-size: 20px;
+    margin-bottom: 5px;
+    color: #333;
+    font-weight: bold;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+select {
+    width:90%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    
+}
+
+button[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button[type="submit"]:hover {
+    background-color: #45a049;
+}

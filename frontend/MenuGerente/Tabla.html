@@ -5,8 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cuentas Trabajadores</title>
     <link rel="stylesheet" href="tabla.css">
+    
 </head>
 <body>
+  <div id="app">
+
     <div class="container">
         <button class="back-btn" onclick="window.location.href = 'menuGerente1.html';">Atras</button>
         <h1>Cuentas Trabajadores</h1>
@@ -17,83 +20,157 @@
         <table>
             <thead>
                 <tr>
-                    <th>#</th>
+                    <th>ID</th>
                     <th>nombre</th>
                     <th>Cargo</th>
-                    <th>Usuario</th>
                     <th>Código</th>
                     <th>Correo</th>
                     <th>Opciones</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>1</td>
-                    
-                    <td></td>
-                    <td></td>   
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                <tr v-for="users in userss" :key="users.id">
+                    <td>{{ users.id }}</td>
+                    <td>{{ users.nombre }}</td>
+                    <td>{{ users.tipo }}</td>   
+                    <td>{{ users.contrasena }}</td>
+                    <td>{{ users.correo }}</td>
                     <td>
-                        <button class="delete-btn"></button>
-                        <button class="edit-btn">Editar</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td>
-                        <button class="delete-btn"></button>
-                        <button class="edit-btn">Editar</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td>
-                        <button class="delete-btn"></button>
-                        <button class="edit-btn">Editar</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>4</td>
-                    
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td>
-                        <button class="delete-btn"></button>
-                        <button class="edit-btn">Editar</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>5</td>
-                    
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td>
-                        <button class="delete-btn"></button>
+                        <button class="delete-btn" @click="borrar(users.id)"></button>
                         <button class="edit-btn">Editar</button>
                     </td>
                 </tr>
             </tbody>
         </table>
     </div>
+    <v-dialog v-model="dialog" max-width="500">
+    <div class="formulario">
+      <form action="procesar.php" method="post">
+          <div class="campo">
+              <label for="cargo">Cargo:</label>
+              <select name="cargo" id="cargo">
+                  <option value="gerente">Admin</option>
+                  <option value="trabajador">Trabajador</option>
+              </select>
+          </div>
+
+          <div class="campo">
+              <label for="usuario">Usuario:</label>
+              <input type="text" name="usuario" id="usuario" required>
+          </div>
+
+          <div class="campo">
+            <label for="codigo">Contraseña:</label>
+            <input type="password" name="codigo" id="codigo" required> 
+        </div>
+        
+
+          <div class="campo">
+              <label for="correo_electronico">Correo electrónico:</label>
+              <input type="email" name="correo_electronico" id="correo_electronico" required>
+          </div>
+
+          <div class="campo">
+              <button type="submit">Guardar</button>
+          </div>
+          <div class="campo">
+            <button type="submit">Cancelar</button>
+        </div>
+      </form>
+  
+  </div>
+</v-dialog>
+  </div>
 </body>
+
+<script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.js"
+  integrity="sha512-nqIFZC8560+CqHgXKez61MI0f9XSTKLkm0zFVm/99Wt0jSTZ7yeeYwbzyl0SGn/s8Mulbdw+ScCG41hmO2+FKw=="
+  crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.0.2/dist/sweetalert2.all.min.js"></script>
+
+<script>
+  let url = 'http://localhost:4000/users';
+  new Vue({
+    el: '#app',
+    vuetify: new Vuetify(),
+    data() {
+      return {
+        userss: [],
+        dialog: true,
+        operacion: '',
+        users: {
+          id: null,
+          nombre: '',
+          correo: '',
+          contrasena: '',
+          tipo: '',
+          contador: ''
+        }
+      }
+    },
+    created() {
+      this.mostrar()
+    },
+    methods: {
+      //MÉTODOS PARA EL CRUD
+      mostrar: function () {
+        axios.get(url)
+          .then(response => {
+            this.userss = response.data;
+            console.log(this.userss);
+          })
+      },
+      crear: function () {
+        event.preventDefault();
+        let parametros = { nombre: usuarioc, correo: email, contrasena: password, tipo: tipoc, contador: 0 };
+        console.log(parametros);
+        axios.post(url, parametros)
+          .then(response => {
+            this.mostrar();
+          });
+        document.getElementById("usuario").value="";
+        document.getElementById("codigo").value="";
+        document.getElementById("correo_electronico").value="";
+        
+        this.users.nombre = "";
+        this.users.correo = "";
+        this.users.contrasena = "";
+        this.users.tipo = "";
+        this.users.contador = "";
+        alert("Usuario creado con exito");
+      },
+      editar: function () {
+        let parametros = { nombre: this.users.nombre, correo: this.users.correo, contrasena: this.users.contrasena, tipo: this.users.tipo, contador: this.users.contador  };
+        //console.log(parametros);                   
+        axios.put(url + "/" + this.users.id, parametros)
+          .then(response => {
+            this.mostrar();
+          })
+          .catch(error => {
+            console.log(error);
+          });
+      },
+      borrar: function (id) {
+        Swal.fire({
+          title: '¿Confirma eliminar el registro?',
+          confirmButtonText: `Confirmar`,
+          showCancelButton: true,
+        }).then((result) => {
+          if (result.isConfirmed) {
+            //procedimiento borrar
+            axios.delete(url + "/" + id)
+              .then(response => {
+                this.mostrar();
+              });
+            Swal.fire('¡Eliminado!', '', 'success')
+          } else if (result.isDenied) {
+          }
+        });
+      },
+    }
+  });
+</script>
+
 </html>
