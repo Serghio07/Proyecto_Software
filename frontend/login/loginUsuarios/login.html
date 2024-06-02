@@ -129,13 +129,17 @@
           let parametros = { id_usuario: idus, fecha_registro: fechaFormateada };
           axios.post(url2, parametros)
             .then(response => { });
-          if (this.userss[idus].tipo == "admin" || this.userss[idus].tipo == "trabajador") {
-            console.log("depende");
+          if (this.userss[idus].tipo == "admin") {
+            
             window.location.href = "../../MenuGerente/menuGerente1.html";
           }
+          if (this.userss[idus].tipo == "trabajador") {
+            
+            window.location.href = "../../MenuTrabajodres/zMenutTrab.html";
+          }
           if (this.userss[idus].tipo == "cliente") {
-            console.log("si da");
-            window.location.href = "../../MenuCliente/menu.html";
+            
+            window.location.href = "../../MenuCliente/index.html";
           }
 
         } else {
