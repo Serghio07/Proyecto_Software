@@ -120,7 +120,7 @@ const getComidaById = async (req, res) => {
 };
 
 const createComida = async (req, res) => {
-    const { foto_comida, nombre, descripcion, precio } = req.body;
+    const {nombre, descripcion, precio } = req.body;
     const response = await pool.query(
         'INSERT INTO comidas (nombre, descripcion, precio) VALUES ($1, $2, $3)',
         [nombre, descripcion, precio]
@@ -129,7 +129,7 @@ const createComida = async (req, res) => {
     res.json({
         message: 'Comida Added Successfully',
         body: {
-            comida: { foto_comida, nombre, descripcion, precio }
+            comida: {nombre, descripcion, precio }
         }
     });
 };
@@ -143,7 +143,7 @@ const deleteComida = async (req, res) => {
 
 const updateComida = async (req, res) => {
     const id = req.params.id;
-    const { foto_comida, nombre, descripcion, precio } = req.body;
+    const { nombre, descripcion, precio } = req.body;
     const response = await pool.query(
         'UPDATE comidas SET nombre = $2, descripcion = $3, precio = $4 WHERE id = $1',
         [id,nombre, descripcion, precio]
@@ -197,6 +197,57 @@ const updateReserva = async (req, res) => {
     res.json('Reserva updated successfully');
 };
 
+//ORDENES
+const getOrdenes = async(req,res)=>{
+    try{
+        const response = await pool.query('SELECT * FROM ordenes');
+        res.status(200).json.rows;
+    }catch(error){
+        console.log(error);
+        res.send("Error: "+error)
+    }
+}
+    
+    const getOrdenesById = async (req, res) => {
+        const id = req.params.id;
+        const response = await pool.query('SELECT * FROM ordenes WHERE id = $1', [id]);
+        res.json(response.rows);
+    };
+    
+    const createOrdenes = async (req, res) => {
+        const {fecha,total } = req.body;
+        const response = await pool.query(
+            'INSERT INTO ordenes (fecha, total) VALUES ($1, $2)',
+            [fecha,total]
+        );
+        console.log(response);
+        res.json({
+            message: 'Orden Added Successfully',
+            body: {
+                ordenes: {fecha, total }
+            }
+        });
+    };
+    
+    const deleteOrdenes = async (req, res) => {
+        const id = req.params.id;
+        const response = await pool.query('DELETE FROM ordenes WHERE id = $1', [id]);
+        console.log(response);
+        res.json(`ordenes ${id} deleted successfully`);
+    };
+    
+    const updateOrdenes = async (req, res) => {
+        const id = req.params.id;
+        const { fecha,total } = req.body;
+        const response = await pool.query(
+            'UPDATE ordenes SET fehca = $2, total = $3 WHERE id = $1',
+            [id,fecha,total]
+        );
+        console.log(response);
+        res.json('Orden updated successfully');
+    };
+    
+
 
 module.exports = {
     getUsers,
@@ -221,4 +272,10 @@ module.exports = {
     createReserva,
     deleteReserva,
     updateReserva,
+
+    getOrdenes,
+    updateOrdenes,
+    createOrdenes,
+    deleteOrdenes,
+    getOrdenesById,   
 }
