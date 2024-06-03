@@ -246,8 +246,55 @@ const getOrdenes = async(req,res)=>{
         console.log(response);
         res.json('Orden updated successfully');
     };
+//DETALLE DE ORDENES
+const getDetalleOrdenes = async(req,res)=>{
+    try{
+        const response = await pool.query('SELECT * FROM detalle_ordenes');
+        res.status(200).json.rows;
+    }catch(error){
+        console.log(error);
+        res.send("Error: "+error)
+    }
+}
     
-
+    const getDetalleOredenesById = async (req, res) => {
+        const id = req.params.id;
+        const response = await pool.query('SELECT * FROM detalle_ordenes WHERE id = $1', [id]);
+        res.json(response.rows);
+    };
+    
+    const createDetalleOrdenes = async (req, res) => {
+        const { } = req.body;
+        const response = await pool.query(
+            'INSERT INTO ordenes () VALUES ($1, $2)',
+            []
+        );
+        console.log(response);
+        res.json({
+            message: 'Orden Added Successfully',
+            body: {
+                detalle_ordenes: {}
+            }
+        });
+    };
+    
+    const deleteDetalleOrdenes = async (req, res) => {
+        const id = req.params.id;
+        const response = await pool.query('DELETE FROM detalle_ordenes WHERE id = $1', [id]);
+        console.log(response);
+        res.json(`detalle_ordenes ${id} deleted successfully`);
+    };
+    
+    const updateDetalleOrdenes = async (req, res) => {
+        const id = req.params.id;
+        const {  } = req.body;
+        const response = await pool.query(
+            'UPDATE detalle_ordenes SET fehca = $2, total = $3 WHERE id = $1',
+            [id]
+        );
+        console.log(response);
+        res.json('Detalle Orden updated successfully');
+    };
 
 module.exports = {
     getUsers,
@@ -277,5 +324,11 @@ module.exports = {
     updateOrdenes,
     createOrdenes,
     deleteOrdenes,
-    getOrdenesById,   
+    getOrdenesById, 
+    
+    getDetalleOrdenes,
+    getDetalleOredenesById,
+    updateDetalleOrdenes,
+    createDetalleOrdenes,
+    deleteDetalleOrdenes,
 }
