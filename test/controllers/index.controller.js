@@ -122,8 +122,8 @@ const getComidaById = async (req, res) => {
 const createComida = async (req, res) => {
     const { foto_comida, nombre, descripcion, precio } = req.body;
     const response = await pool.query(
-        'INSERT INTO comidas (foto_comida, nombre, descripcion, precio) VALUES ($1, $2, $3, $4)',
-        [foto_comida, nombre, descripcion, precio]
+        'INSERT INTO comidas (nombre, descripcion, precio) VALUES ($1, $2, $3)',
+        [nombre, descripcion, precio]
     );
     console.log(response);
     res.json({
@@ -145,8 +145,8 @@ const updateComida = async (req, res) => {
     const id = req.params.id;
     const { foto_comida, nombre, descripcion, precio } = req.body;
     const response = await pool.query(
-        'UPDATE comidas SET foto_comida = $2, nombre = $3, descripcion = $4, precio = $5 WHERE id = $1',
-        [id, foto_comida, nombre, descripcion, precio]
+        'UPDATE comidas SET nombre = $2, descripcion = $3, precio = $4 WHERE id = $1',
+        [id,nombre, descripcion, precio]
     );
     console.log(response);
     res.json('Comida updated successfully');
@@ -171,13 +171,13 @@ const getReservaById = async (req, res) => {
 };
 
 const createReserva = async (req, res) => {
-    const { nombre_cliente, telefono, fecha_compromiso, descripcion } = req.body;
-    const response = await pool.query('INSERT INTO reservas (nombre_cliente, telefono, fecha_compromiso, descripcion) VALUES ($1, $2, $3, $4)', [nombre_cliente, telefono, fecha_compromiso, descripcion]);
+    const {mesaBol,nro_mesa } = req.body;
+    const response = await pool.query('INSERT INTO reservas (mesaBol,nro_mesa) VALUES ($1, $2)', [mesaBol,nro_mesa]);
     console.log(response);
     res.json({
         message: 'Reserva Added Successfully',
         body: {
-            reserva: { nombre_cliente, telefono, fecha_compromiso, descripcion }
+            reserva: { mesaBol,nro_mesa }
         }
     });
 };
@@ -191,8 +191,8 @@ const deleteReserva = async (req, res) => {
 
 const updateReserva = async (req, res) => {
     const id = req.params.id;
-    const { nombre_cliente, telefono, fecha_compromiso, descripcion } = req.body;
-    const response = await pool.query('UPDATE reservas SET nombre_cliente = $2, telefono = $3, fecha_compromiso = $4, descripcion = $5 WHERE id = $1', [id, nombre_cliente, telefono, fecha_compromiso, descripcion]);
+    const { mesaBol,nro_mesa } = req.body;
+    const response = await pool.query('UPDATE reservas SET mesaBol = $2, nro_mesa = $3 WHERE id = $1', [id, mesaBol,nro_mesa]);
     console.log(response);
     res.json('Reserva updated successfully');
 };
