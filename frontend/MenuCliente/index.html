@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha384-oNR3ivfesWjCkOwCUJKULPfn8V5AWyF8MTkFiYlZ7k4AB2Q9poh5f+Jw+tx1yGJp" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <title>Nuevesito de Paquete</title>
 </head>
 <body>
@@ -16,37 +17,79 @@
         </div>
 
         <nav class="navbar">
-            <a href="#">Inicio</a>
             <a href="#">Menu</a>
             <a href="#">Notificaciones</a>
             <a href="#">Historial</a>
-            <a href="#">Salir</a>
+            <a href="/frontend/login/loginUsuarios/login.html">Salir</a>
         </nav>
     </div>
 
     <header class="content header">
-        <h2 class="title">Inicio</h2>
+        <h2 class="title">Pide ya!</h2>
         <p>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Exercitationem asperiores qui quidem unde error ad cum expedita impedit officiis doloribus in veniam mollitia harum, possimus deserunt repellat delectus consequatur voluptatibus.
+            En esta parte, desplazandote hacia abajo, podras encontrar el menú que te ofrece nuestro restaurante, así mismo el tiempo de espera aproximado para tener tu pedido en tu casa y el historial de compras anteriores que hayas hecho con nosotros!
         </p>
-        
-        <div class="btn-home">
-            <a href="#" class="btn">Saber mas</a>
-            
-        </div>
     </header>
 
     <section class="content sau">  
         <h2 class="title">Menu</h2>
 
         <div class="box-container">
+
             <div class="box">
                 <img src="foticos/llopo.jpg" alt="Tu Logotipo">
                 <h3>Pollo Frito Bs20</h3>
                 <p>1/4 de pollo, papas y refresco</p>
                 <button class="btn-pedir" onclick="openPopup()">Pedir</button>
             </div>
-
+            <div class="box">
+                <img src="foticos/llopo.jpg" alt="Tu Logotipo">
+                <h3>Pollo Frito Bs20</h3>
+                <p>1/4 de pollo, papas y refresco</p>
+                <button class="btn-pedir" onclick="openPopup()">Pedir</button>
+            </div>
+            <div class="box">
+                <img src="foticos/llopo.jpg" alt="Tu Logotipo">
+                <h3>Pollo Frito Bs20</h3>
+                <p>1/4 de pollo, papas y refresco</p>
+                <button class="btn-pedir" onclick="openPopup()">Pedir</button>
+            </div>
+            <div class="box">
+                <img src="foticos/llopo.jpg" alt="Tu Logotipo">
+                <h3>Pollo Frito Bs20</h3>
+                <p>1/4 de pollo, papas y refresco</p>
+                <button class="btn-pedir" onclick="openPopup()">Pedir</button>
+            </div>
+            <div class="box">
+                <img src="foticos/llopo.jpg" alt="Tu Logotipo">
+                <h3>Pollo Frito Bs20</h3>
+                <p>1/4 de pollo, papas y refresco</p>
+                <button class="btn-pedir" onclick="openPopup()">Pedir</button>
+            </div>
+            <div class="box">
+                <img src="foticos/llopo.jpg" alt="Tu Logotipo">
+                <h3>Pollo Frito Bs20</h3>
+                <p>1/4 de pollo, papas y refresco</p>
+                <button class="btn-pedir" onclick="openPopup()">Pedir</button>
+            </div>
+            <div class="box">
+                <img src="foticos/llopo.jpg" alt="Tu Logotipo">
+                <h3>Pollo Frito Bs20</h3>
+                <p>1/4 de pollo, papas y refresco</p>
+                <button class="btn-pedir" onclick="openPopup()">Pedir</button>
+            </div>
+            <div class="box">
+                <img src="foticos/llopo.jpg" alt="Tu Logotipo">
+                <h3>Pollo Frito Bs20</h3>
+                <p>1/4 de pollo, papas y refresco</p>
+                <button class="btn-pedir" onclick="openPopup()">Pedir</button>
+            </div>
+            <div class="box">
+                <img src="foticos/llopo.jpg" alt="Tu Logotipo">
+                <h3>Pollo Frito Bs20</h3>
+                <p>1/4 de pollo, papas y refresco</p>
+                <button class="btn-pedir" onclick="openPopup()">Pedir</button>
+            </div>
             <div class="box">
                 <img src="foticos/guerbur.jpg" alt="Tu Logotipo">
                 <h3>Hamburguesa Bs20</h3>
@@ -82,18 +125,15 @@
                 <button class="btn-pedir" onclick="openPopup()">Pedir</button>
             </div>
         </div>
-
-        <div class="final-order-btn-container">
-            <button class="btn-final-order" onclick="openFinalOrder()">VER MI PEDIDO</button>
-        </div>
     </section>
 
     <div id="popup" class="popup">
         <div class="popup-content">
-            <span class="close" onclick="closePopup()">&times;</span>
-            <h2>Confirmar Pedido</h2>
-            <p>¿Desea confirmar su pedido de __________?</p>
-            <button class="btn">Confirmar</button>
+            <span class="close" onclick="closePopup()">X</span>
+            <h2>-------------ORDEN PROCESADA-------------</h2>
+            <p>Numero de pedido N</p>
+            <img src="foticos/loggo.jpg" alt="Tu Logotipo">
+            <button class="btn-confirm" onclick="closePopup()">Aceptar</button>
         </div>
     </div>
 
@@ -122,28 +162,78 @@
         </div>
     </section>
 
+    <div class="title-container">
+        <h1>Su carrito es de __Bs</h1>
+        <p>Gracias por tu pedido.</p>
+    </div>
+
+    <div class="details-container">
+        <h2>Detalles del Pedido</h2>
+        <ul>
+            <li>Pollo Frito - 1/4 de pollo, papas y refresco</li>
+            <li>Precio: __ Bs</li>
+            <li>Fecha: 25/05/2024</li>
+        </ul>
+        <span class="icon-container">
+            <button class="icon-button" onclick="openDeletePopup()">
+                <i class="material-icons">delete</i>
+            </button>
+            <button class="icon-button" onclick="openAddPopup()">
+                <i class="material-icons">add</i>
+            </button>
+        </span>
+    </div>
+
+    <div class="buttons-container">
+        <button class="btn-confirm" onclick="confirmOrder()">OK</button>
+    </div>
+
+    <div id="popupuno" class ="popup" style="display: none;">
+        <div class="popup-content">
+            <span class="close" onclick="closePopup()">X</span>
+            <h2>Gracias por su orden, Numero de pedido N</h2>
+            <p>Sera notificado cuando su orden se encuentre lista</p>
+            <img src="foticos/loggo.jpg" alt="Tu Logotipo">
+            <button class="btn-confirm" onclick="closePopup()">Aceptar</button>
+        </div>
+    </div>
+
+    <div id="delete-popup" class="popup" style="display: none;">
+        <div class="popup-content">
+            <span class="close" onclick="closeDeletePopup()">&times;</span>
+            <h2>Su producto de elimino exitosamente de su pedido</h2>
+        </div>
+    </div>
+
+    <div id="add-popup" class="popup" style="display: none;">
+        <div class="popup-content">
+            <span class="close" onclick="closeAddPopup()">&times;</span>
+            <h2>Su producto se añadio exitosamente</h2>
+        </div>
+    </div>
+
     <section class="content sau historial-container">  
         <h2 class="title">HISTORIAL DE PEDIDOS</h2>
         <p>Aca tienes tu historial de compras anteriores</p>
 
         <div class="box-container">
             <div class="box">
-                <h3>Plato(s):_____________<br>
-                FECHA: __/__/_____<br>
-                CANTIDAD: _________<br>
+                <h3>Plato(s):_<br>
+                FECHA: _//<br>
+                CANTIDAD: ___<br>
                 TOTAL __Bs</h3>
             </div>
 
             <div class="box">
-                <h3>Plato(s):_____________<br>
-                FECHA: __/__/_____<br>
-                CANTIDAD: _________<br>
+                <h3>Plato(s):_<br>
+                FECHA: _//<br>
+                CANTIDAD: ___<br>
                 TOTAL __Bs</h3>
             </div>        
             <div class="box">
-                <h3>Plato(s):_____________<br>
-                FECHA: __/__/_____<br>
-                CANTIDAD: _________<br>
+                <h3>Plato(s):_<br>
+                FECHA: _//<br>
+                CANTIDAD: ___<br>
                 TOTAL __Bs</h3>
             </div>                  
         </div>
@@ -156,10 +246,35 @@
 
         function closePopup() {
             document.getElementById('popup').style.display = 'none';
+            document.getElementById('popupuno').style.display = 'none';
         }
 
         function openFinalOrder() {
             window.open('verPedido.html', '_blank');
+        }
+
+        function openDeletePopup() {
+            document.getElementById('delete-popup').style.display = 'block';
+        }
+
+        function closeDeletePopup() {
+            document.getElementById('delete-popup').style.display = 'none';
+        }
+
+        function openAddPopup() {
+            document.getElementById('add-popup').style.display = 'block';
+        }
+
+        function closeAddPopup() {
+            document.getElementById('add-popup').style.display = 'none';
+        }
+
+        function confirmOrder() {
+            // Ocultar cualquier otro popup que pueda estar visible
+            document.getElementById('popup').style.display = 'none';
+            
+            // Mostrar el popupuno
+            document.getElementById('popupuno').style.display = 'flex';
         }
     </script>
 
