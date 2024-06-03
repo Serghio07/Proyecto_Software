@@ -208,13 +208,13 @@ const getOrdenes = async(req,res)=>{
     }
 }
     
-    const getOrdenesById = async (req, res) => {
+    const getOrdeneById = async (req, res) => {
         const id = req.params.id;
         const response = await pool.query('SELECT * FROM ordenes WHERE id = $1', [id]);
         res.json(response.rows);
     };
     
-    const createOrdenes = async (req, res) => {
+    const createOrdene = async (req, res) => {
         const {fecha,total } = req.body;
         const response = await pool.query(
             'INSERT INTO ordenes (fecha, total) VALUES ($1, $2)',
@@ -229,14 +229,14 @@ const getOrdenes = async(req,res)=>{
         });
     };
     
-    const deleteOrdenes = async (req, res) => {
+    const deleteOrdene = async (req, res) => {
         const id = req.params.id;
         const response = await pool.query('DELETE FROM ordenes WHERE id = $1', [id]);
         console.log(response);
         res.json(`ordenes ${id} deleted successfully`);
     };
     
-    const updateOrdenes = async (req, res) => {
+    const updateOrdene = async (req, res) => {
         const id = req.params.id;
         const { fecha,total } = req.body;
         const response = await pool.query(
@@ -257,13 +257,13 @@ const getDetalleOrdenes = async(req,res)=>{
     }
 }
     
-    const getDetalleOredenesById = async (req, res) => {
+    const getDetalleOredeneById = async (req, res) => {
         const id = req.params.id;
         const response = await pool.query('SELECT * FROM detalle_ordenes WHERE id = $1', [id]);
         res.json(response.rows);
     };
     
-    const createDetalleOrdenes = async (req, res) => {
+    const createDetalleOrdene = async (req, res) => {
         const { } = req.body;
         const response = await pool.query(
             'INSERT INTO ordenes () VALUES ($1, $2)',
@@ -278,14 +278,14 @@ const getDetalleOrdenes = async(req,res)=>{
         });
     };
     
-    const deleteDetalleOrdenes = async (req, res) => {
+    const deleteDetalleOrdene = async (req, res) => {
         const id = req.params.id;
         const response = await pool.query('DELETE FROM detalle_ordenes WHERE id = $1', [id]);
         console.log(response);
         res.json(`detalle_ordenes ${id} deleted successfully`);
     };
     
-    const updateDetalleOrdenes = async (req, res) => {
+    const updateDetalleOrdene = async (req, res) => {
         const id = req.params.id;
         const {  } = req.body;
         const response = await pool.query(
@@ -321,14 +321,14 @@ module.exports = {
     updateReserva,
 
     getOrdenes,
-    updateOrdenes,
-    createOrdenes,
-    deleteOrdenes,
-    getOrdenesById, 
+    updateOrdene,
+    createOrdene,
+    deleteOrdene,
+    getOrdeneById, 
     
     getDetalleOrdenes,
-    getDetalleOredenesById,
-    updateDetalleOrdenes,
-    createDetalleOrdenes,
-    deleteDetalleOrdenes,
+    getDetalleOredeneById,
+    updateDetalleOrdene,
+    createDetalleOrdene,
+    deleteDetalleOrdene,
 }

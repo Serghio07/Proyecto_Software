@@ -1,7 +1,7 @@
 const { Router} =  require('express');
 const router = Router();
 
-const { getUsers, createUser, getUserById, deleteUser, updateUser, getRegister, getRegisterById, createRegister, deleteRegister, updateRegister, getDetalleOrdenes, getDetalleOredenesById, createDetalleOrdenes, deleteDetalleOrdenes, updateDetalleOrdenes, getOrdenes, getOrdenesById, createOrdenes, deleteOrdenes, updateOrdenes, getComidas, getComidaById, createComida, deleteComida, updateComida} = require('../controllers/index.controller');
+const { getUsers, createUser, getUserById, deleteUser, updateUser, getRegister, getRegisterById, createRegister, deleteRegister, updateRegister, getDetalleOrdenes, getDetalleOredenesById, createDetalleOrdenes, deleteDetalleOrdenes, updateDetalleOrdenes, getOrdenes, getOrdenesById, createOrdenes, deleteOrdenes, updateOrdenes, getComidas, getComidaById, createComida, deleteComida, updateComida, getReservas, getReservaById, createReserva, deleteReserva, updateReserva, getOrdeneById, createOrdene, deleteOrdene, updateOrdene, getDetalleOredeneById, createDetalleOrdene, deleteDetalleOrdene, updateDetalleOrdene} = require('../controllers/index.controller');
 
 router.get('/users',getUsers);
 router.get('/users/:id',getUserById);
@@ -20,21 +20,21 @@ router.get('/comidas/:id',getComidaById);
 router.post('/comidas',createComida);
 router.delete('/comidas/:id',deleteComida);
 router.put('/comidas/:id',updateComida);
-router.get('/reservas',getRegister);
-router.get('/reservas/:id',getRegisterById);
-router.post('/reservas',createRegister);
-router.delete('/reservas/:id',deleteRegister);
-router.put('/reservas/:id',updateRegister);
+router.get('/reservas',getReservas);
+router.get('/reservas/:id',getReservaById);
+router.post('/reservas',createReserva);
+router.delete('/reservas/:id',deleteReserva);
+router.put('/reservas/:id',updateReserva);
 
 router.get('/oredenes',getOrdenes);
-router.get('/ordenes/:id',getOrdenesById);
-router.post('/ordenes',createOrdenes);
-router.delete('/ordenes/:id',deleteOrdenes);
-router.put('/ordenes/:id',updateOrdenes);
+router.get('/ordenes/:id',getOrdeneById);
+router.post('/ordenes',createOrdene);
+router.delete('/ordenes/:id',deleteOrdene);
+router.put('/ordenes/:id',updateOrdene);
 router.get('/destalle_ordenes',getDetalleOrdenes);
-router.get('/destalle_ordenes/:id',getDetalleOredenesById);
-router.post('/destalle_ordenes',createDetalleOrdenes);
-router.delete('/destalle_ordenes/:id',deleteDetalleOrdenes);
-router.put('/destalle_ordenes/:id',updateDetalleOrdenes);
+router.get('/destalle_ordenes/:id',getDetalleOredeneById);
+router.post('/destalle_ordenes',createDetalleOrdene);
+router.delete('/destalle_ordenes/:id',deleteDetalleOrdene);
+router.put('/destalle_ordenes/:id',updateDetalleOrdene);
 
 module.exports = router;
