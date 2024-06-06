@@ -120,16 +120,16 @@ const getComidaById = async (req, res) => {
 };
 
 const createComida = async (req, res) => {
-    const { foto_comida, nombre, descripcion, precio } = req.body;
+    const {nombre, descripcion, precio } = req.body;
     const response = await pool.query(
-        'INSERT INTO comidas (foto_comida, nombre, descripcion, precio) VALUES ($1, $2, $3, $4)',
-        [foto_comida, nombre, descripcion, precio]
+        'INSERT INTO comidas (nombre, descripcion, precio) VALUES ($1, $2, $3)',
+        [nombre, descripcion, precio]
     );
     console.log(response);
     res.json({
         message: 'Comida Added Successfully',
         body: {
-            comida: { foto_comida, nombre, descripcion, precio }
+            comida: {nombre, descripcion, precio }
         }
     });
 };
@@ -143,10 +143,10 @@ const deleteComida = async (req, res) => {
 
 const updateComida = async (req, res) => {
     const id = req.params.id;
-    const { foto_comida, nombre, descripcion, precio } = req.body;
+    const { nombre, descripcion, precio } = req.body;
     const response = await pool.query(
-        'UPDATE comidas SET foto_comida = $2, nombre = $3, descripcion = $4, precio = $5 WHERE id = $1',
-        [id, foto_comida, nombre, descripcion, precio]
+        'UPDATE comidas SET nombre = $2, descripcion = $3, precio = $4 WHERE id = $1',
+        [id,nombre, descripcion, precio]
     );
     console.log(response);
     res.json('Comida updated successfully');
@@ -171,13 +171,13 @@ const getReservaById = async (req, res) => {
 };
 
 const createReserva = async (req, res) => {
-    const { nombre_cliente, telefono, fecha_compromiso, descripcion } = req.body;
-    const response = await pool.query('INSERT INTO reservas (nombre_cliente, telefono, fecha_compromiso, descripcion) VALUES ($1, $2, $3, $4)', [nombre_cliente, telefono, fecha_compromiso, descripcion]);
+    const {mesaBol,nro_mesa } = req.body;
+    const response = await pool.query('INSERT INTO reservas (mesaBol,nro_mesa) VALUES ($1, $2)', [mesaBol,nro_mesa]);
     console.log(response);
     res.json({
         message: 'Reserva Added Successfully',
         body: {
-            reserva: { nombre_cliente, telefono, fecha_compromiso, descripcion }
+            reserva: { mesaBol,nro_mesa }
         }
     });
 };
@@ -191,12 +191,110 @@ const deleteReserva = async (req, res) => {
 
 const updateReserva = async (req, res) => {
     const id = req.params.id;
-    const { nombre_cliente, telefono, fecha_compromiso, descripcion } = req.body;
-    const response = await pool.query('UPDATE reservas SET nombre_cliente = $2, telefono = $3, fecha_compromiso = $4, descripcion = $5 WHERE id = $1', [id, nombre_cliente, telefono, fecha_compromiso, descripcion]);
+    const { mesaBol,nro_mesa } = req.body;
+    const response = await pool.query('UPDATE reservas SET mesaBol = $2, nro_mesa = $3 WHERE id = $1', [id, mesaBol,nro_mesa]);
     console.log(response);
     res.json('Reserva updated successfully');
 };
 
+//ORDENES
+const getOrdenes = async(req,res)=>{
+    try{
+        const response = await pool.query('SELECT * FROM ordenes');
+        res.status(200).json.rows;
+    }catch(error){
+        console.log(error);
+        res.send("Error: "+error)
+    }
+}
+    
+    const getOrdeneById = async (req, res) => {
+        const id = req.params.id;
+        const response = await pool.query('SELECT * FROM ordenes WHERE id = $1', [id]);
+        res.json(response.rows);
+    };
+    
+    const createOrdene = async (req, res) => {
+        const {fecha,total } = req.body;
+        const response = await pool.query(
+            'INSERT INTO ordenes (fecha, total) VALUES ($1, $2)',
+            [fecha,total]
+        );
+        console.log(response);
+        res.json({
+            message: 'Orden Added Successfully',
+            body: {
+                ordenes: {fecha, total }
+            }
+        });
+    };
+    
+    const deleteOrdene = async (req, res) => {
+        const id = req.params.id;
+        const response = await pool.query('DELETE FROM ordenes WHERE id = $1', [id]);
+        console.log(response);
+        res.json(`ordenes ${id} deleted successfully`);
+    };
+    
+    const updateOrdene = async (req, res) => {
+        const id = req.params.id;
+        const { fecha,total } = req.body;
+        const response = await pool.query(
+            'UPDATE ordenes SET fehca = $2, total = $3 WHERE id = $1',
+            [id,fecha,total]
+        );
+        console.log(response);
+        res.json('Orden updated successfully');
+    };
+//DETALLE DE ORDENES
+const getDetalleOrdenes = async(req,res)=>{
+    try{
+        const response = await pool.query('SELECT * FROM detalle_ordenes');
+        res.status(200).json.rows;
+    }catch(error){
+        console.log(error);
+        res.send("Error: "+error)
+    }
+}
+    
+    const getDetalleOredeneById = async (req, res) => {
+        const id = req.params.id;
+        const response = await pool.query('SELECT * FROM detalle_ordenes WHERE id = $1', [id]);
+        res.json(response.rows);
+    };
+    
+    const createDetalleOrdene = async (req, res) => {
+        const { } = req.body;
+        const response = await pool.query(
+            'INSERT INTO ordenes () VALUES ($1, $2)',
+            []
+        );
+        console.log(response);
+        res.json({
+            message: 'Orden Added Successfully',
+            body: {
+                detalle_ordenes: {}
+            }
+        });
+    };
+    
+    const deleteDetalleOrdene = async (req, res) => {
+        const id = req.params.id;
+        const response = await pool.query('DELETE FROM detalle_ordenes WHERE id = $1', [id]);
+        console.log(response);
+        res.json(`detalle_ordenes ${id} deleted successfully`);
+    };
+    
+    const updateDetalleOrdene = async (req, res) => {
+        const id = req.params.id;
+        const {  } = req.body;
+        const response = await pool.query(
+            'UPDATE detalle_ordenes SET fehca = $2, total = $3 WHERE id = $1',
+            [id]
+        );
+        console.log(response);
+        res.json('Detalle Orden updated successfully');
+    };
 
 module.exports = {
     getUsers,
@@ -221,4 +319,16 @@ module.exports = {
     createReserva,
     deleteReserva,
     updateReserva,
+
+    getOrdenes,
+    updateOrdene,
+    createOrdene,
+    deleteOrdene,
+    getOrdeneById, 
+    
+    getDetalleOrdenes,
+    getDetalleOredeneById,
+    updateDetalleOrdene,
+    createDetalleOrdene,
+    deleteDetalleOrdene,
 }

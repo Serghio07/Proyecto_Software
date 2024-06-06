@@ -1,214 +1,354 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
+
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha384-oNR3ivfesWjCkOwCUJKULPfn8V5AWyF8MTkFiYlZ7k4AB2Q9poh5f+Jw+tx1yGJp" crossorigin="anonymous">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <title>Nuevesito de Paquete</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 </head>
+
 <body>
+    <div id="app">
+        <header class="w3-top">
+            <div class="w3-bar w3-wide w3-padding w3-card">
 
-    <div class="head">
-        <div class="logo">
-            <img src="foticos/loggo.jpg" alt="Tu Logotipo">
-            
-        </div>
+                <nav>
+                    <button class="back-btn w3-bar-item w3-button"
+                        onclick="window.location.href = 'menuGerente1.html';">Atrás</button>
+                    <div class="w3-right w3-hide-small">
+                        <a href="#projects" class="w3-bar-item w3-button">Projects</a>
+                        <a href="#about" class="w3-bar-item w3-button">About</a>
+                        <a href="#contact" class="w3-bar-item w3-button">Contact</a>
+                    </div>
 
-        <nav class="navbar">
-            <a href="#">Menu</a>
-            <a href="#">Notificaciones</a>
-            <a href="#">Historial</a>
-            <a href="/frontend/login/loginUsuarios/login.html">Salir</a>
-        </nav>
-    </div>
-
-    <header class="content header">
-        <h2 class="title">Pide ya!</h2>
-        <p>
-            En esta parte, desplazandote hacia abajo, podras encontrar el menú que te ofrece nuestro restaurante, así mismo el tiempo de espera aproximado para tener tu pedido en tu casa y el historial de compras anteriores que hayas hecho con nosotros!
-        </p>
-    </header>
-
-    <section class="content sau">  
-        <h2 class="title">Menu</h2>
-
-        <div class="box-container">
-            <div class="box">
-                <img src="foticos/llopo.jpg" alt="Tu Logotipo">
-                <h3>Pollo Frito Bs20</h3>
-                <p>1/4 de pollo, papas y refresco</p>
-                <button class="btn-pedir" onclick="openPopup()">Pedir</button>
             </div>
 
-            <div class="box">
-                <img src="foticos/guerbur.jpg" alt="Tu Logotipo">
-                <h3>Hamburguesa Bs20</h3>
-                <p>Hamburguesa, papas y refresco</p>
-                <button class="btn-pedir" onclick="openPopup()">Pedir</button>
-            </div>
+            </nav>
 
-            <div class="box">
-                <img src="foticos/getsnu.jpg" alt="Tu Logotipo">
-                <h3>Chicken Nuggets Bs18</h3>
-                <p>Nuggets, papas y refresco</p>
-                <button class="btn-pedir" onclick="openPopup()">Pedir</button>
-            </div>
+        </header>
 
-            <div class="box">
-                <img src="foticos/neza.jpg" alt="Tu Logotipo">
-                <h3>Milaneza Clasica Bs20</h3>
-                <p>Milaneza en sandwich, jamon y queso</p>
-                <button class="btn-pedir" onclick="openPopup()">Pedir</button>
-            </div>
+        <section class="contenido" style="margin-top: 100px;">
 
-            <div class="box">
-                <img src="foticos/pancho.jpg" alt="Tu Logotipo">
-                <h3>Silpancho Bs20</h3>
-                <p>Plato tradicional de Cochabamba</p>
-                <button class="btn-pedir" onclick="openPopup()">Pedir</button>
-            </div>
+            <div class="mostrador w3-row-padding" id="mostrador">
+                <div class="w3-row-padding">
 
-            <div class="box">
-                <img src="foticos/jkl.jpg" alt="Tu Logotipo">
-                <h3>Churrasco 20Bs</h3>
-                <p>Churrasco con guarniciones</p>
-                <button class="btn-pedir" onclick="openPopup()">Pedir</button>
-            </div>
-        </div>
-    </section>
 
-    <div id="popup" class="popup">
-        <div class="popup-content">
-            <span class="close" onclick="closePopup()">&times;</span>
-            <h2>Confirmar Pedido</h2>
-            <p>Su pedido fue añadido, verifique su carrito</p>
-        </div>
-    </div>
+                    <h3>Platos</h3>
+                    <div class="item w3-col l3 m6 w3-margin-bottom">
+                        <p class="descripcion">Pollo Spiedo</p>
+                        <div class="contenedor-foto">
+                            <img src="/frontend/MenuGerente/img/pollo.jpg" alt="Pollo spiado">
+                        </div>
 
-    <section class="content about">
-        <div class="container green">
-            <div class="content">
-                <div class="mini-rectangulo">
-                    <div class="plato-info">
-                        <p style="font-weight: bold;">Su pedido estará listo en N minutos</p>
+                        <span class="precio">Bs.15 </span><br>
+                        <button class="save-btn w3-button">Pedir</button>
+                    </div>
+
+                    <div class="item w3-col l3 m6 w3-margin-bottom" onclick="cargar(this)">
+                        <div class="contenedor-foto">
+                            <img src="/frontend/MenuGerente/img/platos/broaster.jpg" alt="Pollo Broaster">
+                        </div>
+                        <p class="descripcion">Pollo Broaster </p>
+                        <span class="precio">Bs. 13</span>
+                    </div>
+
+                    <div class="item w3-col l3 m6 w3-margin-bottom" onclick="cargar(this)">
+                        <div class="contenedor-foto">
+                            <img src="/frontend/MenuGerente/img/platos/chuleta.jpg" alt="Chuleta">
+                        </div>
+                        <p class="descripcion">Chuleta
+                        </p>
+                        <span class="precio">Bs.15</span>
+                    </div>
+
+                    <div class="item w3-col l3 m6 w3-margin-bottom" onclick="cargar(this)">
+                        <div class="contenedor-foto">
+                            <img src="/frontend/MenuGerente/img/platos/hamburguesa.webp" alt="Hamburguesa">
+                        </div>
+                        <p class="descripcion">Hamburguesa </p>
+                        <span class="precio">Bs.7</span>
+                    </div>
+
+
+                    <div class="item w3-col l3 m6 w3-margin-bottom" onclick="cargar(this)">
+                        <div class="contenedor-foto">
+                            <img src="/frontend/MenuGerente/img/platos/silpancho.jpg" alt="Silpancho">
+                        </div>
+                        <p class="descripcion">silpancho</p>
+                        <span class="precio">Bs. 10</span>
+                    </div>
+
+                    <div class="item w3-col l3 m6 w3-margin-bottom" onclick="cargar(this)">
+                        <div class="contenedor-foto">
+                            <img src="/frontend/MenuGerente/img/platos/salchi.jpg" alt="salchipapa">
+                        </div>
+                        <p class="descripcion">Salchipapa</p>
+                        <span class="precio">Bs.10</span>
+                    </div>
+
+                    <div class="item w3-col l3 m6 w3-margin-bottom" onclick="cargar(this)">
+                        <div class="contenedor-foto">
+                            <img src="/frontend/MenuGerente/img/platos/salchiarroz.jpg" alt="Salchiarroz">
+                        </div>
+                        <p class="descripcion">SalchiArroz</p>
+                        <span class="precio">Bs.10</span>
+                    </div>
+
+                    <div class="item w3-col l3 m6 w3-margin-bottom" onclick="cargar(this)">
+                        <div class="contenedor-foto">
+                            <img src="/frontend/MenuGerente/img/platos/asado.avif" alt="Salchiarroz">
+                        </div>
+                        <p class="descripcion">Asadp</p>
+                        <span class="precio">Bs.15</span>
+                    </div>
+
+
+                </div>
+                <h2>Bebidas</h2>
+                <div class="w3-row-padding">
+
+
+                    <div class="item w3-col l3 m6 w3-margin-bottom" onclick="cargar(this)">
+                        <div class="contenedor-foto">
+                            <img src="/frontend/MenuGerente/img/bebidas/coca-sin-azucar-1024x683.png" alt="Coca">
+                        </div>
+                        <p class="descripcion">Coca-Cola</p>
+                        <span class="precio">Bs.5 </span>
+                    </div>
+                    <div class="item w3-col l3 m6 w3-margin-bottom" onclick="cargar(this)">
+                        <div class="contenedor-foto">
+                            <img src="/frontend/MenuGerente/img/bebidas/fanta-1024x683.png" alt="Fanta">
+                        </div>
+                        <p class="descripcion" id>fanta </p>
+                        <span class="precio">Bs. 5</span>
+                    </div>
+                    <div class="item w3-col l3 m6 w3-margin-bottom" onclick="cargar(this)">
+                        <div class="contenedor-foto">
+                            <img src="/frontend/MenuGerente/img/bebidas/jugo-naranja-1200x800-1.png" alt="Jugo">
+                        </div>
+                        <p class="descripcion">Jugo
+                        </p>
+                        <span class="precio">Bs.5</span>
+                    </div>
+                    <div class="item w3-col l3 m6 w3-margin-bottom" onclick="cargar(this)">
+                        <div class="contenedor-foto">
+                            <img src="/frontend/MenuGerente/img/bebidas/sprite-1024x683.png" alt="sprite">
+                        </div>
+                        <p class="descripcion">sprite </p>
+                        <span class="precio">Bs.7</span>
                     </div>
                 </div>
-                <div class="mini-rectangulo">
-                    <div class="plato-info">
-                        <p>Su pedido fue entregado hace N minutos
-                        ¿Le gustó la atención?
-                        ¿La comida llegó tal como la ordenó?
-                        ¿El servicio le pareció adecuado?
-                        Por favor califíquenos, si tiene observaciones sobre el servicio háganos saber</p>
-                        <label for="calificacion">Califíquenos del 1 al 10:</label>
-                        <input type="number" id="calificacion" name="calificacion" min="1" max="10">
-                        <p>Deje un comentario sobre el servicio (Opcional):</p>
-                        <textarea id="comentario" name="comentario" rows="2" cols="15"></textarea>
+                <h2>Carrito de compra</h2>
+                <div class="w3-row-padding">
+
+
+                    <div class="item w3-col l3 m6 w3-margin-bottom" onclick="cargar(this)">
+                        <div class="contenedor-foto">
+                            <img src="/frontend/MenuGerente/img/bebidas/coca-sin-azucar-1024x683.png" alt="Coca">
+                        </div>
+                        <p class="descripcion">Coca-Cola</p>
+                        <span class="precio">Bs.5 </span>
+                    </div>
+                    <div class="item w3-col l3 m6 w3-margin-bottom" onclick="cargar(this)">
+                        <div class="contenedor-foto">
+                            <img src="/frontend/MenuGerente/img/bebidas/fanta-1024x683.png" alt="Fanta">
+                        </div>
+                        <p class="descripcion" id>fanta </p>
+                        <span class="precio">Bs. 5</span>
+                    </div>
+                    <div class="item w3-col l3 m6 w3-margin-bottom" onclick="cargar(this)">
+                        <div class="contenedor-foto">
+                            <img src="/frontend/MenuGerente/img/bebidas/jugo-naranja-1200x800-1.png" alt="Jugo">
+                        </div>
+                        <p class="descripcion">Jugo
+                        </p>
+                        <span class="precio">Bs.5</span>
+                    </div>
+                    <div class="item w3-col l3 m6 w3-margin-bottom" onclick="cargar(this)">
+                        <div class="contenedor-foto">
+                            <img src="/frontend/MenuGerente/img/bebidas/sprite-1024x683.png" alt="sprite">
+                        </div>
+                        <p class="descripcion">sprite </p>
+                        <span class="precio">Bs.7</span>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
 
-    <script>
-        function openPopup() {
-            document.getElementById('popup').style.display = 'flex';
-        }
+            <!-- CONTENEDOR DEL ITEM SELECCIONADO -->
+            <div class="seleccion" id="seleccion">
+                <div class="cerrar" onclick="cerrar()">
+                    &#x2715
+                </div>
+                <div class="info">
+                    <img src="img/1.png" alt="" id="img">
+                    <h2 id="modelo">Comida</h2>
+                    <p id="descripcion">Descripción del plato</p>
 
-        function closePopup() {
-            document.getElementById('popup').style.display = 'none';
-        }
+                    <span class="precio" id="precio">bs</span>
+                    <div class="fila">
+                        <button id="editarm">Editar</button>
+                        <span class="separador"></span>
+                        <button id="eliminar_m">Eliminar</button>
+                    </div>
 
-        function openFinalOrder() {
-            window.open('verPedido.html', '_blank');
-        }
+                    <!-- Eliminar y editar productos -->
+                    <!-- Editar producto -->
+                    <section class="modal" id="edit-modal">
+                        <div class="modal__container">
+                            <button class="close-btn" id="close-modal">&times;</button>
+                            <h2>Editar Producto</h2>
+                            <div class="form-group">
+                                <label for="imagen">Imagen:</label>
+                                <input type="file" id="imagen">
+                            </div>
+                            <div class="form-group">
+                                <label for="titulo">Título:</label>
+                                <input type="text" id="titulo" value="Pollo Spiedo">
+                            </div>
+                            <div class="form-group">
+                                <label for="descripcion">Descripción:</label>
+                                <input type="text" id="descripcion"
+                                    value="Porción de papas, arroz junto a un 1/4 de pollo acompañado de salsas">
+                            </div>
+                            <div class="form-group">
+                                <label for="precio">Precio:</label>
+                                <input type="number" id="precio" value="15">
+                            </div>
+                            <div class="buttons">
+                                <button class="save-btn">Guardar</button>
+                                <button class="cancel-btn">Cancelar</button>
+                            </div>
+                        </div>
+                    </section>
 
-        function goBack() {
-            window.location.href = 'index.html'; // Cambia esto al nombre de tu archivo principal
-        }
+                    <!-- Eliminar producto -->
+                    <div class="overlay" id="delete-overlay">
+                        <div class="confirmation-dialog">
+                            <div class="dialog-header">
+                                <h2>Eliminar producto</h2>
+                                <span class="close-icon" id="close-delete-dialog">&#10006;</span>
+                            </div>
+                            <div class="dialog-content">
+                                <p>¿Está seguro de que desea eliminar el producto?</p>
+                            </div>
+                            <div class="dialog-actions">
+                                <button class="btn btn-primary" id="confirm-delete">Aceptar</button>
+                                <button class="btn btn-secondary" id="deny-delete">Denegar</button>
+                            </div>
+                        </div>
+                    </div>
 
-        function confirmOrder() {
-            alert('Pedido confirmado'); // Puedes agregar aquí la lógica para confirmar el pedido
-        }
-    </script>
-
-    <script src="verPedido.js"></script>
-
-    <div class="title-container">
-        <h1>Su carrito es de __Bs</h1>
-        <p>Gracias por tu pedido.</p>
-    </div>
-
-    <div class="details-container">
-        <h2>Detalles del Pedido</h2>
-        <ul>
-            <li>Pollo Frito - 1/4 de pollo, papas y refresco</li>
-            <li>Precio: __ Bs</li>
-            <li>Fecha: 25/05/2024</li>
-        </ul>
-        <span class="icon-container">
-            <i class="material-icons">delete</i>
-            <i class="material-icons">add</i>
-        </span>
-    </div>
-
-    <div class="buttons-container">
-        <button class="btn-confirm" onclick="confirmOrder()">OK</button>
-    </div>
-
-    <div id="popupuno" class="popup" style="display: none;">
-        <div class="popup-content">
-            <span class="close" onclick="closePopup()">X</span>
-            <h2>Gracias por su orden, Numero de pedido N</h2>
-            <p>Sera notificado cuando su orden se encuentre lista</p>
-            <img src="foticos/loggo.jpg" alt="Tu Logotipo">
-            <button class="btn-confirm" onclick="confirmOrder()">Aceptar</button>
-        </div>
-    </div>
-
-    <section class="content sau historial-container">  
-        <h2 class="title">HISTORIAL DE PEDIDOS</h2>
-        <p>Aca tienes tu historial de compras anteriores</p>
-
-        <div class="box-container">
-            <div class="box">
-                <h3>Plato(s):_<br>
-                FECHA: _//<br>
-                CANTIDAD: _________<br>
-                TOTAL __Bs</h3>
+                    <script src="comidaG.js"></script>
+                    <script src="/frontend/MenuGerente/editar.js"></script>
+                </div>
             </div>
-
-            <div class="box">
-                <h3>Plato(s):_<br>
-                FECHA: _//<br>
-                CANTIDAD: _________<br>
-                TOTAL __Bs</h3>
-            </div>        
-            <div class="box">
-                <h3>Plato(s):_<br>
-                FECHA: _//<br>
-                CANTIDAD: _________<br>
-                TOTAL __Bs</h3>
-            </div>                  
-        </div>
-    </section>
-
-    <script>
-        function openPopup() {
-            document.getElementById('popup').style.display = 'flex';
-        }
-
-        function closePopup() {
-            document.getElementById('popup').style.display = 'none';
-        }
-
-        function openFinalOrder() {
-            window.open('verPedido.html', '_blank');
-        }
-    </script>
-
+        </section>
+    </div>
+    
 </body>
+
+
+<script src="/frontend/MenuGerente/editar.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.js"
+    integrity="sha512-nqIFZC8560+CqHgXKez61MI0f9XSTKLkm0zFVm/99Wt0jSTZ7yeeYwbzyl0SGn/s8Mulbdw+ScCG41hmO2+FKw=="
+    crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.0.2/dist/sweetalert2.all.min.js"></script>
+
+<script>
+    let url = 'http://localhost:4000/comidas';
+    new Vue({
+        el: '#app',
+        vuetify: new Vuetify(),
+        data() {
+            return {
+                comidas: [],
+                dialog: false,
+                operacion: '',
+                comida: {
+                    id: null,
+                    nombre: '',
+                    descripcion: '',
+                    precio: '',
+                }
+            }
+        },
+        created() {
+            this.mostrar()
+        },
+        methods: {
+            mostrar: function () {
+                axios.get(url)
+                    .then(response => {
+                        this.userss = response.data;
+                    })
+            },
+            openDialog(user) {
+                this.operacion = 'editar';
+                this.users = Object.assign({}, user);
+                this.dialog = true;
+            },
+            openDialog2() {
+                this.operacion = 'crear';
+                this.dialog = true;
+            },
+            closeDialog() {
+                this.dialog = false;
+
+            },
+            saveUser() {
+                if (this.operacion === 'editar') {
+                    this.editar();
+                } else {
+                    this.crear();
+                }
+                this.closeDialog();
+            },
+            crear: function () {
+                let parametros = {
+                    nombre: this.comida.nombre,
+                    descripcion: this.comida.descripcion,
+                    precio: this.comida.precio,
+                };
+                axios.post(url, parametros)
+                    .then(response => {
+                        this.mostrar();
+                    });
+            },
+            editar: function () {
+                let parametros = {
+                    nombre: this.comida.nombre,
+                    descripcion: this.comida.descripcion,
+                    precio: this.comida.precio,
+                };
+                axios.put(url + "/" + this.users.id, parametros)
+                    .then(response => {
+                        this.mostrar();
+                    })
+                    .catch(error => {
+                        console.log(error);
+                    });
+            },
+            borrar: function (id) {
+                Swal.fire({
+                    title: '¿Confirma eliminar la comida?',
+                    confirmButtonText: 'Confirmar',
+                    showCancelButton: true,
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        axios.delete(url + "/" + id)
+                            .then(response => {
+                                this.mostrar();
+                            });
+                        Swal.fire('¡Eliminado!', '', 'success')
+                    }
+                });
+            },
+        }
+    });
+</script>
+
 </html>

@@ -1,48 +1,154 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Agregar platos</title>
-    <link rel="stylesheet" href="agregarPlato.css">
-    
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Agregar platos</title>
+  <link rel="stylesheet" href="agregarPlato.css">
+
 </head>
+
 <body>
+  <div id="app">
     <header id="header">
 
-        <button class="atras" onclick="window.location.href = 'menuGerente1.html';">Atrás</button>
-        <h1>Agregar Platos</h1>
+      <button class="atras" onclick="window.location.href = 'menuGerente1.html';">Atrás</button>
+      <h1>Agregar Platos</h1>
     </header>
 
     <div class="contanier">
-        
-        <form id="form-validacion" novalidate>
-            <div class="tabla">
-                <span>Titulo</span>
-                <input type="text" placeholder="Ingrese el nombre del plato" required>
-                <small>Por favor Ingrese el nombre del plato</small>
-            </div>
-            <div class="tabla">
-                <span>Descripcion</span>
-                <input type="text" placeholder="Descripcion del plato" required>
-                <small>Por favor Ingrese la descripcion del plato</small> 
-            </div>
-            <div class="tabla">
-                <span>Precio</span>
-                <input type="number" id="precio" value="15" >
-            </div>
-            <div class="tabla">
-                <label for="imagen">Imagen:</label>
-                <input type="file" id="imagen" name="imagen">
-                <small>Por favor Ingrese la imagen del plato</small>
-            </div>
 
-            <div class="button">
-                <input type="button" value="Agregar Producto">
-            </div>
-            
+      <form id="form-validacion" novalidate>
+        <div class="tabla">
+          <span>Titulo</span>
+          <input type="text" placeholder="Ingrese el nombre del plato" required>
+          <small>Por favor Ingrese el nombre del plato</small>
+        </div>
+        <div class="tabla">
+          <span>Descripcion</span>
+          <input type="text" placeholder="Descripcion del plato" required>
+          <small>Por favor Ingrese la descripcion del plato</small>
+        </div>
+        <div class="tabla">
+          <span>Precio</span>
+          <input type="number" id="precio" value="15">
+        </div>
+        <div class="tabla">
+          <label for="imagen">Imagen:</label>
+          <input type="file" id="imagen" name="imagen">
+          <small>Por favor Ingrese la imagen del plato</small>
+        </div>
 
-        </form>
+        <div class="button">
+          <input type="button" value="Agregar Producto">
+        </div>
+
+
+      </form>
     </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.js"
+    integrity="sha512-nqIFZC8560+CqHgXKez61MI0f9XSTKLkm0zFVm/99Wt0jSTZ7yeeYwbzyl0SGn/s8Mulbdw+ScCG41hmO2+FKw=="
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.0.2/dist/sweetalert2.all.min.js"></script>
+
+
+
+  <script>
+    let url = 'http://localhost:4000/comidas';
+    new Vue({
+      el: '#app',
+      vuetify: new Vuetify(),
+      data() {
+        return {
+          comidas: [],
+          dialog: false,
+          operacion: '',
+          comida: {
+            id: null,
+            nombre: '',
+            descripcion: '',
+            precio: '',
+          }
+        }
+      },
+      created() {
+        this.mostrar()
+      },
+      methods: {
+        mostrar: function () {
+          axios.get(url)
+            .then(response => {
+              this.userss = response.data;
+            })
+        },
+        openDialog(user) {
+          this.operacion = 'editar';
+          this.users = Object.assign({}, user);
+          this.dialog = true;
+        },
+        openDialog2() {
+          this.operacion = 'crear';
+          this.dialog = true;
+        },
+        closeDialog() {
+          this.dialog = false;
+
+        },
+        saveUser() {
+          if (this.operacion === 'editar') {
+            this.editar();
+          } else {
+            this.crear();
+          }
+          this.closeDialog();
+        },
+        crear: function () {
+          let parametros = {
+            nombre: this.comida.nombre,
+            descripcion: this.comida.descripcion,
+            precio: this.comida.precio,
+          };
+          axios.post(url, parametros)
+            .then(response => {
+              this.mostrar();
+            });
+        },
+        editar: function () {
+          let parametros = {
+            nombre: this.comida.nombre,
+            descripcion: this.comida.descripcion,
+            precio: this.comida.precio,
+          };
+          axios.put(url + "/" + this.users.id, parametros)
+            .then(response => {
+              this.mostrar();
+            })
+            .catch(error => {
+              console.log(error);
+            });
+        },
+        borrar: function (id) {
+          Swal.fire({
+            title: '¿Confirma eliminar la comida?',
+            confirmButtonText: 'Confirmar',
+            showCancelButton: true,
+          }).then((result) => {
+            if (result.isConfirmed) {
+              axios.delete(url + "/" + id)
+                .then(response => {
+                  this.mostrar();
+                });
+              Swal.fire('¡Eliminado!', '', 'success')
+            }
+          });
+        },
+      }
+    });
+  </script>
 </body>
+
 </html>
