@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha384-oNR3ivfesWjCkOwCUJKULPfn8V5AWyF8MTkFiYlZ7k4AB2Q9poh5f+Jw+tx1yGJp" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <title>Nuevesito de Paquete</title>
 </head>
 <body>
@@ -13,27 +14,22 @@
     <div class="head">
         <div class="logo">
             <img src="foticos/loggo.jpg" alt="Tu Logotipo">
+            
         </div>
 
         <nav class="navbar">
-            <a href="#">Inicio</a>
             <a href="#">Menu</a>
             <a href="#">Notificaciones</a>
             <a href="#">Historial</a>
-            <a href="#">Salir</a>
+            <a href="/frontend/login/loginUsuarios/login.html">Salir</a>
         </nav>
     </div>
 
     <header class="content header">
-        <h2 class="title">Inicio</h2>
+        <h2 class="title">Pide ya!</h2>
         <p>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Exercitationem asperiores qui quidem unde error ad cum expedita impedit officiis doloribus in veniam mollitia harum, possimus deserunt repellat delectus consequatur voluptatibus.
+            En esta parte, desplazandote hacia abajo, podras encontrar el menú que te ofrece nuestro restaurante, así mismo el tiempo de espera aproximado para tener tu pedido en tu casa y el historial de compras anteriores que hayas hecho con nosotros!
         </p>
-        
-        <div class="btn-home">
-            <a href="#" class="btn">Saber mas</a>
-            
-        </div>
     </header>
 
     <section class="content sau">  
@@ -82,18 +78,13 @@
                 <button class="btn-pedir" onclick="openPopup()">Pedir</button>
             </div>
         </div>
-
-        <div class="final-order-btn-container">
-            <button class="btn-final-order" onclick="openFinalOrder()">VER MI PEDIDO</button>
-        </div>
     </section>
 
     <div id="popup" class="popup">
         <div class="popup-content">
             <span class="close" onclick="closePopup()">&times;</span>
             <h2>Confirmar Pedido</h2>
-            <p>¿Desea confirmar su pedido de __________?</p>
-            <button class="btn">Confirmar</button>
+            <p>Su pedido fue añadido, verifique su carrito</p>
         </div>
     </div>
 
@@ -122,27 +113,83 @@
         </div>
     </section>
 
+    <script>
+        function openPopup() {
+            document.getElementById('popup').style.display = 'flex';
+        }
+
+        function closePopup() {
+            document.getElementById('popup').style.display = 'none';
+        }
+
+        function openFinalOrder() {
+            window.open('verPedido.html', '_blank');
+        }
+
+        function goBack() {
+            window.location.href = 'index.html'; // Cambia esto al nombre de tu archivo principal
+        }
+
+        function confirmOrder() {
+            alert('Pedido confirmado'); // Puedes agregar aquí la lógica para confirmar el pedido
+        }
+    </script>
+
+    <script src="verPedido.js"></script>
+
+    <div class="title-container">
+        <h1>Su carrito es de __Bs</h1>
+        <p>Gracias por tu pedido.</p>
+    </div>
+
+    <div class="details-container">
+        <h2>Detalles del Pedido</h2>
+        <ul>
+            <li>Pollo Frito - 1/4 de pollo, papas y refresco</li>
+            <li>Precio: __ Bs</li>
+            <li>Fecha: 25/05/2024</li>
+        </ul>
+        <span class="icon-container">
+            <i class="material-icons">delete</i>
+            <i class="material-icons">add</i>
+        </span>
+    </div>
+
+    <div class="buttons-container">
+        <button class="btn-confirm" onclick="confirmOrder()">OK</button>
+    </div>
+
+    <div id="popupuno" class="popup" style="display: none;">
+        <div class="popup-content">
+            <span class="close" onclick="closePopup()">X</span>
+            <h2>Gracias por su orden, Numero de pedido N</h2>
+            <p>Sera notificado cuando su orden se encuentre lista</p>
+            <img src="foticos/loggo.jpg" alt="Tu Logotipo">
+            <button class="btn-confirm" onclick="confirmOrder()">Aceptar</button>
+        </div>
+    </div>
+
     <section class="content sau historial-container">  
         <h2 class="title">HISTORIAL DE PEDIDOS</h2>
         <p>Aca tienes tu historial de compras anteriores</p>
 
         <div class="box-container">
             <div class="box">
-                <h3>Plato(s):_____________<br>
-                FECHA: __/__/_____<br>
+                <h3>Plato(s):_<br>
+                FECHA: _//<br>
                 CANTIDAD: _________<br>
                 TOTAL __Bs</h3>
             </div>
 
             <div class="box">
-                <h3>Plato(s):_____________<br>
-                FECHA: __/__/_____<br>
+                <h3>Plato(s):_<br>
+                FECHA: _//<br>
                 CANTIDAD: _________<br>
                 TOTAL __Bs</h3>
             </div>        
             <div class="box">
-                <h3>Plato(s):_____________<br>
-                FECHA: __/__/_____<br>
+                <h3>Plato(s):_<br>
+                FECHA: _//<br>
                 CANTIDAD: _________<br>
                 TOTAL __Bs</h3>
             </div>                  

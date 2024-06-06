@@ -6,7 +6,35 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="zMenuTrab.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha384-oNR3ivfesWjCkOwCUJKULPfn8V5AWyF8MTkFiYlZ7k4AB2Q9poh5f+Jw+tx1yGJp" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <title>Nuevesito de Paquete</title>
+    <style>
+        .toast-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .toast {
+            background-color: #333;
+            color: white;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            transform: translateY(100px);
+            transition: opacity 0.5s, transform 0.5s;
+        }
+
+        .toast.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
 </head>
 <body>
 
@@ -16,11 +44,10 @@
         </div>
 
         <nav class="navbar">
-            <a href="#">Inicio</a>
             <a href="#">Menu</a>
-            <a href="#">Por hacer</a>
+            <a href="#">Lista de Ordenes</a>
             <a href="#">Historial ventas</a>
-            <a href="#">Salir</a>
+            <a href="/frontend/login/loginUsuarios/login.html">Salir</a>
         </nav>
     </div>
 
@@ -32,95 +59,133 @@
                 <img src="foticos/llopo.jpg" alt="Tu Logotipo">
                 <h3>Pollo Frito Bs20</h3>
                 <p>1/4 de pollo, papas y refresco</p>
-                <button class="btn-pedir" onclick="openPopup()">Pedir</button>
+                <button class="btn-pedir" onclick="openPopup()">Revisar</button>
             </div>
 
             <div class="box">
                 <img src="foticos/guerbur.jpg" alt="Tu Logotipo">
                 <h3>Hamburguesa Bs20</h3>
                 <p>Hamburguesa, papas y refresco</p>
-                <button class="btn-pedir" onclick="openPopup()">Pedir</button>
+                <button class="btn-pedir" onclick="openPopup()">Revisar</button>
             </div>
 
             <div class="box">
                 <img src="foticos/getsnu.jpg" alt="Tu Logotipo">
                 <h3>Chicken Nuggets Bs18</h3>
                 <p>Nuggets, papas y refresco</p>
-                <button class="btn-pedir" onclick="openPopup()">Pedir</button>
+                <button class="btn-pedir" onclick="openPopup()">Revisar</button>
             </div>
 
             <div class="box">
                 <img src="foticos/neza.jpg" alt="Tu Logotipo">
                 <h3>Milaneza Clasica Bs20</h3>
                 <p>Milaneza en sandwich, jamon y queso</p>
-                <button class="btn-pedir" onclick="openPopup()">Pedir</button>
+                <button class="btn-pedir" onclick="openPopup()">Revisar</button>
             </div>
 
             <div class="box">
                 <img src="foticos/pancho.jpg" alt="Tu Logotipo">
                 <h3>Silpancho Bs20</h3>
                 <p>Plato tradicional de Cochabamba</p>
-                <button class="btn-pedir" onclick="openPopup()">Pedir</button>
+                <button class="btn-pedir" onclick="openPopup()">Revisar</button>
             </div>
 
             <div class="box">
                 <img src="foticos/jkl.jpg" alt="Tu Logotipo">
                 <h3>Churrasco 20Bs</h3>
                 <p>Churrasco con guarniciones</p>
-                <button class="btn-pedir" onclick="openPopup()">Pedir</button>
+                <button class="btn-pedir" onclick="openPopup()">Revisar</button>
             </div>
         </div>
 
-        <div class="final-order-btn-container">
-            <button class="btn-final-order" onclick="openFinalOrder()">VER ORDENES</button>
-        </div>
     </section>
 
     <div id="popup" class="popup">
         <div class="popup-content">
             <span class="close" onclick="closePopup()">&times;</span>
-            <h2>Confirmar Pedido</h2>
-            <p>¿Desea confirmar su pedido de __________?</p>
-            <button class="btn">Confirmar</button>
+            <h2>Pedido Confirmado</h2>
+            <p>Realizar lo más antes posible</p>
         </div>
     </div>
 
     <section class="content sau historial-container">  
         <h2 class="title">LISTA DE ORDENES</h2>
-        <p>Lista de ordenes por hacer //Lo puse asi para poder visualizar el orden</p>
-    
+        <p>Lista de ordenes por hacer</p>
+
         <div class="box-containerato">
             <div class="boxato">
-                <h3>ORDEN #_____________<br>
-                CLIENTE:__________<br>
-                C.I: #_____________<br>
-                FECHA: __/__/_____</h3>
+                <h3>ORDEN #_<br>
+                CLIENTE:<br>
+                C.I: #_<br>
+                FECHA: _//</h3>
                 <button class="btn-edit">Entregada</button>
                 <button class="btn-delete">Cancelada</button>
                 <button class="btn-complete">Notificar</button>
             </div>
-    
+
             <div class="boxato">
-                <h3>ORDEN #_____________<br>
-                CLIENTE:__________<br>
-                C.I: #_____________<br>
-                FECHA: __/__/_____</h3>
+                <h3>ORDEN #_<br>
+                CLIENTE:<br>
+                C.I: #_<br>
+                FECHA: _//</h3>
                 <button class="btn-edit">Entregada</button>
                 <button class="btn-delete">Cancelada</button>
                 <button class="btn-complete">Notificar</button>
             </div>
-    
+
             <div class="boxato">
-                <h3>ORDEN #_____________<br>
-                CLIENTE:__________<br>
-                C.I: #_____________<br>
-                FECHA: __/__/_____</h3>
+                <h3>ORDEN #_<br>
+                CLIENTE:<br>
+                C.I: #_<br>
+                FECHA: _//</h3>
                 <button class="btn-edit">Entregada</button>
                 <button class="btn-delete">Cancelada</button>
                 <button class="btn-complete">Notificar</button>
             </div>
         </div>
     </section>
+
+    <div id="toast-container" class="toast-container"></div>
+
+    <div class="title-container">
+        <h1>El carrito del cliente es de __Bs</h1>
+        <p>Verificar pago</p>
+    </div>
+
+    <div class="box-containerato">
+        <div class="boxato">
+            <h3>ORDEN #_<br>
+            CLIENTE:<br>
+            C.I: #_<br>
+            FECHA: _//</h3>
+        </div>
+    </div>
+
+    <div class="details-container">
+        <h2>Detalles del Pedido</h2>
+        <ul>
+            <li>Pollo Frito - 1/4 de pollo, papas y refresco</li>
+            <li>Precio: __ Bs</li>
+            <li>Fecha: 25/05/2024</li>
+        </ul>
+        <span class="icon-container">
+            <i class="material-icons">delete</i> <!-- Icono de basurero -->
+            <i class="material-icons">add</i> <!-- Icono de +1 -->
+        </span>
+    </div>
+
+    <div class="buttons-container">
+        <button class="btn-confirm" onclick="confirmOrder()">CONFIRMAR RECEPCION</button>
+    </div>
+
+    <div id="popupuno" class="popup" style="display: none;">
+        <div class="popup-content">
+            <span class="close" onclick="closePopup()">X</span>
+            <h2>-----------------Orden procesada------------------ Numero de pedido: N</h2>
+            <img src="foticos/loggo.jpg" alt="Tu Logotipo">
+            <button class="btn-confirm" onclick="confirmOrder()">Aceptar</button>
+        </div>
+    </div>
 
     <section class="content sau historial-container">  
         <h2 class="title">HISTORIAL de ventas</h2>
@@ -128,23 +193,23 @@
 
         <div class="box-container">
             <div class="box">
-                <h3>Plato(s):_____________<br>
+                <h3>Plato(s):_<br>
                 CI CLIENTE: _________<br>
-                FECHA: __/__/_____<br>
+                FECHA: _//<br>
                 TOTAL __Bs</h3>
             </div>
 
             <div class="box">
-                <h3>Plato(s):_____________<br>
+                <h3>Plato(s):_<br>
                 CI CLIENTE: _________<br>
-                FECHA: __/__/_____<br>
+                FECHA: _//<br>
                 TOTAL __Bs</h3>
             </div>
 
             <div class="box">
-                <h3>Plato(s):_____________<br>
+                <h3>Plato(s):_<br>
                 CI CLIENTE: _________<br>
-                FECHA: __/__/_____<br>
+                FECHA: _//<br>
                 TOTAL __Bs</h3>
             </div>
         </div>
@@ -161,6 +226,46 @@
 
         function openFinalOrder() {
             window.open('zVerOrdenes.html', '_blank');
+        }
+
+        function showToast(message) {
+            var toast = document.createElement('div');
+            toast.classList.add('toast');
+            toast.textContent = message;
+            document.body.appendChild(toast);
+            setTimeout(function() {
+                toast.remove();
+            }, 5000); 
+        }
+
+        document.querySelectorAll('.btn-edit').forEach(function(button) {
+            button.addEventListener('click', function() {
+                showToast('Orden marcada como entregada');
+            });
+        });
+
+        document.querySelectorAll('.btn-delete').forEach(function(button) {
+            button.addEventListener('click', function() {
+                showToast('Orden cancelada');
+            });
+        });
+
+        document.querySelectorAll('.btn-complete').forEach(function(button) {
+            button.addEventListener('click', function() {
+                showToast('Notificación enviada');
+            });
+        });
+
+        function openPopup() {
+            document.getElementById('popupuno').style.display = 'block';
+        }
+
+        function closePopup() {
+            document.getElementById('popupuno').style.display = 'none';
+        }
+
+        function confirmOrder() {
+            openPopup();
         }
     </script>
 
