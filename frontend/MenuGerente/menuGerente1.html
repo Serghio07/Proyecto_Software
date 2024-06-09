@@ -120,12 +120,12 @@
                       mostrar: function () {
                         axios.get(url)
                           .then(response => {
-                            this.userss = response.data;
+                            this.comidas = response.data;
                           })
                       },
                       openDialog(user) {
                         this.operacion = 'editar';
-                        this.users = Object.assign({}, user);
+                        this.users = Object.assign({}, comida);
                         this.dialog = true;
                       },
                       openDialog2() {
@@ -161,7 +161,7 @@
                           descripcion: this.comida.descripcion,
                           precio: this.comida.precio,
                         };
-                        axios.put(url + "/" + this.users.id, parametros)
+                        axios.put(url + "/" + this.comida.id, parametros)
                           .then(response => {
                             this.mostrar();
                           })

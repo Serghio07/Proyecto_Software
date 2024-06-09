@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+    <div id = "app">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mis Ventas</title>
@@ -38,7 +39,104 @@
             </ul>
         </div>
     </div>
-
     <script src="script.js"></script>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.js"
+    integrity="sha512-nqIFZC8560+CqHgXKez61MI0f9XSTKLkm0zFVm/99Wt0jSTZ7yeeYwbzyl0SGn/s8Mulbdw+ScCG41hmO2+FKw=="
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.0.2/dist/sweetalert2.all.min.js"></script>
+
+  <script>
+    let url = 'http://localhost:4000/reservas';
+    new Vue({
+      el: '#app',
+      vuetify: new Vuetify(),
+      data() {
+        return {
+          reservas: [],
+          dialog: false,
+          operacion: '',
+          reserva: {
+            id: null,
+            mesaBol: '',
+            nro_mesa: '',
+            
+          }
+        }
+      },
+      created() {
+        this.mostrar()
+      },
+      methods: {
+        mostrar: function () {
+          axios.get(url)
+            .then(response => {
+              this.reservas = response.data;
+            })
+        },
+        openDialog(user) {
+          this.operacion = 'editar';
+          this.reserva = Object.assign({}, user);
+          this.dialog = true;
+        },
+        openDialog2() {
+          this.operacion = 'crear';
+          this.dialog = true;
+        },
+        closeDialog() {
+          this.dialog = false;
+          
+        },
+        saveUser() {
+          if (this.operacion === 'editar') {
+            this.editar();
+          } else {
+            this.crear();
+          }
+          this.closeDialog();
+        },
+        crear: function () {
+          let parametros = {
+            mesaBol: '',
+            nro_mesa: '',
+          };
+          axios.post(url, parametros)
+            .then(response => {
+              this.mostrar();
+            });
+        },
+        editar: function () {
+          let parametros = {
+            mesaBol: '',
+            nro_mesa: '',
+          };
+          axios.put(url + "/" + this.users.id, parametros)
+            .then(response => {
+              this.mostrar();
+            })
+            .catch(error => {
+              console.log(error);
+            });
+        },
+        borrar: function (id) {
+          Swal.fire({
+            title: '¿Confirma eliminar el registro?',
+            confirmButtonText: 'Confirmar',
+            showCancelButton: true,
+          }).then((result) => {
+            if (result.isConfirmed) {
+              axios.delete(url + "/" + id)
+                .then(response => {
+                  this.mostrar();
+                });
+              Swal.fire('¡Eliminado!', '', 'success')
+            }
+          });
+        },
+      }
+    });
+  </script>   
 </body>
 </html>
