@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="menuTrab.css">
+    <script src="app.js" async></script>
+    <title>Menu Trabajadores </title>
+</head>
+<body>
+    <header>
+        <div class="wrapper">
+			<div class="logo">Restaurant Liz</div>
+			
+			<nav>
+				
+				<a href="#openModal">Ordenes Pendientes</a>
+                <div id="openModal" class="modalDialog">
+                    <div>
+                        <a href="#close" title="Close" class="close">X</a>
+                        <div class="boxato">
+                            <h3>ORDEN #_________<br>
+                            CLIENTE:<br>
+                            C.I: #_<br>
+                            FECHA: ___/___/____</h3>
+                        </div>
+                    </div>
+                </div>
+                <a href="#openModal2">Historial Ventas</a>
+                <div id="openModal2" class="modalDialog">
+                    <div>
+                        <a href="#close" title="Close" class="close">X</a>
+                        <div class="historial">
+                            <div class="historial-title">Historial de ventas</div>
+                            <div class="box">
+                                <h3>Plato(s):_______<br>
+                                CI CLIENTE: _________<br>
+                                FECHA: ____/____/____<br>
+                                TOTAL ____Bs</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div> 
+               
+			</nav>
+		</div>
+    </header>
+    <section class="contenedor">
+        <!-- Contenedor de elementos -->
+         
+        <div class="contenedor-items">
+            <div class="item">
+                <span class="titulo-item">Pollo Spiedo</span>
+                <img src="/frontend/menuTrab/imagenes/imagenes/spiedo.jpg" alt="" class="img-item">
+                <span class="precio-item">Bs.15</span>
+                <p class="card-text">Un rico pollito spiedo</p>
+                <button class="boton-item">Revisar</button>
+            </div>
+            <div class="item">
+                <span class="titulo-item">Pollo Broaster</span>
+                <img src="/frontend/menuTrab/imagenes/imagenes/broaster.jpg" alt="" class="img-item">
+                <p class="card-text">Que delisioso</p>
+                <span class="precio-item">Bs.15</span>
+                <button class="boton-item">Revisar</button>
+            </div>
+            <div class="item">
+                <span class="titulo-item">Chuleta</span>
+                <img src="/frontend/menuTrab/imagenes/imagenes/chuleta.webp" alt="" class="img-item">
+                <p class="card-text">Un esquisito chuleta</p>
+                <span class="precio-item">Bs.13</span>
+                <button class="boton-item">Revisar</button>
+            </div>
+            <div class="item">
+                <span class="titulo-item">Milanesa</span>
+                <img src="/frontend/menuTrab/imagenes/imagenes/milanesa.avif" alt="" class="img-item">
+                <span class="precio-item">Bs.18</span>
+                <button class="boton-item">Revisar</button>
+            </div>
+            <div class="item">
+                <span class="titulo-item">Silpancho</span>
+                <img src="/frontend/menuTrab/imagenes/imagenes/silpancho.jpg" alt="" class="img-item">
+                <p class="card-text">Un buen plato de silpancho</p>
+                <span class="precio-item">Bs.10</span>
+                <button class="boton-item">Revisar</button>
+            </div>
+            <div class="item">
+                <span class="titulo-item">Salchipapa</span>
+                <img src="/frontend/menuTrab/imagenes/imagenes/salchipapa.jpg" alt="" class="img-item">
+                <p class="card-text">Que deli</p>
+                <span class="precio-item">Bs.10</span>
+                <button class="boton-item">Revisar</button>
+            </div>
+            <div class="item">
+                <span class="titulo-item">SalchiArroz</span>
+                <img src="/frontend/menuTrab/imagenes/imagenes/salchiarroz.jpg" alt="" class="img-item">
+                <p class="card-text">Que delisioso</p>
+                <span class="precio-item">Bs.10</span>
+                <button class="boton-item">Revisar</button>
+            </div>
+            <div class="item">
+                <span class="titulo-item">Hamburguesa</span>
+                <img src="/frontend/menuTrab/imagenes/imagenes/hamburguesa.jpg" alt="" class="img-item">
+                <p class="card-text">Que delisioso</p>
+                <span class="precio-item">Bs.10</span>
+                <button class="boton-item">Revisar</button>
+            </div>
+            
+            
+            
+        <h2>Bebidas</h2>
+            <div class="item">
+                <span class="titulo-item">Coca Cola</span>
+                <img src="/frontend/menuTrab/imagenes/imagenes/coca.png" alt="" class="img-item">
+                <span class="precio-item">Bs.5</span>
+                <button class="boton-item">Revisar</button>
+            </div>
+            <div class="item">
+                <span class="titulo-item">Fanta</span>
+                <img src="/frontend/menuTrab/imagenes/imagenes/fanta.png" alt="" class="img-item">
+                <span class="precio-item">Bs.5</span>
+                <button class="boton-item">Revisar</button>
+            </div>
+            <div class="item">
+                <span class="titulo-item">Sprite</span>
+                <img src="/frontend/menuTrab/imagenes/imagenes/sprite.png" alt="" class="img-item">
+                <span class="precio-item">Bs.5</span>
+                <button class="boton-item">Revisar</button>
+            </div>
+        </div>
+        <!--  Compras -->
+        <div class="carrito" id="carrito">
+            <div class="header-carrito">
+                <h2>Carrito Cliente</h2>
+            </div>
+
+            <div class="carrito-items">
+                
+            </div>
+            <div class="carrito-total">
+                <div class="fila">
+                    <strong>Total a cobrar</strong>
+                    <span class="carrito-precio-total">
+                        Bs.120.000
+                    </span>
+                </div>
+                <button class="btn-confirmar">Confirmar orden <i class="fa-solid fa-bag-shopping"></i> </button>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

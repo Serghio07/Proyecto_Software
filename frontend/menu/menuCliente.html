@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="menuCliente.css">
+    <script src="app.js" async></script>
+    <title>Menu Cliente </title>
+</head>
+<body>
+    <header>
+        
+        <div class="wrapper">
+			<div class="logo">Restaruant Liz</div>
+			
+			<nav>
+				
+				<a href="#openModal" class="notification-link">Notificaciones</a>
+                <div id="openModal" class="modalDialog">
+                    <div class="modalContent">
+                        <a href="#close" title="Close" class="close">X</a>
+                        <h2>Centro de Notificaciones</h2>
+                        <div class="notification">
+                            <div class="icon">&#128276;</div>
+                            <p>Su pedido estará listo en 15 minutos</p>
+                        </div>
+                        <div class="notification">
+                            <div class="icon">&#128276;</div>
+                            <div class="notification-text">
+                                <p>Su pedido fue entregado hace 2 minutos. ¿Le gustó la atención? ¿La comida llegó tal y como la ordenó? ¿El servicio le pareció adecuado?</p>
+                                <p><strong>Por favor califíquenos, si tiene observaciones sobre el servicio por favor háganos saber</strong></p>
+                                <form id="feedbackForm">
+                                    <label for="calificacion">Califíquenos del 1 al 10:</label>
+                                    <input type="number" id="calificacion" name="calificacion" min="1" max="10" required>
+                                    <textarea placeholder="Deje un comentario del servicio (Opcional)" id="comentario"></textarea>
+                                    <button type="submit" class="submit-btn">Aceptar</button>
+                                </form>
+                                <p id="mensajeEnviado" style="display:none; color: green; font-weight: bold;">Mensaje enviado, gracias por su opinión.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                
+                <a href="#openModal2" class="historial-link">Historial</a>
+                <div id="openModal2" class="modalDialog">
+                    <div class="modalContent">
+                        <a href="#close" title="Close" class="close">X</a>
+                        <div class="historial">
+                            <div class="historial-header">
+                                <div class="historial-title">Historial de Compras</div>
+                            </div>
+                            <div class="historial-content">
+                                <div class="historial-item">
+                                    <div class="item-details">
+                                        <div class="item-quantity">2</div>
+                                        <div class="item-name">Pollo</div>
+                                    </div>
+                                    <div class="item-info">
+                                        <div class="item-price">Bs 30</div>
+                                        <div class="item-date">21/03/2024</div>
+                                    </div>
+                                </div>
+                                <div class="historial-item">
+                                    <div class="item-details">
+                                        <div class="item-quantity">1</div>
+                                        <div class="item-name">Refresco de 2 Litros</div>
+                                    </div>
+                                    <div class="item-info">
+                                        <div class="item-price">Bs 15</div>
+                                        <div class="item-date">21/03/2024</div>
+                                    </div>
+                                </div>
+                                <div class="historial-total">Total: Bs 45</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ventana emergente -->
+                <div id="popup" class="popup">
+                    <div class="popup-content">
+                        <p>Gracias por su compra, se le notificará cuando su pedido esté listo.</p>
+                        <button id="closePopup" class="close-popup">Cerrar</button>
+                    </div>
+                </div>
+
+                <!-- texto para cuando se selecciona mas de una vez un item del menu -->
+                <div id="itemExistsPopup" class="popup">
+                    <div class="popup-content">
+                      <p>El item ya se encuentra en el carrito</p>
+                    </div>
+                  </div>
+                
+                
+                   
+			</nav>
+		</div>
+    </header>
+    <section class="contenedor">
+        <!-- Contenedor de elementos -->
+        <div class="contenedor-items">
+            
+            <div class="item">
+                <span class="titulo-item">Pollo Spiedo</span>
+                <img src="/frontend/menu/imagenes/spiedo.jpg" alt="" class="img-item">
+                <span class="precio-item">Bs.15</span>
+                <p class="card-text">Un rico pollito spiedo</p>
+                <button class="boton-item">Pedir</button>
+            </div>
+            <div class="item">
+                <span class="titulo-item">Pollo Broaster</span>
+                <img src="/frontend/menu/imagenes/broaster.jpg" alt="" class="img-item">
+                <p class="card-text">Que delisioso</p>
+                <span class="precio-item">Bs.15</span>
+                <button class="boton-item">Pedir</button>
+            </div>
+            <div class="item">
+                <span class="titulo-item">Chuleta</span>
+                <img src="/frontend/menu/imagenes/chuleta.webp" alt="" class="img-item">
+                <p class="card-text">Un esquisito chuleta</p>
+                <span class="precio-item">Bs.13</span>
+                <button class="boton-item">Pedir</button>
+            </div>
+            <div class="item">
+                <span class="titulo-item">Milanesa</span>
+                <img src="/frontend/menu/imagenes/milanesa.avif" alt="" class="img-item">
+                <span class="precio-item">Bs.18</span>
+                <button class="boton-item">Pedir</button>
+            </div>
+            <div class="item">
+                <span class="titulo-item">Silpancho</span>
+                <img src="/frontend/menu/imagenes/silpancho.jpg" alt="" class="img-item">
+                <p class="card-text">Un buen plato de silpancho</p>
+                <span class="precio-item">Bs.10</span>
+                <button class="boton-item">Pedir</button>
+            </div>
+            <div class="item">
+                <span class="titulo-item">Salchipapa</span>
+                <img src="/frontend/menu/imagenes/salchipapa.jpg" alt="" class="img-item">
+                <p class="card-text">Que deli</p>
+                <span class="precio-item">Bs.10</span>
+                <button class="boton-item">Pedir</button>
+            </div>
+            <div class="item">
+                <span class="titulo-item">SalchiArroz</span>
+                <img src="/frontend/menu/imagenes/salchiarroz.jpg" alt="" class="img-item">
+                <p class="card-text">Que delisioso</p>
+                <span class="precio-item">Bs.10</span>
+                <button class="boton-item">Agregar al Carrito</button>
+            </div>
+            <div class="item">
+                <span class="titulo-item">Hamburguesa</span>
+                <img src="/frontend/menu/imagenes/hamburguesa.jpg" alt="" class="img-item">
+                <p class="card-text">Que delisioso</p>
+                <span class="precio-item">Bs.10</span>
+                <button class="boton-item">Pedir</button>
+            </div><br>
+            
+            
+            <div class="item">
+                <span class="titulo-item">Coca Cola</span>
+                <img src="/frontend/menu/imagenes/coca.png" alt="" class="img-item">
+                <span class="precio-item">Bs.5</span>
+                <button class="boton-item">Pedir</button>
+            </div>
+            <div class="item">
+                <span class="titulo-item">Fanta</span>
+                <img src="/frontend/menu/imagenes/fanta.png" alt="" class="img-item">
+                <span class="precio-item">Bs.5</span>
+                <button class="boton-item">Pedir</button>
+            </div>
+            <div class="item">
+                <span class="titulo-item">Sprite</span>
+                <img src="/frontend/menu/imagenes/sprite.png" alt="" class="img-item">
+                <span class="precio-item">Bs.5</span>
+                <button class="boton-item">Pedir</button>
+            </div>
+        </div>
+        <!--  Compras -->
+        <div class="carrito" id="carrito">
+            <div class="header-carrito">
+                <h2>Tu Carrito</h2>
+            </div>
+
+            <div class="carrito-items">
+                
+            </div>
+            <div class="carrito-total">
+                <div class="fila">
+                    <strong>Tu Total</strong>
+                    <span class="carrito-precio-total">
+                        Bs.0
+                    </span>
+                </div>
+                <button class="btn-confirmar">Confirmar <i class="fa-solid fa-bag-shopping"></i> </button>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
