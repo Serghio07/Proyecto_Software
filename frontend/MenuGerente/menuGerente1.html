@@ -8,25 +8,26 @@
 </head>
 
 <body>
+  <header style="position: absolute; top: 0; width: 90%; ">
+    <div class="logo-container">
+        <button class="back-btn" onclick="window.location.href = '../login/loginUsuarios/login.html';">Atrás</button>
+        
+    </div>
+    <h1>GESTIÓN DE MENÚ</h1>
+    <div class="header-icons">
+        <button class="cuentas" onclick="window.location.href = 'Tabla.html';">
+            <img src="/frontend/MenuGerente/img/personas.png" alt="Cuentas">
+        </button>
+        <button class="perfil" onclick="window.location.href = 'perfil.html';">
+            <img src="/frontend/MenuGerente/img/pollo.png" alt="Mi perfil">
+        </button>
+        <div class="Logo">
+            <img src="/frontend/MenuGerente/img/logo.png" alt="Logo">
+        </div>  
+    </div>
+</header>
     <div id="app">
-    <header style="position: absolute; top: 0; width: 90%;">
-        <div class="logo-container">
-            <button class="back-btn" onclick="window.location.href = '../login/loginUsuarios/login.html';">Atrás</button>
-            
-        </div>
-        <h1>GESTIÓN DE MENÚ</h1>
-        <div class="header-icons">
-            <button class="cuentas" onclick="window.location.href = 'Tabla.html';">
-                <img src="/frontend/MenuGerente/img/personas.png" alt="Cuentas">
-            </button>
-            <button class="perfil" onclick="window.location.href = 'perfil.html';">
-                <img src="/frontend/MenuGerente/img/pollo.png" alt="Mi perfil">
-            </button>
-            <div class="Logo">
-                <img src="/frontend/MenuGerente/img/logo.png" alt="Logo">
-            </div>  
-        </div>
-    </header>
+    
     <div class="card-container" style="flex-direction: row;">
         <div class="card">
             <div class="face front">

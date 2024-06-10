@@ -22,26 +22,25 @@
       <form id="form-validacion" novalidate>
         <div class="tabla">
           <span>Titulo</span>
-          <input type="text" placeholder="Ingrese el nombre del plato" required>
+          <input id="name" type="text" placeholder="Ingrese el nombre del plato" required>
           <small>Por favor Ingrese el nombre del plato</small>
         </div>
         <div class="tabla">
           <span>Descripcion</span>
-          <input type="text" placeholder="Descripcion del plato" required>
+          <input id="desc" type="text" placeholder="Descripcion del plato" required>
           <small>Por favor Ingrese la descripcion del plato</small>
+        </div>
+        
+        <div class="tabla">
+          <span>Tipo de plato</span>
+          <input id="tip" type="text" placeholder="Descripcion del plato" required>
         </div>
         <div class="tabla">
           <span>Precio</span>
-          <input type="number" id="precio" value="15">
+          <input type="number" id="prec" value="0">
         </div>
-        <div class="tabla">
-          <label for="imagen">Imagen:</label>
-          <input type="file" id="imagen" name="imagen">
-          <small>Por favor Ingrese la imagen del plato</small>
-        </div>
-
         <div class="button">
-          <input type="button" value="Agregar Producto">
+          <input type="button" @click="saveUser" value="Agregar Producto">
         </div>
 
 
@@ -72,6 +71,7 @@
             nombre: '',
             descripcion: '',
             precio: '',
+            tipocomida_id: ''
           }
         }
       },
@@ -91,7 +91,7 @@
           this.dialog = true;
         },
         openDialog2() {
-          this.operacion = 'crear';
+          
           this.dialog = true;
         },
         closeDialog() {
@@ -99,6 +99,7 @@
 
         },
         saveUser() {
+          this.operacion = 'crear';
           if (this.operacion === 'editar') {
             this.editar();
           } else {
@@ -111,40 +112,12 @@
             nombre: this.comida.nombre,
             descripcion: this.comida.descripcion,
             precio: this.comida.precio,
+            tipocomida_id: this.comida.tipocomida_id,
           };
           axios.post(url, parametros)
             .then(response => {
               this.mostrar();
             });
-        },
-        editar: function () {
-          let parametros = {
-            nombre: this.comida.nombre,
-            descripcion: this.comida.descripcion,
-            precio: this.comida.precio,
-          };
-          axios.put(url + "/" + this.users.id, parametros)
-            .then(response => {
-              this.mostrar();
-            })
-            .catch(error => {
-              console.log(error);
-            });
-        },
-        borrar: function (id) {
-          Swal.fire({
-            title: '¿Confirma eliminar la comida?',
-            confirmButtonText: 'Confirmar',
-            showCancelButton: true,
-          }).then((result) => {
-            if (result.isConfirmed) {
-              axios.delete(url + "/" + id)
-                .then(response => {
-                  this.mostrar();
-                });
-              Swal.fire('¡Eliminado!', '', 'success')
-            }
-          });
         },
       }
     });
