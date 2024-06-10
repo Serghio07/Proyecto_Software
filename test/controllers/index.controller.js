@@ -120,16 +120,16 @@ const getComidaById = async (req, res) => {
 };
 
 const createComida = async (req, res) => {
-    const {nombre, descripcion, precio } = req.body;
+    const {nombre, descripcion, precio, tipocomida_id } = req.body;
     const response = await pool.query(
-        'INSERT INTO comidas (nombre, descripcion, precio) VALUES ($1, $2, $3)',
-        [nombre, descripcion, precio]
+        'INSERT INTO comidas (nombre, descripcion, precio, tipocomida_id) VALUES ($1, $2, $3,$4)',
+        [nombre, descripcion, precio, tipocomida_id]
     );
     console.log(response);
     res.json({
         message: 'Comida Added Successfully',
         body: {
-            comida: {nombre, descripcion, precio }
+            comida: {nombre, descripcion, precio, tipocomida_id }
         }
     });
 };
@@ -143,10 +143,10 @@ const deleteComida = async (req, res) => {
 
 const updateComida = async (req, res) => {
     const id = req.params.id;
-    const { nombre, descripcion, precio } = req.body;
+    const { nombre, descripcion, precio,tipocomida_id } = req.body;
     const response = await pool.query(
-        'UPDATE comidas SET nombre = $2, descripcion = $3, precio = $4 WHERE id = $1',
-        [id,nombre, descripcion, precio]
+        'UPDATE comidas SET nombre = $2, descripcion = $3, precio = $4, tipocomida_id = $5 WHERE id = $1',
+        [id,nombre, descripcion, precio, tipocomida_id]
     );
     console.log(response);
     res.json('Comida updated successfully');
