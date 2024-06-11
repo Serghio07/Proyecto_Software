@@ -108,11 +108,15 @@
           this.closeDialog();
         },
         crear: function () {
+          var inputElement1 = document.getElementById("name");
+          var inputElement2 = document.getElementById("desc");
+          var inputElement3 = document.getElementById("prec");
+          var inputElement4 = document.getElementById("tip");
           let parametros = {
-            nombre: this.comida.nombre,
-            descripcion: this.comida.descripcion,
-            precio: this.comida.precio,
-            tipocomida_id: this.comida.tipocomida_id,
+            nombre: inputElement1.value,
+            descripcion: inputElement2.value,
+            precio: inputElement3.value,
+            tipocomida_id: inputElement4.value,
           };
           axios.post(url, parametros)
             .then(response => {

@@ -31,7 +31,9 @@
                   <tr v-for="users in userss" :key="users.id">
                       <td>{{ users.id }}</td>
                       <td>{{ users.nombre }}</td>
-                      <td>{{ users.tipo }}</td>   
+                      <td><span v-if="users.tipo == 1">Cliente</span>
+                        <span v-else-if="users.tipo == 2">Admin</span>
+                        <span v-else>Trabajador</span></td>   
                       <td>{{ users.contrasena }}</td>
                       <td>{{ users.correo }}</td>
                       <td>
@@ -52,7 +54,7 @@
             <v-form ref="form">
               <v-text-field v-model="users.id" label="ID" :readonly="operacion === 'editar'"></v-text-field>
               <v-text-field v-model="users.nombre" label="Nombre" required></v-text-field>
-              <v-select v-model="users.tipo" :items="['gerente', 'trabajador', 'cliente']" label="Cargo" required></v-select>
+              <v-select v-model="users.tipo" :items="['admin', 'trabajador', 'cliente']" label="Cargo" required></v-select>
               <v-text-field v-model="users.contrasena" label="Contraseña" required></v-text-field>
               <v-text-field v-model="users.correo" label="Correo electrónico" type="email" required></v-text-field>
             </v-form>
@@ -90,6 +92,7 @@
             correo: '',
             contrasena: '',
             tipo: '',
+            contador: 0
           }
         }
       },
@@ -130,11 +133,22 @@
           this.users.tipo='';
         },
         crear: function () {
+          var idtip;
+          if (this.users.tipo == 'cliente') {
+            idtip = 1;
+          }
+          if (this.users.tipo == 'admin') {
+            idtip = 2;
+          }
+          if (this.users.tipo == 'trabajador') {
+            idtip = 3;
+          }
           let parametros = {
             nombre: this.users.nombre,
             correo: this.users.correo,
             contrasena: this.users.contrasena,
-            tipo: this.users.tipo
+            tipo: idtip,
+            contador: 0
           };
           axios.post(url, parametros)
             .then(response => {
@@ -142,11 +156,22 @@
             });
         },
         editar: function () {
+          var idtip;
+          if (this.users.tipo == 'cliente') {
+            idtip = 1;
+          }
+          if (this.users.tipo == 'admin') {
+            idtip = 2;
+          }
+          if (this.users.tipo == 'trabajador') {
+            idtip = 3;
+          }
           let parametros = {
             nombre: this.users.nombre,
             correo: this.users.correo,
             contrasena: this.users.contrasena,
-            tipo: this.users.tipo
+            tipo: idtip,
+            contador: 0
           };
           axios.put(url + "/" + this.users.id, parametros)
             .then(response => {
