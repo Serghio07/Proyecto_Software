@@ -168,12 +168,14 @@
                     this.file = e.target.files[0];
                 },
                 saveComida() {
-                    if (this.operacion === 'editar') {
-                        this.editar();
-                    } else {
-                        this.crear();
+                    if (this.validarComida()) {
+                        if (this.operacion === 'editar') {
+                            this.editar();
+                        } else {
+                            this.crear();
+                        }
+                        this.closeDialog();
                     }
-                    this.closeDialog();
                 },
                 crear: function () {
                     let formData = new FormData();
@@ -225,6 +227,13 @@
                             Swal.fire('¡Eliminado!', '', 'success')
                         }
                     });
+                },
+                validarComida() {
+                    if (!this.comida.tipocomida_id) {
+                        Swal.fire('Error', 'El tipo de comida no puede ser nulo.', 'error');
+                        return false;
+                    }
+                    return true;
                 },
                 getComidaImage(tipocomida_id) {
                     if (tipocomida_id == 1) {
