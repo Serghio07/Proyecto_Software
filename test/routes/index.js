@@ -37,4 +37,22 @@ router.post('/destalle_ordenes',createDetalleOrdene);
 router.delete('/destalle_ordenes/:id',deleteDetalleOrdene);
 router.put('/destalle_ordenes/:id',updateDetalleOrdene);
 
+router.get('/reserva_comidas', getReservaComidas);
+router.get('/reserva_comidas/:id', getReservaComidaById);
+router.post('/reserva_comidas', createReservaComida);
+router.delete('/reserva_comidas/:id', deleteReservaComida);
+router.put('/reserva_comidas/:id', updateReservaComida);
+
+router.get('/comida_ingredientes', getComidaIngredientes);
+router.get('/comida_ingredientes/:id', getComidaIngredienteById);
+router.post('/comida_ingredientes', createComidaIngrediente);
+router.delete('/comida_ingredientes/:id', deleteComidaIngrediente);
+router.put('/comida_ingredientes/:id', updateComidaIngrediente);
+
+router.get('/ingredientes', getIngredientes);
+router.get('/ingredientes/:id', getIngredienteById);
+router.post('/ingredientes', createIngrediente);
+router.delete('/ingredientes/:id', deleteIngrediente);
+router.put('/ingredientes/:id', updateIngrediente);
+
 module.exports = router;

@@ -1,5 +1,5 @@
 //Variable que mantiene el estado visible del carrito
-var carritoVisible = false;
+var carritoVisible = true;
 
 //Espermos que todos los elementos de la pàgina cargen para ejecutar el script
 if(document.readyState == 'loading'){
@@ -9,7 +9,7 @@ if(document.readyState == 'loading'){
 }
 
 function ready(){
-    
+    hacerVisibleCarrito();
     //Agregremos funcionalidad a los botones eliminar del carrito
     var botonesEliminarItem = document.getElementsByClassName('btn-eliminar');
     for(var i=0;i<botonesEliminarItem.length; i++){
@@ -50,7 +50,7 @@ function pagarClicked(){
         carritoItems.removeChild(carritoItems.firstChild)
     }
     actualizarTotalCarrito();
-    ocultarCarrito();
+    
 }
 //Funciòn que controla el boton clickeado de agregar al carrito
 function agregarAlCarritoClicked(event){
@@ -161,7 +161,7 @@ function eliminarItemCarrito(event){
     ocultarCarrito();
 }
 //Funciòn que controla si hay elementos en el carrito. Si no hay oculto el carrito.
-function ocultarCarrito(){
+/* function ocultarCarrito(){
     var carritoItems = document.getElementsByClassName('carrito-items')[0];
     if(carritoItems.childElementCount==0){
         var carrito = document.getElementsByClassName('carrito')[0];
@@ -172,7 +172,7 @@ function ocultarCarrito(){
         var items =document.getElementsByClassName('contenedor-items')[0];
         items.style.width = '100%';
     }
-}
+} */
 //Actualizamos el total de Carrito
 function actualizarTotalCarrito(){
     //seleccionamos el contenedor carrito
