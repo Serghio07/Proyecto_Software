@@ -1,7 +1,7 @@
 const { Router} =  require('express');
 const router = Router();
 
-const { getUsers, createUser, getUserById, deleteUser, updateUser, getRegister, getRegisterById, createRegister, deleteRegister, updateRegister, getDetalleOrdenes, getDetalleOredenesById, createDetalleOrdenes, deleteDetalleOrdenes, updateDetalleOrdenes, getOrdenes, getOrdenesById, createOrdenes, deleteOrdenes, updateOrdenes, getComidas, getComidaById, createComida, deleteComida, updateComida, getReservas, getReservaById, createReserva, deleteReserva, updateReserva, getOrdeneById, createOrdene, deleteOrdene, updateOrdene, getDetalleOredeneById, createDetalleOrdene, deleteDetalleOrdene, updateDetalleOrdene} = require('../controllers/index.controller');
+const { getUsers, createUser, getUserById, deleteUser, updateUser, getRegister, getRegisterById, createRegister, deleteRegister, updateRegister, getDetalleOrdenes, getDetalleOredenesById, createDetalleOrdenes, deleteDetalleOrdenes, updateDetalleOrdenes, getOrdenes, getOrdenesById, createOrdenes, deleteOrdenes, updateOrdenes, getComidas, getComidaById, createComida, deleteComida, updateComida, getReservas, getReservaById, createReserva, deleteReserva, updateReserva, getOrdeneById, createOrdene, deleteOrdene, updateOrdene, getDetalleOredeneById, createDetalleOrdene, deleteDetalleOrdene, updateDetalleOrdene, getReservaComidas, getReservaComidaById, createReservaComida, deleteReservaComida, updateReservaComida, getComidaIngredientes, getComidaIngredienteById, createComidaIngrediente, deleteComidaIngrediente, updateComidaIngrediente, getIngredientes, getIngredienteById, createIngrediente, deleteIngrediente, updateIngrediente} = require('../controllers/index.controller');
 
 router.get('/users',getUsers);
 router.get('/users/:id',getUserById);
