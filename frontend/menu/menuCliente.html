@@ -195,19 +195,19 @@
           </div>
         <section class="contenedor" style="margin-top: 100px;">
             <div class="w3-row-padding w3-padding-16 w3-center contenedor-items">
-                <div v-for="comida in comidas" :key="comida.id" class="w3-quarter item">
+                <div v-for="comida in comidas" :key="comida.id" class="w3-quarter item" style="max-width: 30%;">
                     <h3 class="titulo-item">{{ comida.nombre }}</h3>
                     <img :src="getComidaImage(comida.tipocomida_id)" :alt="comida.nombre" class="img-item">
                     <h4 class="precio-item">Bs.{{ comida.precio }}</h4>
                     <h5 class="card-text">{{ comida.descripcion }}</h5>
-                    <button class="boton-item w3-button w3-black" style="margin-bottom: 6px;">Pedir</button>
+                    <button class="boton-item w3-button w3-black" style="margin-bottom: 6px;" @click="openDialog(comida)">Pedir</button>
                 </div>
-                <div v-for="bebida in bebidas" :key="bebida.id" class="w3-quarter item">
+                <div v-for="bebida in bebidas" :key="bebida.id" class="w3-quarter item" style="max-width: 30%;">
                     <h3 class="titulo-item">{{ bebida.nombre }}</h3>
                     <img :src="getComidaImage(bebida.tipocomida_id)" :alt="bebida.nombre" class="img-item">
                     <h4 class="precio-item">Bs.{{ bebida.precio }}</h4>
                     <h5 class="card-text">{{ bebida.descripcion }}</h5>
-                    <button class="boton-item w3-button w3-black" style="margin-bottom: 6px;">Pedir</button>
+                    <button class="boton-item w3-button w3-black" style="margin-bottom: 6px;" @click="openDialog(bebida)">Pedir</button>
                 </div>
             </div>
         </section>
@@ -216,26 +216,21 @@
                 <h2>Tu Carrito</h2>
             </div>
             <div class="carrito-items">
-                <div class="carrito-item">
-                    <img src="IMAGEN_SRC" width="80px" alt="">
+                <div v-for="list in lista" :key="list.id" class="carrito-item">
+                    <img :src="getComidaImage(list.tipocomida_id)" :alt="list.nombre" width="80px" alt="">
                     <div class="carrito-item-detalles">
-                        <span class="carrito-item-titulo">TITULO_ITEM</span>
-                        <div class="selector-cantidad">
-                            <i class="fa-solid fa-minus restar-cantidad"></i>
-                            <input type="text" value="1" class="carrito-item-cantidad" disabled>
-                            <i class="fa-solid fa-plus sumar-cantidad"></i>
-                        </div>
-                        <span class="carrito-item-precio">PRECIO_ITEM</span>
+                        <span class="carrito-item-titulo">{{ list.nombre }}</span>
+                        <span class="carrito-item-precio">Bs.{{ list.precio }}</span>
                     </div>
                     <button class="btn-eliminar">
-                        <i class="fa-solid fa-trash"></i>
+                        <i class="fa-solid fa-trash" @click="opendialogdel(list)"></i>
                     </button>
                 </div>
             </div>
             <div class="carrito-total">
                 <div class="fila">
                     <strong>Tu Total</strong>
-                    <span class="carrito-precio-total">Bs.0</span>
+                    <span class="carrito-precio-total">Bs.{{ totalfin }}</span>
                 </div>
                 <button class="btn-confirmar">Confirmar <i class="fa-solid fa-bag-shopping"></i> </button>
             </div>
@@ -329,6 +324,7 @@
                     comidas: [],
                     bebidas: [],
                     lista: [],
+                    totalfin: 0,
                     dialog: false,
                     operacion: '',
                     comida: {
@@ -336,8 +332,7 @@
                         nombre: '',
                         descripcion: '',
                         precio: '',
-                        tipocomida_id: null,
-                        imagen: ''
+                        tipocomida_id: null
                     },
                     tiposComida: [
                         { text: 'Asado', value: 1 },
@@ -373,21 +368,55 @@
                         });
                 },
                 openDialog(item) {
-                    this.operacion = 'editar';
                     this.comida = Object.assign({}, item);
-                    this.dialog = true;
+                    Swal.fire({
+                    title: "¿Ordenar " + this.comida.nombre + "? \nCantidad:",
+                    input: "number",
+                    inputAttributes: {
+                        autocapitalize: "off"
+                    },
+                    showCancelButton: true,
+                    confirmButtonText: "Ordenar",
+                    denyButtonText: `Cancelar`
+                    }).then((result) => {
+                    if (result.isConfirmed) {
+                        // Obtiene el valor numérico ingresado
+                        const cantidad = result.value;
+
+                        // Asegúrate de que el valor ingresado sea válido (puedes ajustar esta validación según tus necesidades)
+                        if (cantidad && !isNaN(cantidad) && cantidad > 0) {
+                        // Puedes añadir el valor de cantidad a la comida, si es necesario
+                        this.comida.cantidad = cantidad;
+
+                        for (let index = 0; index < cantidad; index++) {
+                            this.lista.push(this.comida);
+                        }
+                        this.totalfin=0;
+                        this.lista.forEach(element => {
+                            this.totalfin=this.totalfin+element.precio;
+                        });
+                        } else {
+                        Swal.fire('Por favor ingresa una cantidad válida');
+                        }
+                    }
+                    });
                 },
-                openDialogNuevo(tipo) {
-                    this.operacion = 'crear';
-                    this.comida = {
-                        id: null,
-                        nombre: '',
-                        descripcion: '',
-                        precio: '',
-                        tipocomida_id: tipo === 'comida' ? 1 : 9,
-                        imagen: ''
-                    };
-                    this.dialog = true;
+                opendialogdel(item) {
+                    var flaga = true;
+                    this.lista.forEach(element => {
+                        if (item==element) {
+                            if (flaga) {
+                                this.lista.splice(element, 1);
+                                flaga = false;
+                            }
+                            
+                            
+                        }
+                    });
+                    this.totalfin=0;
+                    this.lista.forEach(element => {
+                        this.totalfin=this.totalfin+element.precio;
+                    });
                 },
                 closeDialog() {
                     this.dialog = false;
@@ -423,7 +452,7 @@
                             console.log(error);
                         });
                 },
-                editar: function () {
+                pedir: function () {
                     let formData = new FormData();
                     formData.append('nombre', this.comida.nombre);
                     formData.append('descripcion', this.comida.descripcion);

@@ -30,15 +30,17 @@
           <input id="desc" type="text" placeholder="Descripcion del plato" required>
           <small>Por favor Ingrese la descripcion del plato</small>
         </div>
-        
-        <div class="tabla">
-          <span>Tipo de plato</span>
-          <input id="tip" type="text" placeholder="Descripcion del plato" required>
-        </div>
+
         <div class="tabla">
           <span>Precio</span>
           <input type="number" id="prec" value="0">
         </div>
+        
+        <div class="tabla">
+          <span>Tipo de plato</span>
+          <v-select v-model="comida.tipocomida_id" :items="tiposComida" label="" required></v-select>
+        </div>
+        
         <div class="button">
           <input type="button" @click="saveUser" value="Agregar Producto">
         </div>
@@ -72,7 +74,23 @@
             descripcion: '',
             precio: '',
             tipocomida_id: ''
-          }
+          },
+          tiposComida: [
+                        { text: 'Asado', value: 1 },
+                        { text: 'Broaster', value: 2 },
+                        { text: 'Chuleta', value: 3 },
+                        { text: 'Hamburguesa', value: 4 },
+                        { text: 'Milanesa', value: 5 },
+                        { text: 'Salchipapa', value: 6 },
+                        { text: 'Salchiarroz', value: 7 },
+                        { text: 'Silpancho', value: 8 },
+                        { text: 'Coca Cola', value: 9 },
+                        { text: 'Coca sin Azúcar', value: 10 },
+                        { text: 'Fanta', value: 11 },
+                        { text: 'Fanta Papaya', value: 12 },
+                        { text: 'Jugo de Naranja', value: 13 },
+                        { text: 'Sprite', value: 14 }
+                    ],
         }
       },
       created() {
@@ -116,10 +134,16 @@
             nombre: inputElement1.value,
             descripcion: inputElement2.value,
             precio: inputElement3.value,
-            tipocomida_id: inputElement4.value,
+            tipocomida_id: this.comida.tipocomida_id,
           };
           axios.post(url, parametros)
             .then(response => {
+              Swal.fire({
+                icon: "success",
+                title: "Agregado",
+                showConfirmButton: false,
+                timer: 1500
+              });
               this.mostrar();
             });
         },
