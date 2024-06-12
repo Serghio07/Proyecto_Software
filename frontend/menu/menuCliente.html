@@ -5,139 +5,216 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
-        integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="menuCliente.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <title>Menu Cliente </title>
+    <title>Menu Cliente</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            margin: 0 10px;
+            text-decoration: none;
+            color: #000;
+            font-size: 18px;
+        }
+
+        .modalDialog {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: none;
+        }
+
+        .modalContent {
+            position: relative;
+            margin: 10% auto;
+            padding: 20px;
+            background: #fff;
+            width: 80%;
+            max-width: 600px;
+            border-radius: 8px;
+        }
+
+        .close {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 20px;
+            color: #333;
+            text-decoration: none;
+        }
+
+        .contenedor-items {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+
+        .item {
+            margin: 10px;
+            padding: 10px;
+            background: #f4f4f4;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 45%;
+            box-sizing: border-box;
+        }
+
+        .item img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        .carrito {
+            position: fixed;
+            right: 0;
+            top: 0;
+            width: 300px;
+            height: 100%;
+            background: #fff;
+            box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            box-sizing: border-box;
+            overflow-y: auto;
+            transition: transform 0.3s ease;
+        }
+
+        .header-carrito {
+            margin-bottom: 20px;
+        }
+
+        .carrito-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .carrito-item img {
+            width: 50px;
+            height: 50px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        .carrito-item-detalles {
+            flex-grow: 1;
+            margin-left: 10px;
+        }
+
+        .selector-cantidad {
+            display: flex;
+            align-items: center;
+        }
+
+        .selector-cantidad input {
+            width: 30px;
+            text-align: center;
+        }
+
+        .btn-eliminar {
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .popup-content {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            .w3-quarter {
+                width: 100%;
+                margin-bottom: 20px;
+            }
+
+            nav {
+                flex-direction: column;
+            }
+
+            .carrito {
+                width: 100%;
+                height: auto;
+                transform: translateX(100%);
+            }
+
+            .contenedor-items {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .item {
+                width: 90%;
+            }
+        }
+    </style>
 </head>
 
 <body>
     <div id="app">
-    <header>
-
-        <div class="w3-center" style="width: 70%; margin: auto;">
-            <div class="logo">Restaruant Liz</div>
-
-            <nav>
-
-                <a href="#openModal" class="notification-link">Notificaciones</a>
-                <div id="openModal" class="modalDialog">
-                    <div class="modalContent">
-                        <a href="#close" title="Close" class="close">X</a>
-                        <h2>Centro de Notificaciones</h2>
-                        <div class="notification">
-                            <div class="icon">&#128276;</div>
-                            <p>Su pedido estará listo en 15 minutos</p>
-                        </div>
-                        <div class="notification">
-                            <div class="icon">&#128276;</div>
-                            <div class="notification-text">
-                                <p>Su pedido fue entregado hace 2 minutos. ¿Le gustó la atención? ¿La comida llegó tal y
-                                    como la ordenó? ¿El servicio le pareció adecuado?</p>
-                                <p><strong>Por favor califíquenos, si tiene observaciones sobre el servicio por favor
-                                        háganos saber</strong></p>
-                                <form id="feedbackForm">
-                                    <label for="calificacion">Califíquenos del 1 al 10:</label>
-                                    <input type="number" id="calificacion" name="calificacion" min="1" max="10"
-                                        required>
-                                    <textarea placeholder="Deje un comentario del servicio (Opcional)"
-                                        id="comentario"></textarea>
-                                    <button type="submit" class="submit-btn">Aceptar</button>
-                                </form>
-                                <p id="mensajeEnviado" style="display:none; color: green; font-weight: bold;">Mensaje
-                                    enviado, gracias por su opinión.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
-                <a href="#openModal2" class="historial-link">Historial</a>
-                <div id="openModal2" class="modalDialog">
-                    <div class="modalContent">
-                        <a href="#close" title="Close" class="close">X</a>
-                        <div class="historial">
-                            <div class="historial-header">
-                                <div class="historial-title">Historial de Compras</div>
-                            </div>
-                            <div class="historial-content">
-                                <div class="historial-item">
-                                    <div class="item-details">
-                                        <div class="item-quantity">2</div>
-                                        <div class="item-name">Pollo</div>
-                                    </div>
-                                    <div class="item-info">
-                                        <div class="item-price">Bs 30</div>
-                                        <div class="item-date">21/03/2024</div>
-                                    </div>
-                                </div>
-                                <div class="historial-item">
-                                    <div class="item-details">
-                                        <div class="item-quantity">1</div>
-                                        <div class="item-name">Refresco de 2 Litros</div>
-                                    </div>
-                                    <div class="item-info">
-                                        <div class="item-price">Bs 15</div>
-                                        <div class="item-date">21/03/2024</div>
-                                    </div>
-                                </div>
-                                <div class="historial-total">Total: Bs 45</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Ventana emergente -->
-                <div id="popup" class="popup">
-                    <div class="popup-content">
-                        <p>Gracias por su compra, se le notificará cuando su pedido esté listo.</p>
-                        <button id="closePopup" class="close-popup">Cerrar</button>
-                    </div>
-                </div>
-
-                <!-- texto para cuando se selecciona mas de una vez un item del menu -->
-                <div id="itemExistsPopup" class="popup">
-                    <div class="popup-content">
-                        <p>El item ya se encuentra en el carrito</p>
-                    </div>
-                </div>
-
-
-
-            </nav>
-        </div>
-
-    </header>
-    <section class="contenedor">
-        <!-- Contenedor de elementos -->
+        <div class="w3-top">
+            <div class="w3-white w3-xlarge" style="max-width:1200px;margin:auto">
+              <div class="w3-button w3-padding-16 w3-left">Notificaciones</div>
+              <div class="w3-button w3-right w3-padding-16">Historial</div>
+              <div class="w3-center w3-padding-16">Restaurante Liz</div>
+            </div>
+          </div>
+        <section class="contenedor" style="margin-top: 100px;">
             <div class="w3-row-padding w3-padding-16 w3-center contenedor-items">
-
-                <div v-for="comida in comidas" :key="comida.id" class="w3-quarter mostrador item">
-                    <span class="titulo-item">{{ comida.nombre }}</span>
+                <div v-for="comida in comidas" :key="comida.id" class="w3-quarter item">
+                    <h3 class="titulo-item">{{ comida.nombre }}</h3>
                     <img :src="getComidaImage(comida.tipocomida_id)" :alt="comida.nombre" class="img-item">
-                    <span class="precio-item">Bs.{{ comida.precio }}</span>
-                    <p class="card-text">{{ comida.descripcion }}</p>
-                    <button class="boton-item">Pedir</button>
+                    <h4 class="precio-item">Bs.{{ comida.precio }}</h4>
+                    <h5 class="card-text">{{ comida.descripcion }}</h5>
+                    <button class="boton-item w3-button w3-black" style="margin-bottom: 6px;">Pedir</button>
                 </div>
-                <div v-for="bebida in bebidas" :key="bebida.id" class="w3-quarter item" class="w3-quarter mostrador item">
-                    <span class="titulo-item">{{ bebida.nombre }}</span>
-                    <img :src="getComidaImage(bebida.tipocomida_id)" :alt="comida.nombre" class="img-item">
-                    <span class="precio-item">Bs.{{ bebida.precio }}</span>
-                    <p class="card-text">{{ bebida.descripcion }}</p>
-                    <button class="boton-item">Pedir</button>
+                <div v-for="bebida in bebidas" :key="bebida.id" class="w3-quarter item">
+                    <h3 class="titulo-item">{{ bebida.nombre }}</h3>
+                    <img :src="getComidaImage(bebida.tipocomida_id)" :alt="bebida.nombre" class="img-item">
+                    <h4 class="precio-item">Bs.{{ bebida.precio }}</h4>
+                    <h5 class="card-text">{{ bebida.descripcion }}</h5>
+                    <button class="boton-item w3-button w3-black" style="margin-bottom: 6px;">Pedir</button>
                 </div>
             </div>
-
-        </div>
-
-        <!--  Compras -->
-        <div class="carrito" id="carrito">
+        </section>
+        <div id="carrito" class="carrito">
             <div class="header-carrito">
                 <h2>Tu Carrito</h2>
             </div>
-
             <div class="carrito-items">
                 <div class="carrito-item">
                     <img src="IMAGEN_SRC" width="80px" alt="">
@@ -158,208 +235,558 @@
             <div class="carrito-total">
                 <div class="fila">
                     <strong>Tu Total</strong>
-                    <span class="carrito-precio-total">
-                        Bs.0
-                    </span>
+                    <span class="carrito-precio-total">Bs.0</span>
                 </div>
                 <button class="btn-confirmar">Confirmar <i class="fa-solid fa-bag-shopping"></i> </button>
             </div>
         </div>
-    </section>
+
+        <div id="openModal" class="modalDialog">
+            <div class="modalContent">
+                <a href="#close" title="Close" class="close">X</a>
+                <h2>Centro de Notificaciones</h2>
+                <div class="notification">
+                    <div class="icon">&#128276;</div>
+                    <p>Su pedido estará listo en 15 minutos</p>
+                </div>
+                <div class="notification">
+                    <div class="icon">&#128276;</div>
+                    <div class="notification-text">
+                        <p>Su pedido fue entregado hace 2 minutos. ¿Le gustó la atención? ¿La comida llegó tal y como la ordenó? ¿El servicio le pareció adecuado?</p>
+                        <p><strong>Por favor califíquenos, si tiene observaciones sobre el servicio por favor háganos saber</strong></p>
+                        <form id="feedbackForm">
+                            <label for="calificacion">Califíquenos del 1 al 10:</label>
+                            <input type="number" id="calificacion" name="calificacion" min="1" max="10" required>
+                            <textarea placeholder="Deje un comentario del servicio (Opcional)" id="comentario"></textarea>
+                            <button type="submit" class="submit-btn">Aceptar</button>
+                        </form>
+                        <p id="mensajeEnviado" style="display:none; color: green; font-weight: bold;">Mensaje enviado, gracias por su opinión.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="openModal2" class="modalDialog">
+            <div class="modalContent">
+                <a href="#close" title="Close" class="close">X</a>
+                <div class="historial">
+                    <div class="historial-header">
+                        <div class="historial-title">Historial de Compras</div>
+                    </div>
+                    <div class="historial-content">
+                        <div class="historial-item">
+                            <div class="item-details">
+                                <div class="item-quantity">2</div>
+                                <div class="item-name">Pollo</div>
+                            </div>
+                            <div class="item-info">
+                                <div class="item-price">Bs 30</div>
+                                <div class="item-date">21/03/2024</div>
+                            </div>
+                        </div>
+                        <div class="historial-item">
+                            <div class="item-details">
+                                <div class="item-quantity">1</div>
+                                <div class="item-name">Refresco de 2 Litros</div>
+                            </div>
+                            <div class="item-info">
+                                <div class="item-price">Bs 15</div>
+                                <div class="item-date">21/03/2024</div>
+                            </div>
+                        </div>
+                        <div class="historial-total">Total: Bs 45</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="popup" class="popup">
+            <div class="popup-content">
+                <p>Gracias por su compra, se le notificará cuando su pedido esté listo.</p>
+                <button id="closePopup" class="close-popup">Cerrar</button>
+            </div>
+        </div>
+
+        <div id="itemExistsPopup" class="popup">
+            <div class="popup-content">
+                <p>El item ya se encuentra en el carrito</p>
+            </div>
+        </div>
     </div>
     <footer class="w3-container w3-dark-grey" style="padding:32px; margin-top: 10px;">
-      </footer>
-</div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.js" integrity="sha512-nqIFZC8560+CqHgXKez61MI0f9XSTKLkm0zFVm/99Wt0jSTZ7yeeYwbzyl0SGn/s8Mulbdw+ScCG41hmO2+FKw==" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.0.2/dist/sweetalert2.all.min.js"></script>
+    <script>
+        let url = 'http://localhost:4000/comidas';
+        new Vue({
+            el: '#app',
+            vuetify: new Vuetify(),
+            data() {
+                return {
+                    comidas: [],
+                    bebidas: [],
+                    lista: [],
+                    dialog: false,
+                    operacion: '',
+                    comida: {
+                        id: null,
+                        nombre: '',
+                        descripcion: '',
+                        precio: '',
+                        tipocomida_id: null,
+                        imagen: ''
+                    },
+                    tiposComida: [
+                        { text: 'Asado', value: 1 },
+                        { text: 'Broaster', value: 2 },
+                        { text: 'Chuleta', value: 3 },
+                        { text: 'Hamburguesa', value: 4 },
+                        { text: 'Milanesa', value: 5 },
+                        { text: 'Salchipapa', value: 6 },
+                        { text: 'Salchiarroz', value: 7 },
+                        { text: 'Silpancho', value: 8 },
+                        { text: 'Coca Cola', value: 9 },
+                        { text: 'Coca sin Azúcar', value: 10 },
+                        { text: 'Fanta', value: 11 },
+                        { text: 'Fanta Papaya', value: 12 },
+                        { text: 'Jugo de Naranja', value: 13 },
+                        { text: 'Sprite', value: 14 }
+                    ],
+                    file: null
+                }
+            },
+            created() {
+                this.mostrar()
+            },
+            methods: {
+                mostrar: function () {
+                    axios.get(url)
+                        .then(response => {
+                            this.comidas = response.data.filter(item => item.tipocomida_id <= 8);
+                            this.bebidas = response.data.filter(item => item.tipocomida_id > 8);
+                        })
+                        .catch(error => {
+                            console.log(error);
+                        });
+                },
+                openDialog(item) {
+                    this.operacion = 'editar';
+                    this.comida = Object.assign({}, item);
+                    this.dialog = true;
+                },
+                openDialogNuevo(tipo) {
+                    this.operacion = 'crear';
+                    this.comida = {
+                        id: null,
+                        nombre: '',
+                        descripcion: '',
+                        precio: '',
+                        tipocomida_id: tipo === 'comida' ? 1 : 9,
+                        imagen: ''
+                    };
+                    this.dialog = true;
+                },
+                closeDialog() {
+                    this.dialog = false;
+                },
+                onFileChange(e) {
+                    this.file = e.target.files[0];
+                },
+                saveComida() {
+                    if (this.validarComida()) {
+                        if (this.operacion === 'editar') {
+                            this.editar();
+                        } else {
+                            this.crear();
+                        }
+                        this.closeDialog();
+                    }
+                },
+                crear: function () {
+                    let formData = new FormData();
+                    formData.append('nombre', this.comida.nombre);
+                    formData.append('descripcion', this.comida.descripcion);
+                    formData.append('precio', this.comida.precio);
+                    formData.append('tipocomida_id', this.comida.tipocomida_id);
+                    if (this.file) {
+                        formData.append('imagen', this.file);
+                    }
+
+                    axios.post(url, formData)
+                        .then(response => {
+                            this.mostrar();
+                        })
+                        .catch(error => {
+                            console.log(error);
+                        });
+                },
+                editar: function () {
+                    let formData = new FormData();
+                    formData.append('nombre', this.comida.nombre);
+                    formData.append('descripcion', this.comida.descripcion);
+                    formData.append('precio', this.comida.precio);
+                    formData.append('tipocomida_id', this.comida.tipocomida_id);
+                    if (this.file) {
+                        formData.append('imagen', this.file);
+                    }
+
+                    axios.put(url + "/" + this.comida.id, formData)
+                        .then(response => {
+                            this.mostrar();
+                        })
+                        .catch(error => {
+                            console.log(error);
+                        });
+                },
+                borrar: function (id) {
+                    Swal.fire({
+                        title: '¿Confirma eliminar la comida?',
+                        confirmButtonText: 'Confirmar',
+                        showCancelButton: true,
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            axios.delete(url + "/" + id)
+                                .then(response => {
+                                    this.mostrar();
+                                });
+                            Swal.fire('¡Eliminado!', '', 'success')
+                        }
+                    });
+                },
+                validarComida() {
+                    if (!this.comida.tipocomida_id) {
+                        Swal.fire('Error', 'El tipo de comida no puede ser nulo.', 'error');
+                        return false;
+                    }
+                    return true;
+                },
+                getComidaImage(tipocomida_id) {
+                    if (tipocomida_id == 1) {
+                        return '/frontend/MenuGerente/img/platos/asado.avif';
+                    } else if (tipocomida_id == 2) {
+                        return '/frontend/MenuGerente/img/platos/broaster.jpg';
+                    } else if (tipocomida_id == 3) {
+                        return '/frontend/MenuGerente/img/platos/chuleta.jpg';
+                    } else if (tipocomida_id == 4) {
+                        return '/frontend/MenuGerente/img/platos/hamburguesa.webp';
+                    } else if (tipocomida_id == 5) {
+                        return '/frontend/MenuGerente/img/platos/milanesa.jpg';
+                    } else if (tipocomida_id == 6) {
+                        return '/frontend/MenuGerente/img/platos/salchi.jpg';
+                    } else if (tipocomida_id == 7) {
+                        return '/frontend/MenuGerente/img/platos/salchiarroz.jpg';
+                    } else if (tipocomida_id == 8) {
+                        return '/frontend/MenuGerente/img/platos/silpancho.jpg';
+                    } else if (tipocomida_id == 9) {
+                        return '/frontend/MenuGerente/img/bebidas/coca-1024x683.png';
+                    } else if (tipocomida_id == 10) {
+                        return '/frontend/MenuGerente/img/bebidas/coca-sin-azucar-1024x683.png';
+                    } else if (tipocomida_id == 11) {
+                        return '/frontend/MenuGerente/img/bebidas/fanta-1024x683.png';
+                    } else if (tipocomida_id == 12) {
+                        return '/frontend/MenuGerente/img/bebidas/fanta-papaya-1024x683.png';
+                    } else if (tipocomida_id == 13) {
+                        return '/frontend/MenuGerente/img/bebidas/jugo-naranja-1200x800-1.png';
+                    } else if (tipocomida_id == 14) {
+                        return '/frontend/MenuGerente/img/bebidas/sprite-1024x683.png';
+                    } else {
+                        return '/frontend/MenuGerente/img/default.jpg';
+                    }
+                }
+            }
+        });
+    </script>
 </body>
 
-<script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.js"
-    integrity="sha512-nqIFZC8560+CqHgXKez61MI0f9XSTKLkm0zFVm/99Wt0jSTZ7yeeYwbzyl0SGn/s8Mulbdw+ScCG41hmO2+FKw=="
-    crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.0.2/dist/sweetalert2.all.min.js"></script>
-
-<script>
-    let url = 'http://localhost:4000/comidas';
-    new Vue({
-        el: '#app',
-        vuetify: new Vuetify(),
-        data() {
-            return {
-                comidas: [],
-                bebidas: [],
-                lista: [],
-                dialog: false,
-                operacion: '',
-                comida: {
-                    id: null,
-                    nombre: '',
-                    descripcion: '',
-                    precio: '',
-                    tipocomida_id: null,
-                    imagen: ''
-                },
-                tiposComida: [
-                    { text: 'Asado', value: 1 },
-                    { text: 'Broaster', value: 2 },
-                    { text: 'Chuleta', value: 3 },
-                    { text: 'Hamburguesa', value: 4 },
-                    { text: 'Milanesa', value: 5 },
-                    { text: 'Salchipapa', value: 6 },
-                    { text: 'Salchiarroz', value: 7 },
-                    { text: 'Silpancho', value: 8 },
-                    { text: 'Coca Cola', value: 9 },
-                    { text: 'Coca sin Azúcar', value: 10 },
-                    { text: 'Fanta', value: 11 },
-                    { text: 'Fanta Papaya', value: 12 },
-                    { text: 'Jugo de Naranja', value: 13 },
-                    { text: 'Sprite', value: 14 }
-                ],
-                file: null
-            }
-        },
-        created() {
-            this.mostrar()
-        },
-        methods: {
-            mostrar: function () {
-                axios.get(url)
-                    .then(response => {
-                        this.comidas = response.data.filter(item => item.tipocomida_id <= 8);
-                        this.bebidas = response.data.filter(item => item.tipocomida_id > 8);
-                    })
-                    .catch(error => {
-                        console.log(error);
-                    });
-            },
-            openDialog(item) {
-                this.operacion = 'editar';
-                this.comida = Object.assign({}, item);
-                this.dialog = true;
-            },
-            openDialogNuevo(tipo) {
-                this.operacion = 'crear';
-                this.comida = {
-                    id: null,
-                    nombre: '',
-                    descripcion: '',
-                    precio: '',
-                    tipocomida_id: tipo === 'comida' ? 1 : 9,
-                    imagen: ''
-                };
-                this.dialog = true;
-            },
-            closeDialog() {
-                this.dialog = false;
-            },
-            onFileChange(e) {
-                this.file = e.target.files[0];
-            },
-            saveComida() {
-                if (this.validarComida()) {
-                    if (this.operacion === 'editar') {
-                        this.editar();
-                    } else {
-                        this.crear();
-                    }
-                    this.closeDialog();
-                }
-            },
-            crear: function () {
-                let formData = new FormData();
-                formData.append('nombre', this.comida.nombre);
-                formData.append('descripcion', this.comida.descripcion);
-                formData.append('precio', this.comida.precio);
-                formData.append('tipocomida_id', this.comida.tipocomida_id);
-                if (this.file) {
-                    formData.append('imagen', this.file);
-                }
-
-                axios.post(url, formData)
-                    .then(response => {
-                        this.mostrar();
-                    })
-                    .catch(error => {
-                        console.log(error);
-                    });
-            },
-            editar: function () {
-                let formData = new FormData();
-                formData.append('nombre', this.comida.nombre);
-                formData.append('descripcion', this.comida.descripcion);
-                formData.append('precio', this.comida.precio);
-                formData.append('tipocomida_id', this.comida.tipocomida_id);
-                if (this.file) {
-                    formData.append('imagen', this.file);
-                }
-
-                axios.put(url + "/" + this.comida.id, formData)
-                    .then(response => {
-                        this.mostrar();
-                    })
-                    .catch(error => {
-                        console.log(error);
-                    });
-            },
-            borrar: function (id) {
-                Swal.fire({
-                    title: '¿Confirma eliminar la comida?',
-                    confirmButtonText: 'Confirmar',
-                    showCancelButton: true,
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        axios.delete(url + "/" + id)
-                            .then(response => {
-                                this.mostrar();
-                            });
-                        Swal.fire('¡Eliminado!', '', 'success')
-                    }
-                });
-            },
-            validarComida() {
-                if (!this.comida.tipocomida_id) {
-                    Swal.fire('Error', 'El tipo de comida no puede ser nulo.', 'error');
-                    return false;
-                }
-                return true;
-            },
-            getComidaImage(tipocomida_id) {
-                if (tipocomida_id == 1) {
-                    return '/frontend/MenuGerente/img/platos/asado.avif';
-                } else if (tipocomida_id == 2) {
-                    return '/frontend/MenuGerente/img/platos/broaster.jpg';
-                } else if (tipocomida_id == 3) {
-                    return '/frontend/MenuGerente/img/platos/chuleta.jpg';
-                } else if (tipocomida_id == 4) {
-                    return '/frontend/MenuGerente/img/platos/hamburguesa.webp';
-                } else if (tipocomida_id == 5) {
-                    return '/frontend/MenuGerente/img/platos/milanesa.jpg';
-                } else if (tipocomida_id == 6) {
-                    return '/frontend/MenuGerente/img/platos/salchi.jpg';
-                } else if (tipocomida_id == 7) {
-                    return '/frontend/MenuGerente/img/platos/salchiarroz.jpg';
-                } else if (tipocomida_id == 8) {
-                    return '/frontend/MenuGerente/img/platos/silpancho.jpg';
-                } else if (tipocomida_id == 9) {
-                    return '/frontend/MenuGerente/img/bebidas/coca-1024x683.png';
-                } else if (tipocomida_id == 10) {
-                    return '/frontend/MenuGerente/img/bebidas/coca-sin-azucar-1024x683.png';
-                } else if (tipocomida_id == 11) {
-                    return '/frontend/MenuGerente/img/bebidas/fanta-1024x683.png';
-                } else if (tipocomida_id == 12) {
-                    return '/frontend/MenuGerente/img/bebidas/fanta-papaya-1024x683.png';
-                } else if (tipocomida_id == 13) {
-                    return '/frontend/MenuGerente/img/bebidas/jugo-naranja-1200x800-1.png';
-                } else if (tipocomida_id == 14) {
-                    return '/frontend/MenuGerente/img/bebidas/sprite-1024x683.png';
-                } else {
-                    return '/frontend/MenuGerente/img/default.jpg';
-                }
-            }
-        }
-    });
-</script>
-
-
-
 </html>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+    }
+
+    .contenedor {
+        max-width: 1200px;
+        margin: auto;
+        padding: 10px;
+    }
+
+    .logo {
+        font-size: 2em;
+        font-weight: bold;
+        margin-bottom: 20px;
+    }
+
+    nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px;
+        background-color: #333;
+        color: white;
+    }
+
+    nav a {
+        color: white;
+        margin: 0 10px;
+        text-decoration: none;
+    }
+
+    .contenedor-items {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        gap: 20px;
+    }
+
+    .item {
+        flex: 1 1 calc(25% - 20px);
+        box-sizing: border-box;
+        padding: 10px;
+        background: #f9f9f9;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+    }
+
+    .img-item {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        border-radius: 10px;
+    }
+
+    .carrito {
+        position: fixed;
+        top: 10%;
+        right: 0;
+        width: 300px;
+        background: white;
+        border: 1px solid #ccc;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+        overflow: hidden;
+    }
+
+    .header-carrito {
+        padding: 10px;
+        background: #333;
+        color: white;
+        text-align: center;
+    }
+
+    .carrito-items {
+        max-height: 400px;
+        overflow-y: auto;
+        padding: 10px;
+    }
+
+    .carrito-item {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 10px;
+    }
+
+    .carrito-item img {
+        border-radius: 10px;
+    }
+
+    .carrito-item-detalles {
+        flex: 1;
+        margin-left: 10px;
+    }
+
+    .selector-cantidad {
+        display: flex;
+        align-items: center;
+    }
+
+    .selector-cantidad input {
+        width: 40px;
+        text-align: center;
+        margin: 0 5px;
+    }
+
+    .carrito-total {
+        padding: 10px;
+        border-top: 1px solid #ccc;
+        text-align: center;
+    }
+
+    .btn-confirmar {
+        padding: 10px;
+        background: #28a745;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .btn-eliminar {
+        background: none;
+        border: none;
+        color: red;
+        cursor: pointer;
+    }
+
+    .modalDialog {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.8);
+        z-index: 1000;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        visibility: hidden;
+        opacity: 0;
+        transition: visibility 0s, opacity 0.5s;
+    }
+
+    .modalDialog:target {
+        visibility: visible;
+        opacity: 1;
+    }
+
+    .modalContent {
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        width: 90%;
+        max-width: 500px;
+    }
+
+    .close {
+        float: right;
+        text-decoration: none;
+        font-size: 1.5em;
+        margin-top: -10px;
+    }
+
+    .notification {
+        display: flex;
+        align-items: center;
+        background: #f9f9f9;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        margin-bottom: 10px;
+    }
+
+    .notification .icon {
+        font-size: 2em;
+        margin-right: 10px;
+    }
+
+    .historial-header {
+        background: #333;
+        color: white;
+        padding: 10px;
+        text-align: center;
+        border-radius: 5px 5px 0 0;
+    }
+
+    .historial-content {
+        padding: 10px;
+    }
+
+    .historial-item {
+        display: flex;
+        justify-content: space-between;
+        padding: 10px;
+        border-bottom: 1px solid #ccc;
+    }
+
+    .historial-total {
+        text-align: right;
+        padding: 10px;
+        font-weight: bold;
+    }
+
+    .popup {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.8);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        visibility: hidden;
+        opacity: 0;
+        transition: visibility 0s, opacity 0.5s;
+    }
+
+    .popup-content {
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        text-align: center;
+    }
+
+    .popup .close-popup {
+        margin-top: 20px;
+        padding: 10px 20px;
+        background: #28a745;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    @media (max-width: 768px) {
+        .item {
+            flex: 1 1 calc(50% - 20px);
+        }
+
+        .carrito {
+            width: 90%;
+            top: 20%;
+        }
+
+        .carrito-item img {
+            width: 60px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .item {
+            flex: 1 1 calc(100% - 20px);
+        }
+
+        .img-item {
+            height: 150px;
+        }
+
+        nav {
+            flex-direction: column;
+        }
+
+        nav a {
+            margin: 5px 0;
+        }
+
+        .carrito {
+            width: 100%;
+            top: 20%;
+        }
+
+        .carrito-item img {
+            width: 50px;
+        }
+
+        .popup-content {
+            width: 90%;
+            max-width: 300px;
+        }
+
+        .modalContent {
+            width: 90%;
+        }
+    }
+</style>
