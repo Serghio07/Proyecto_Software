@@ -17,6 +17,94 @@
         .w3-bar-block .w3-bar-item {
             padding: 20px;
         }
+
+        .contenedor {
+            max-width: 1200px;
+            margin: auto;
+            padding: 10px;
+        }
+
+        .logo {
+            font-size: 2em;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            background-color: #333;
+            color: white;
+        }
+
+        nav a {
+            color: white;
+            margin: 0 10px;
+            text-decoration: none;
+        }
+
+        .contenedor-items {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            gap: 20px;
+        }
+
+        .item {
+            flex: 1 1 calc(25% - 20px);
+            box-sizing: border-box;
+            padding: 10px;
+            background: #f9f9f9;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .img-item {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        .w3-quarter {
+            width: 23%;
+        }
+
+        @media (max-width: 768px) {
+            .item {
+                flex: 1 1 calc(50% - 20px);
+            }
+
+            nav {
+                flex-direction: column;
+            }
+
+            nav a {
+                margin: 5px 0;
+            }
+
+            .w3-quarter {
+                width: 48%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .item {
+                flex: 1 1 calc(100% - 20px);
+            }
+
+            .img-item {
+                height: 150px;
+            }
+
+            .w3-quarter {
+                width: 100%;
+                margin-bottom: 20px;
+            }
+        }
     </style>
 </head>
 
@@ -24,19 +112,21 @@
     <div id="app">
         <v-app>
             <header>
-                <h1>Menu</h1>
                 <nav>
-                    <button class="back-btn" onclick="window.location.href = 'menuGerente1.html';">Atrás</button>
+                    <div class="logo">Menu</div>
+                    <div class="menu">
+                        <div class="w3-button w3-right w3-padding-16"><a href="menuGerente1.html" style="text-decoration: none;">ATRAS</a></div>
+                    </div>
                 </nav>
             </header>
 
-            <section class="contenido">
-                <div class="mostrador w3-main w3-content w3-padding" style="max-width:1200px;margin-top:50px">
+            <section class="contenedor" style="margin-top: 100px;">
+                <div class="mostrador w3-main w3-content w3-padding" style="margin-top:50px">
                     <h3>Platos</h3>
-                    <div class="w3-row-padding w3-padding-16 w3-center">
+                    <div class="w3-row-padding w3-padding-16 w3-center contenedor-items">
                         <div v-for="comida in comidas" :key="comida.id" class="w3-quarter item" @click="openDialog(comida)">
                             <div class="contenedor-foto">
-                                <img :src="getComidaImage(comida.tipocomida_id)" :alt="comida.nombre" style="width:100%">
+                                <img :src="getComidaImage(comida.tipocomida_id)" :alt="comida.nombre" class="img-item">
                             </div>
                             <h3>{{ comida.nombre }}</h3>
                             <p>{{ comida.descripcion }}</p>
@@ -45,10 +135,10 @@
                     </div>
 
                     <h3>Bebidas</h3>
-                    <div class="w3-row-padding w3-padding-16 w3-center">
-                        <div class="w3-quarter item" v-for="bebida in bebidas" :key="bebida.id" @click="openDialog(bebida)">
+                    <div class="contenedor-items">
+                        <div v-for="bebida in bebidas" :key="bebida.id" class="item" @click="openDialog(bebida)">
                             <div class="contenedor-foto">
-                                <img :src="getComidaImage(bebida.tipocomida_id)" :alt="bebida.nombre" style="width:100%">
+                                <img :src="getComidaImage(bebida.tipocomida_id)" :alt="bebida.nombre" class="img-item">
                             </div>
                             <h3>{{ bebida.nombre }}</h3>
                             <span class="precio">Bs.{{ bebida.precio }}</span>
@@ -67,7 +157,7 @@
                                     <v-select v-model="comida.tipocomida_id" :items="tiposComida" label="Tipo de Comida" required></v-select>
                                     <v-text-field v-model="comida.descripcion" label="Descripción" required></v-text-field>
                                     <v-text-field v-model="comida.precio" label="Precio" type="number" required></v-text-field>
-                                    <input type="file" @change="onFileChange">
+        
                                 </v-form>
                             </v-card-text>
                             <v-card-actions>
@@ -85,9 +175,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.js"
-        integrity="sha512-nqIFZC8560+CqHgXKez61MI0f9XSTKLkm0zFVm/99Wt0jSTZ7yeeYwbzyl0SGn/s8Mulbdw+ScCG41hmO2+FKw=="
-        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.js" integrity="sha512-nqIFZC8560+CqHgXKez61MI0f9XSTKLkm0zFVm/99Wt0jSTZ7yeeYwbzyl0SGn/s8Mulbdw+ScCG41hmO2+FKw==" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.0.2/dist/sweetalert2.all.min.js"></script>
 
     <script>
