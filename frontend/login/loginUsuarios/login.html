@@ -147,7 +147,7 @@
           let parametros = { id_usuario: idus, fecha_registro: fechaFormateada };
           axios.post(url2, parametros)
             .then(response => { });
-          if (this.userss[idus].tipo == "admin") {
+          if (this.userss[idus].tipo == 2) {
             
             window.location.href = "../../MenuGerente/menuGerente1.html";
           }
