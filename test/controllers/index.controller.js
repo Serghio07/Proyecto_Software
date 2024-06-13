@@ -5,8 +5,6 @@ const pool = new Pool({
     ssl: process.env.DATABASE_URL ? true : false
 })
 
-
-
 const getUsers = async (req,res)=>{
     try
     {
@@ -447,8 +445,17 @@ const updateIngrediente = async (req, res) => {
     res.json('Ingrediente updated successfully');
 };
 
-
-
+const getOrderDetails = async (req, res) => {
+        try
+        {
+            const response = await pool.query('SELECT * FROM ordenes');
+            res.status(200).json(response.rows);
+        }
+        catch(error){
+            console.log(error);
+            res.send("Error: "+error);
+        }
+    };
 module.exports = {
     getUsers,
     getUserById,
@@ -502,4 +509,5 @@ module.exports = {
     createIngrediente,
     deleteIngrediente,
     updateIngrediente,
+    getOrderDetails,
 }
