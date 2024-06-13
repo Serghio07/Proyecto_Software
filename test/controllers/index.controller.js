@@ -1,7 +1,7 @@
 const { Pool } = require('pg');
 
 const pool = new Pool({
-    connectionString: process.env.DATABASE_URL|| 'postgres://postgres:admin@localhost:5432/restaurante',
+    connectionString: process.env.DATABASE_URL|| 'postgres://postgres:nimda@localhost:5433/restaurante',
     ssl: process.env.DATABASE_URL ? true : false
 })
 
@@ -196,15 +196,15 @@ const updateReserva = async (req, res) => {
 };
 
 //ORDENES
-const getOrdenes = async(req,res)=>{
-    try{
-        const response = await pool.query('SELECT * FROM ordenes');
-        res.status(200).json.rows;
-    }catch(error){
-        console.log(error);
-        res.send("Error: "+error)
-    }
-}
+    const getOrdenes = async(req,res)=>{
+        try{
+            const response = await pool.query('SELECT * FROM ordenes');
+            res.status(200).json(response.rows);
+        }catch(error){
+            console.log(error);
+            res.send("Error: "+error)
+        }
+    };
     
     const getOrdeneById = async (req, res) => {
         const id = req.params.id;
@@ -238,22 +238,22 @@ const getOrdenes = async(req,res)=>{
         const id = req.params.id;
         const { fecha,total,usuarios_id,entrega } = req.body;
         const response = await pool.query(
-            'UPDATE ordenes SET fecha = $2, total = $3 fecha = $4, total = $5 WHERE id = $1',
+            'UPDATE ordenes SET fecha = $2, total = $3, usuarios_id = $4, entrega = $5 WHERE id = $1',
             [id,fecha,total,usuarios_id,entrega]
         );
         console.log(response);
         res.json('Orden updated successfully');
     };
 //DETALLE DE ORDENES
-const getDetalleOrdenes = async(req,res)=>{
-    try{
-        const response = await pool.query('SELECT * FROM detalle_ordenes');
-        res.status(200).json.rows;
-    }catch(error){
-        console.log(error);
-        res.send("Error: "+error)
+    const getDetalleOrdenes = async(req,res)=>{
+        try{
+            const response = await pool.query('SELECT * FROM detalle_ordenes');
+            res.status(200).json(response.rows);
+        }catch(error){
+            console.log(error);
+            res.send("Error: "+error)
+        }
     }
-}
     
     const getDetalleOredeneById = async (req, res) => {
         const id = req.params.id;

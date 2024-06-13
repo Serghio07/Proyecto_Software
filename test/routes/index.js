@@ -27,7 +27,7 @@ router.post('/reservas',createReserva);
 router.delete('/reservas/:id',deleteReserva);
 router.put('/reservas/:id',updateReserva);
 
-router.get('/oredenes',getOrdenes);
+router.get('/ordenes',getOrdenes);
 router.get('/ordenes/:id',getOrdeneById);
 router.post('/ordenes',createOrdene);
 router.delete('/ordenes/:id',deleteOrdene);
