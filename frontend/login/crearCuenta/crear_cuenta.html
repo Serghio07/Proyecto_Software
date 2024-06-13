@@ -8,30 +8,37 @@
 </head>
 <body>
     <div id="app" class="container">
-        <header>
-            <h1>Crear Cuenta</h1>
-        </header>
-        <main>
-            <form class="signup-form">
-                
-                <label for="email"><b>Correo Electrónico:</b></label>
-                <input type="email" id="email" placeholder="Correo Electrónico">
+        <div class="signup-container">
+            <div class="signup-left">
+                <img src="icono_crearCuenta.png" alt="Icono Crear Cuenta" class="signup-icon">
+            </div>
+            <div class="signup-right">
+                <header>
+                    <h1>Crear Cuenta</h1>
+                </header>
+                <main>
+                    <form class="signup-form">
+                        
+                        <label for="email"><b>Correo Electrónico:</b></label>
+                        <input type="email" id="email" placeholder="Correo Electrónico">
 
-                <label for="usuario"><b>Usuario:</b></label>
-                <input type="text" id="username" placeholder="Usuario">
-                
-                
-                <label for="password"><b>Contraseña:</b></label>
-                <input type="password" id="password" placeholder="Contraseña">
-                
-                <label for="show-password">Mostrar contraseña: </label>
-                <input type="checkbox" id="show-password">
-                <small id="password-hint" class="form-hint">La contraseña debe tener al menos 8 caracteres, incluyendo al menos una mayúscula, una minúscula, un número y un carácter especial.</small>
+                        <label for="usuario"><b>Usuario:</b></label>
+                        <input type="text" id="username" placeholder="Usuario">
+                        
+                        
+                        <label for="password"><b>Contraseña:</b></label>
+                        <input type="password" id="password" placeholder="Contraseña">
+                        
+                        <label for="show-password">Mostrar contraseña: </label>
+                        <input type="checkbox" id="show-password">
+                        <small id="password-hint" class="form-hint">La contraseña debe tener al menos 8 caracteres, incluyendo al menos una mayúscula, una minúscula, un número y un carácter especial.</small>
 
-                <button type="submit" @click="crear()" id="signup-btn">Crear Cuenta</button>
-            </form>
-            <div id="message"></div>
-        </main>
+                        <button type="submit" @click="crear()" id="signup-btn">Crear Cuenta</button>
+                    </form>
+                    <div id="message"></div>
+                </main>
+            </div>
+        </div>
     </div>
 </body>
 
@@ -104,7 +111,7 @@
       borrar: function (id) {
         Swal.fire({
           title: '¿Confirma eliminar el registro?',
-          confirmButtonText: `Confirmar`,
+          confirmButtonText: Confirmar,
           showCancelButton: true,
         }).then((result) => {
           if (result.isConfirmed) {
@@ -123,3 +130,133 @@
 </script>
 
 </html>
+<style>
+  body, html {
+    margin: 0;
+    padding: 0;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    background: #fafafa;
+    height: 100%;
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background: linear-gradient(135deg, #fa3e3e, #f1d145); 
+}
+
+.signup-container {
+    display: flex;
+    width: 80%;
+    max-width: 1000px;
+    background: #ffffff; 
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1); 
+    overflow: hidden;
+}
+
+.signup-left {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f1d145; 
+    padding: 20px;
+}
+
+.signup-left .signup-icon {
+    max-width: 80%;
+    height: auto;
+}
+
+.signup-right {
+    flex: 2;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+h1 {
+    font-size: 2em;
+    color: #444; 
+    margin: 0;
+}
+
+.signup-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.signup-form label {
+    margin-bottom: 5px;
+    color: #666; 
+}
+
+.signup-form input[type="email"],
+.signup-form input[type="text"],
+.signup-form input[type="password"] {
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.signup-form input[type="checkbox"] {
+    margin-right: 5px;
+}
+
+.signup-form small {
+    color: #888;
+}
+
+.signup-form button {
+    padding: 12px;
+    background-color: #6bb33b; 
+    color: #fff; 
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s; 
+    font-size: 1em; 
+}
+
+.signup-form button:hover {
+    background-color: #5aa32a; 
+}
+
+
+#message {
+    text-align: center;
+    margin-top: 20px;
+    color: #ff0000; 
+}
+
+@media (max-width: 768px) {
+    .signup-container {
+        flex-direction: column;
+    }
+
+    .signup-left, .signup-right {
+        width: 100%;
+    }
+
+    .signup-left {
+        padding: 20px;
+    }
+
+    .signup-right {
+        padding: 20px;
+    }
+}
+
+</style>
