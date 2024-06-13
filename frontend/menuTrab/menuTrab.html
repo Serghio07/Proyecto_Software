@@ -112,25 +112,36 @@
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.0.2/dist/sweetalert2.all.min.js"></script>
     <script>
         let url = 'http://localhost:4000/ordenes';
+        let url4 = 'http://localhost:4000/users';
         new Vue({
           el: '#app',
           vuetify: new Vuetify(),
           data() {
             return {
-              ordenes: [],
-              dialog: false,
-              operacion: '',
-              orden: {
+                ordenes: [],
+                dialog: false,
+                operacion: '',
+                orden: {
                     id: null,
                     fecha: '',
                     total: '',
                     usuarios_id: '',
                     entrega: ''
-                }
+                },
+                userss: [],
+                users: {
+                    id: null,
+                    nombre: '',
+                    correo: '',
+                    contrasena: '',
+                    tipo: '',
+                    contador: ''
+                },
             }
           },
           created() {
             this.mostrar()
+            this.inicio()
           },
           methods: {
             mostrar: function () {
@@ -140,6 +151,37 @@
                     this.ordenes = response.data;
                     console.log(response.data);
                     })
+            },
+            inicio: function () {
+                axios.get(url4)
+                .then(response => {
+                    var idtoken = localStorage.getItem('miDato');
+                    var flagtok = false;
+                    response.data.forEach(usuario => {
+                    if (idtoken == usuario.id) {
+                        flagtok = true;
+                        this.users.id= usuario.id;
+                        this.users.nombre= usuario.nombre;
+                        this.users.correo= usuario.correo;
+                        this.users.contrasena= usuario.contrasena;
+                        this.users.tipo= usuario.tipo;
+                        this.users.contador= usuario.contador;
+                    }
+                    });
+
+                    if (flagtok) {
+                        if (this.users.tipo == 1) {
+                            window.location.href = "../menu/menuCliente.html";
+                        }
+                        if (this.users.tipo == 2) {
+                            
+                            window.location.href = "../MenuGerente/menuGerente1.html";
+                        }
+                        }else{
+                            window.location.href = "../login/loginUsuarios/login.html";
+                        }
+                })
+                
             },
             openDialog(user) {
               this.operacion = 'editar';
