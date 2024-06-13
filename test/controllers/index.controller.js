@@ -1,7 +1,7 @@
 const { Pool } = require('pg');
 
 const pool = new Pool({
-    connectionString: process.env.DATABASE_URL|| 'postgres://postgres:admin@localhost:5432/restaurante',
+    connectionString: process.env.DATABASE_URL|| 'postgres://postgres:nimda@localhost:5433/restaurante',
     ssl: process.env.DATABASE_URL ? true : false
 })
 
@@ -264,10 +264,10 @@ const getDetalleOrdenes = async(req,res)=>{
     };
     
     const createDetalleOrdene = async (req, res) => {
-        const { } = req.body;
+        const {comida_ID,ordenes_id,cantidad} = req.body;
         const response = await pool.query(
-            'INSERT INTO ordenes () VALUES ($1, $2)',
-            []
+            'INSERT INTO detalle_ordenes (comida_ID,ordenes_id,cantidad) VALUES ($1, $2, $3)',
+            [comida_ID,ordenes_id,cantidad]
         );
         console.log(response);
         res.json({
@@ -287,10 +287,10 @@ const getDetalleOrdenes = async(req,res)=>{
     
     const updateDetalleOrdene = async (req, res) => {
         const id = req.params.id;
-        const {  } = req.body;
+        const {comida_ID,ordenes_id,cantidad} = req.body;
         const response = await pool.query(
-            'UPDATE detalle_ordenes SET fehca = $2, total = $3 WHERE id = $1',
-            [id]
+            'UPDATE detalle_ordenes SET comida_ID = $2, ordenes_id = $3, cantidad = $4 WHERE id = $1',
+            [id,comida_ID,ordenes_id,cantidad]
         );
         console.log(response);
         res.json('Detalle Orden updated successfully');

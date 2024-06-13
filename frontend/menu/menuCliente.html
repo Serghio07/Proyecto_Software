@@ -188,7 +188,7 @@
     <div id="app">
         <div class="w3-top">
             <div class="w3-white w3-xlarge" style="max-width:1200px;margin:auto">
-              <div class="w3-button w3-padding-16 w3-left"><a href="#openModal" style="text-decoration: none;">Notificaciones</a></div>
+              <div class="w3-button w3-padding-16 w3-left"><a onclick="window.location.href = '../login/loginUsuarios/login.html'; localStorage.removeItem('miDato');" style="text-decoration: none;">Atras</a></div>
               <div class="w3-button w3-right w3-padding-16"><a href="#openModal2" style="text-decoration: none;">Historial</a></div>
               <div class="w3-center w3-padding-16">Restaurante Liz</div>
             </div>
@@ -316,224 +316,248 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.js" integrity="sha512-nqIFZC8560+CqHgXKez61MI0f9XSTKLkm0zFVm/99Wt0jSTZ7yeeYwbzyl0SGn/s8Mulbdw+ScCG41hmO2+FKw==" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.0.2/dist/sweetalert2.all.min.js"></script>
     <script>
-        let url = 'http://localhost:4000/comidas';
-        new Vue({
-            el: '#app',
-            vuetify: new Vuetify(),
-            data() {
-                return {
-                    comidas: [],
-                    bebidas: [],
-                    lista: [],
-                    totalfin: 0,
-                    dialog: false,
-                    operacion: '',
-                    comida: {
-                        id: null,
-                        nombre: '',
-                        descripcion: '',
-                        precio: '',
-                        tipocomida_id: null,
-                        cantidad: 0
-                    },
-                    tiposComida: [
-                        { text: 'Asado', value: 1 },
-                        { text: 'Broaster', value: 2 },
-                        { text: 'Chuleta', value: 3 },
-                        { text: 'Hamburguesa', value: 4 },
-                        { text: 'Milanesa', value: 5 },
-                        { text: 'Salchipapa', value: 6 },
-                        { text: 'Salchiarroz', value: 7 },
-                        { text: 'Silpancho', value: 8 },
-                        { text: 'Coca Cola', value: 9 },
-                        { text: 'Coca sin Azúcar', value: 10 },
-                        { text: 'Fanta', value: 11 },
-                        { text: 'Fanta Papaya', value: 12 },
-                        { text: 'Jugo de Naranja', value: 13 },
-                        { text: 'Sprite', value: 14 }
-                    ],
-                    file: null
-                }
-            },
-            created() {
-                this.mostrar()
-            },
-            methods: {
-                mostrar: function () {
-                    axios.get(url)
-                        .then(response => {
-                            this.comidas = response.data.filter(item => item.tipocomida_id <= 8);
-                            this.bebidas = response.data.filter(item => item.tipocomida_id > 8);
-                        })
-                        .catch(error => {
-                            console.log(error);
-                        });
+    let url = 'http://localhost:4000/comidas';
+    let url2 = 'http://localhost:4000/ordenes';
+    let url3 = 'http://localhost:4000/destalle_ordenes';
+    let url4 = 'http://localhost:4000/users';
+    new Vue({
+        el: '#app',
+        vuetify: new Vuetify(),
+        data() {
+            return {
+                comidas: [],
+                bebidas: [],
+                lista: [],
+                totalfin: 0,
+                dialog: false,
+                operacion: '',
+                comida: {
+                    id: null,
+                    nombre: '',
+                    descripcion: '',
+                    precio: '',
+                    tipocomida_id: null,
+                    cantidad: 0
                 },
-                openDialog(item) {
-                    this.comida = Object.assign({}, item);
-                    Swal.fire({
-                    title: "¿Ordenar " + this.comida.nombre + "? \nCantidad:",
-                    input: "number",
-                    inputAttributes: {
-                        autocapitalize: "off"
-                    },
-                    showCancelButton: true,
-                    confirmButtonText: "Ordenar",
-                    denyButtonText: `Cancelar`
-                    }).then((result) => {
-                    if (result.isConfirmed) {
-                        const cantidad = result.value;
-                        var flag = true;
-                        if (cantidad && !isNaN(cantidad) && cantidad > 0) {
-                        
-                        this.lista.forEach(element => {
-                            if (element.id==this.comida.id) {
-                                element.cantidad=parseFloat(element.cantidad)+parseFloat(cantidad);
-                                flag = false;
-                            }
-                        });
-                        if (flag) {
-                            this.comida.cantidad = cantidad;
-                            this.lista.push(this.comida);
-                        }
-                        
-                        this.totalfin=0;
-                        this.lista.forEach(element => {
-                            this.totalfin=this.totalfin+element.precio*element.cantidad;
-                        });
-                        } else {
-                        Swal.fire('Por favor ingresa una cantidad válida');
-                        }
+                ordenes: [],
+                orden: {
+                    id: null,
+                    fecha: '',
+                    total: '',
+                    usuarios_id: '',
+                    entrega: ''
+                },
+                detordenes: [],
+                detorden: {
+                    id: null,
+                    comida_ID: '',
+                    ordenes_id: '',
+                    cantidad: ''
+                },
+                userss: [],
+                users: {
+                    id: null,
+                    nombre: '',
+                    correo: '',
+                    contrasena: '',
+                    tipo: '',
+                    contador: ''
+                },
+                tiposComida: [
+                    { text: 'Asado', value: 1 },
+                    { text: 'Broaster', value: 2 },
+                    { text: 'Chuleta', value: 3 },
+                    { text: 'Hamburguesa', value: 4 },
+                    { text: 'Milanesa', value: 5 },
+                    { text: 'Salchipapa', value: 6 },
+                    { text: 'Salchiarroz', value: 7 },
+                    { text: 'Silpancho', value: 8 },
+                    { text: 'Coca Cola', value: 9 },
+                    { text: 'Coca sin Azúcar', value: 10 },
+                    { text: 'Fanta', value: 11 },
+                    { text: 'Fanta Papaya', value: 12 },
+                    { text: 'Jugo de Naranja', value: 13 },
+                    { text: 'Sprite', value: 14 }
+                ],
+                file: null
+            }
+        },
+        created() {
+            this.mostrar()
+            console.log(localStorage.getItem('miDato'));
+            this.inicio()
+        },
+        methods: {
+            mostrar: function () {
+                axios.get(url)
+                    .then(response => {
+                        this.comidas = response.data.filter(item => item.tipocomida_id <= 8);
+                        this.bebidas = response.data.filter(item => item.tipocomida_id > 8);
+                    })
+                    .catch(error => {
+                        console.log(error);
+                    });
+            },
+            inicio: function () {
+                axios.get(url4)
+                .then(response => {
+                    console.log(localStorage.getItem('miDato'));
+                    var idtoken = localStorage.getItem('miDato');
+                    var flagtok = false;
+                    response.data.forEach(usuario => {
+                    console.log(idtoken);
+                    console.log(usuario.id);
+                    if (idtoken == usuario.id) {
+                        flagtok = true;
+                        this.users.id= usuario.id;
+                        this.users.nombre= usuario.nombre;
+                        this.users.correo= usuario.correo;
+                        this.users.contrasena= usuario.contrasena;
+                        this.users.tipo= usuario.tipo;
+                        this.users.contador= usuario.contador;
                     }
                     });
+
+                    if (flagtok) {
+                    if (this.users.tipo == 2) {
+                        
+                        window.location.href = "../../MenuGerente/menuGerente1.html";
+                    }
+                    if (this.users.tipo == 3) {
+                        
+                        window.location.href = "../../menuTrab/menuTrab.html";
+                    }
+                    }else{
+                        window.location.href = "../login/loginUsuarios/login.html";
+                    }
+                })
+                
+            },
+            openDialog(item) {
+                this.comida = Object.assign({}, item);
+                Swal.fire({
+                title: "¿Ordenar " + this.comida.nombre + "? \nCantidad:",
+                input: "number",
+                inputAttributes: {
+                    autocapitalize: "off"
                 },
-                opendialogdel(item) {
-                    var flaga = true;
-                    var itemPosition;
+                showCancelButton: true,
+                confirmButtonText: "Ordenar",
+                denyButtonText: `Cancelar`
+                }).then((result) => {
+                if (result.isConfirmed) {
+                    const cantidad = result.value;
+                    var flag = true;
+                    if (cantidad && !isNaN(cantidad) && cantidad > 0) {
+                    
                     this.lista.forEach(element => {
-                        if (item.id==element.id) {
-                            if (flaga) {
-                                this.lista = this.lista.filter(dat => dat.id !== item.id);
-                                flaga = false;
-                            }
-                            
-                            
+                        if (element.id==this.comida.id) {
+                            element.cantidad=parseFloat(element.cantidad)+parseFloat(cantidad);
+                            flag = false;
                         }
                     });
+                    if (flag) {
+                        this.comida.cantidad = cantidad;
+                        this.lista.push(this.comida);
+                    }
+                    
                     this.totalfin=0;
                     this.lista.forEach(element => {
                         this.totalfin=this.totalfin+element.precio*element.cantidad;
                     });
-                },
-                closeDialog() {
-                    this.dialog = false;
-                },
-                onFileChange(e) {
-                    this.file = e.target.files[0];
-                },
-                saveComida() {
-                    if (this.validarComida()) {
-                        if (this.operacion === 'editar') {
-                            this.editar();
-                        } else {
-                            this.crear();
-                        }
-                        this.closeDialog();
-                    }
-                },
-                crear: function () {
-                    let formData = new FormData();
-                    formData.append('nombre', this.comida.nombre);
-                    formData.append('descripcion', this.comida.descripcion);
-                    formData.append('precio', this.comida.precio);
-                    formData.append('tipocomida_id', this.comida.tipocomida_id);
-                    if (this.file) {
-                        formData.append('imagen', this.file);
-                    }
-
-                    axios.post(url, formData)
-                        .then(response => {
-                            this.mostrar();
-                        })
-                        .catch(error => {
-                            console.log(error);
-                        });
-                },
-                pedir: function () {
-                    let formData = new FormData();
-                    formData.append('nombre', this.comida.nombre);
-                    formData.append('descripcion', this.comida.descripcion);
-                    formData.append('precio', this.comida.precio);
-                    formData.append('tipocomida_id', this.comida.tipocomida_id);
-                    if (this.file) {
-                        formData.append('imagen', this.file);
-                    }
-
-                    axios.put(url + "/" + this.comida.id, formData)
-                        .then(response => {
-                            this.mostrar();
-                        })
-                        .catch(error => {
-                            console.log(error);
-                        });
-                },
-                borrar: function (id) {
-                    Swal.fire({
-                        title: '¿Confirma eliminar la comida?',
-                        confirmButtonText: 'Confirmar',
-                        showCancelButton: true,
-                    }).then((result) => {
-                        if (result.isConfirmed) {
-                            axios.delete(url + "/" + id)
-                                .then(response => {
-                                    this.mostrar();
-                                });
-                            Swal.fire('¡Eliminado!', '', 'success')
-                        }
-                    });
-                },
-                validarComida() {
-                    if (!this.comida.tipocomida_id) {
-                        Swal.fire('Error', 'El tipo de comida no puede ser nulo.', 'error');
-                        return false;
-                    }
-                    return true;
-                },
-                getComidaImage(tipocomida_id) {
-                    if (tipocomida_id == 1) {
-                        return '/frontend/MenuGerente/img/platos/asado.avif';
-                    } else if (tipocomida_id == 2) {
-                        return '/frontend/MenuGerente/img/platos/broaster.jpg';
-                    } else if (tipocomida_id == 3) {
-                        return '/frontend/MenuGerente/img/platos/chuleta.jpg';
-                    } else if (tipocomida_id == 4) {
-                        return '/frontend/MenuGerente/img/platos/hamburguesa.webp';
-                    } else if (tipocomida_id == 5) {
-                        return '/frontend/MenuGerente/img/platos/milanesa.jpg';
-                    } else if (tipocomida_id == 6) {
-                        return '/frontend/MenuGerente/img/platos/salchi.jpg';
-                    } else if (tipocomida_id == 7) {
-                        return '/frontend/MenuGerente/img/platos/salchiarroz.jpg';
-                    } else if (tipocomida_id == 8) {
-                        return '/frontend/MenuGerente/img/platos/silpancho.jpg';
-                    } else if (tipocomida_id == 9) {
-                        return '/frontend/MenuGerente/img/bebidas/coca-1024x683.png';
-                    } else if (tipocomida_id == 10) {
-                        return '/frontend/MenuGerente/img/bebidas/coca-sin-azucar-1024x683.png';
-                    } else if (tipocomida_id == 11) {
-                        return '/frontend/MenuGerente/img/bebidas/fanta-1024x683.png';
-                    } else if (tipocomida_id == 12) {
-                        return '/frontend/MenuGerente/img/bebidas/fanta-papaya-1024x683.png';
-                    } else if (tipocomida_id == 13) {
-                        return '/frontend/MenuGerente/img/bebidas/jugo-naranja-1200x800-1.png';
-                    } else if (tipocomida_id == 14) {
-                        return '/frontend/MenuGerente/img/bebidas/sprite-1024x683.png';
                     } else {
-                        return '/frontend/MenuGerente/img/default.jpg';
+                    Swal.fire('Por favor ingresa una cantidad válida');
                     }
                 }
+                });
+            },
+            opendialogdel(item) {
+                var flaga = true;
+                var itemPosition;
+                this.lista.forEach(element => {
+                    if (item.id==element.id) {
+                        if (flaga) {
+                            this.lista = this.lista.filter(dat => dat.id !== item.id);
+                            flaga = false;
+                        }
+                        
+                        
+                    }
+                });
+                this.totalfin=0;
+                this.lista.forEach(element => {
+                    this.totalfin=this.totalfin+element.precio*element.cantidad;
+                });
+            },
+            closeDialog() {
+                this.dialog = false;
+            },
+            onFileChange(e) {
+                this.file = e.target.files[0];
+            },
+            saveComida() {
+                if (this.validarComida()) {
+                    if (this.operacion === 'editar') {
+                        this.editar();
+                    } else {
+                        this.crear();
+                    }
+                    this.closeDialog();
+                }
+            },
+            pedir: function () {
+                let formData = new FormData();
+                formData.append('nombre', this.comida.nombre);
+                formData.append('descripcion', this.comida.descripcion);
+                formData.append('precio', this.comida.precio);
+                formData.append('tipocomida_id', this.comida.tipocomida_id);
+                if (this.file) {
+                    formData.append('imagen', this.file);
+                }
+
+                axios.put(url + "/" + this.comida.id, formData)
+                    .then(response => {
+                        this.mostrar();
+                    })
+                    .catch(error => {
+                        console.log(error);
+                    });
+            },
+            getComidaImage(tipocomida_id) {
+                if (tipocomida_id == 1) {
+                    return '/frontend/MenuGerente/img/platos/asado.avif';
+                } else if (tipocomida_id == 2) {
+                    return '/frontend/MenuGerente/img/platos/broaster.jpg';
+                } else if (tipocomida_id == 3) {
+                    return '/frontend/MenuGerente/img/platos/chuleta.jpg';
+                } else if (tipocomida_id == 4) {
+                    return '/frontend/MenuGerente/img/platos/hamburguesa.webp';
+                } else if (tipocomida_id == 5) {
+                    return '/frontend/MenuGerente/img/platos/milanesa.jpg';
+                } else if (tipocomida_id == 6) {
+                    return '/frontend/MenuGerente/img/platos/salchi.jpg';
+                } else if (tipocomida_id == 7) {
+                    return '/frontend/MenuGerente/img/platos/salchiarroz.jpg';
+                } else if (tipocomida_id == 8) {
+                    return '/frontend/MenuGerente/img/platos/silpancho.jpg';
+                } else if (tipocomida_id == 9) {
+                    return '/frontend/MenuGerente/img/bebidas/coca-1024x683.png';
+                } else if (tipocomida_id == 10) {
+                    return '/frontend/MenuGerente/img/bebidas/coca-sin-azucar-1024x683.png';
+                } else if (tipocomida_id == 11) {
+                    return '/frontend/MenuGerente/img/bebidas/fanta-1024x683.png';
+                } else if (tipocomida_id == 12) {
+                    return '/frontend/MenuGerente/img/bebidas/fanta-papaya-1024x683.png';
+                } else if (tipocomida_id == 13) {
+                    return '/frontend/MenuGerente/img/bebidas/jugo-naranja-1200x800-1.png';
+                } else if (tipocomida_id == 14) {
+                    return '/frontend/MenuGerente/img/bebidas/sprite-1024x683.png';
+                } else {
+                    return '/frontend/MenuGerente/img/default.jpg';
+                }
             }
-        });
+        }
+    });
     </script>
 </body>
 

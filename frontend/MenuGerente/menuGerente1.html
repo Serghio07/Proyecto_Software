@@ -10,7 +10,7 @@
 <body>
   <header style="position: absolute; top: 0; width: 90%; ">
     <div class="logo-container">
-        <button class="back-btn" onclick="window.location.href = '../login/loginUsuarios/login.html';">Atrás</button>
+        <button class="back-btn" onclick="window.location.href = '../login/loginUsuarios/login.html'; localStorage.removeItem('miDato');">Atrás</button>
         
     </div>
     <h1>GESTIÓN DE MENÚ</h1>
@@ -98,6 +98,7 @@
               
                 <script>
                   let url = 'http://localhost:4000/comidas';
+                  let url4 = 'http://localhost:4000/users';
                   new Vue({
                     el: '#app',
                     vuetify: new Vuetify(),
@@ -111,11 +112,21 @@
                           nombre: '',
                           descripcion: '',
                           precio: '',
-                        }
+                        },
+                        userss: [],
+                        users: {
+                            id: null,
+                            nombre: '',
+                            correo: '',
+                            contrasena: '',
+                            tipo: '',
+                            contador: ''
+                        },
                       }
                     },
                     created() {
                       this.mostrar()
+                      this.inicio()
                     },
                     methods: {
                       mostrar: function () {
@@ -124,6 +135,40 @@
                             this.comidas = response.data;
                           })
                       },
+                      inicio: function () {
+                        axios.get(url4)
+                        .then(response => {
+                            var idtoken = localStorage.getItem('miDato');
+                            var flagtok = false;
+                            response.data.forEach(usuario => {
+                            console.log(idtoken);
+                            console.log(usuario.id);
+                            if (idtoken == usuario.id) {
+                                flagtok = true;
+                                this.users.id= usuario.id;
+                                this.users.nombre= usuario.nombre;
+                                this.users.correo= usuario.correo;
+                                this.users.contrasena= usuario.contrasena;
+                                this.users.tipo= usuario.tipo;
+                                this.users.contador= usuario.contador;
+                            }
+                            });
+
+                            if (flagtok) {
+                            if (this.users.tipo == 3) {
+                                
+                                window.location.href = "../../menuTrab/menuTrab.html";
+                            }
+                            if (this.users.tipo == 1) {
+                              
+                              window.location.href = "../menu/menuCliente.html";
+                            }
+                            }else{
+                                window.location.href = "../login/loginUsuarios/login.html";
+                            }
+                        })
+                        
+                    },
                       openDialog(user) {
                         this.operacion = 'editar';
                         this.users = Object.assign({}, comida);
