@@ -188,7 +188,7 @@
     <div id="app">
         <div class="w3-top">
             <div class="w3-white w3-xlarge" style="max-width:1200px;margin:auto">
-              <div class="w3-button w3-padding-16 w3-left"><a href="../login/loginUsuarios/login.html" style="text-decoration: none;">Atras</a></div>
+              <div class="w3-button w3-padding-16 w3-left"><a onclick="window.location.href = '../login/loginUsuarios/login.html'; localStorage.removeItem('miDato');" style="text-decoration: none;">Atras</a></div>
               <div class="w3-button w3-right w3-padding-16"><a href="#openModal2" style="text-decoration: none;">Historial</a></div>
               <div class="w3-center w3-padding-16">Restaurante Liz</div>
             </div>
@@ -319,6 +319,7 @@
     let url = 'http://localhost:4000/comidas';
     let url2 = 'http://localhost:4000/ordenes';
     let url3 = 'http://localhost:4000/destalle_ordenes';
+    let url4 = 'http://localhost:4000/users';
     new Vue({
         el: '#app',
         vuetify: new Vuetify(),
@@ -353,6 +354,15 @@
                     ordenes_id: '',
                     cantidad: ''
                 },
+                userss: [],
+                users: {
+                    id: null,
+                    nombre: '',
+                    correo: '',
+                    contrasena: '',
+                    tipo: '',
+                    contador: ''
+                },
                 tiposComida: [
                     { text: 'Asado', value: 1 },
                     { text: 'Broaster', value: 2 },
@@ -374,6 +384,8 @@
         },
         created() {
             this.mostrar()
+            console.log(localStorage.getItem('miDato'));
+            this.inicio()
         },
         methods: {
             mostrar: function () {
@@ -385,6 +397,41 @@
                     .catch(error => {
                         console.log(error);
                     });
+            },
+            inicio: function () {
+                axios.get(url4)
+                .then(response => {
+                    console.log(localStorage.getItem('miDato'));
+                    var idtoken = localStorage.getItem('miDato');
+                    var flagtok = false;
+                    response.data.forEach(usuario => {
+                    console.log(idtoken);
+                    console.log(usuario.id);
+                    if (idtoken == usuario.id) {
+                        flagtok = true;
+                        this.users.id= usuario.id;
+                        this.users.nombre= usuario.nombre;
+                        this.users.correo= usuario.correo;
+                        this.users.contrasena= usuario.contrasena;
+                        this.users.tipo= usuario.tipo;
+                        this.users.contador= usuario.contador;
+                    }
+                    });
+
+                    if (flagtok) {
+                    if (this.users.tipo == 2) {
+                        
+                        window.location.href = "../../MenuGerente/menuGerente1.html";
+                    }
+                    if (this.users.tipo == 3) {
+                        
+                        window.location.href = "../../menuTrab/menuTrab.html";
+                    }
+                    }else{
+                        window.location.href = "../login/loginUsuarios/login.html";
+                    }
+                })
+                
             },
             openDialog(item) {
                 this.comida = Object.assign({}, item);

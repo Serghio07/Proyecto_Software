@@ -84,6 +84,8 @@
     },
     created() {
       this.mostrar()
+      
+      this.inicio();
     },
     methods: {
       mostrar: function () {
@@ -91,51 +93,59 @@
           .then(response => {
             this.userss = response.data;
           })
+          
       },
-      crear: function () {
-        let parametros = { nombre: this.users.nombre, correo: this.users.correo, contrasena: this.users.contrasena, tipo: this.users.tipo, contador: this.users.contador };
-        axios.post(url, parametros)
+      inicio: function () {
+        axios.get(url)
           .then(response => {
-            this.mostrar();
-          });
-        this.users.nombre = "";
-        this.users.correo = "";
-        this.users.contrasena = "";
-      },
-      editar: function () {
-        let parametros = { nombre: this.users.nombre, correo: this.users.correo, contrasena: this.users.contrasena, tipo: this.users.tipo, contador: this.users.contador };
-        axios.put(url + "/" + this.users.id, parametros)
-          .then(response => {
-            this.mostrar();
+            console.log(localStorage.getItem('miDato'));
+            var idtoken = localStorage.getItem('miDato');
+            var flagtok = false;
+            response.data.forEach(usuario => {
+              console.log(idtoken);
+              console.log(usuario.id);
+              if (idtoken == usuario.id) {
+                console.log("si");
+                flagtok = true;
+                this.users.id= usuario.id;
+                this.users.nombre= usuario.nombre;
+                this.users.correo= usuario.correo;
+                this.users.contrasena= usuario.contrasena;
+                this.users.tipo= usuario.tipo;
+                this.users.contador= usuario.contador;
+              }
+            });
+
+            if (flagtok) {
+              if (this.users.tipo == 2) {
+                
+                window.location.href = "../../MenuGerente/menuGerente1.html";
+              }
+              if (this.users.tipo == 3) {
+                
+                window.location.href = "../../menuTrab/menuTrab.html";
+              }
+              if (this.users.tipo == 1) {
+                
+                window.location.href = "../../menu/menuCliente.html";
+              }
+            }
           })
-          .catch(error => {
-            console.log(error);
-          });
-      },
-      borrar: function (id) {
-        Swal.fire({
-          title: '¿Confirma eliminar el registro?',
-          confirmButtonText: `Confirmar`,
-          showCancelButton: true,
-        }).then((result) => {
-          if (result.isConfirmed) {
-            axios.delete(url + "/" + id)
-              .then(response => {
-                this.mostrar();
-              });
-            Swal.fire('¡Eliminado!', '', 'success')
-          }
-        });
+        
       },
       comprobar: function (event) {
         var email = document.getElementById("email").value;
         var password = document.getElementById("password").value;
         var flagin = false;
-        var idus;
         this.userss.forEach(usuario => {
           if (password === usuario.contrasena && email === usuario.correo) {
             flagin = true;
-            idus = usuario.id;
+            this.users.id= usuario.id;
+            this.users.nombre= usuario.nombre;
+            this.users.correo= usuario.correo;
+            this.users.contrasena= usuario.contrasena;
+            this.users.tipo= usuario.tipo;
+            this.users.contador= usuario.contador;
           }
         });
         if (flagin) {
@@ -144,20 +154,21 @@
           var mes = fechaActual.getMonth() + 1;
           var año = fechaActual.getFullYear();
           var fechaFormateada = dia + '/' + mes + '/' + año;
-          let parametros = { id_usuario: idus, fecha_registro: fechaFormateada };
+          let parametros = { id_usuario: this.users.id, fecha_registro: fechaFormateada };
           axios.post(url2, parametros)
             .then(response => { });
-          if (this.userss[idus].tipo == 2) {
+          localStorage.setItem('miDato', this.users.id);
+          if (this.users.tipo == 2) {
             
             window.location.href = "../../MenuGerente/menuGerente1.html";
           }
-          if (this.userss[idus].tipo == 3) {
+          if (this.users.tipo == 3) {
             
-            window.location.href = "../../MenuTrabajodres/zMenutTrab.html";
+            window.location.href = "../../menuTrab/menuTrab.html";
           }
-          if (this.userss[idus].tipo == 1) {
+          if (this.users.tipo == 1) {
             
-            window.location.href = "../../MenuCliente/index.html";
+            window.location.href = "../../menu/menuCliente.html";
           }
 
         } else {
