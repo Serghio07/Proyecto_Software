@@ -1,142 +1,152 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <div id = "app">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mis Ventas</title>
     <link rel="stylesheet" href="registro.css">
+    <style>
+        .back-btn {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background-color: #35853f;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .back-btn:hover {
+            background-color: #0056b3;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .ventas-dia, .ventas-mes {
+            background-color: #f4f4f4;
+            padding: 20px;
+            margin: 10px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 600px;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 10px;
+            color: #555;
+        }
+
+        span {
+            font-weight: bold;
+        }
+    </style>
 </head>
 <body>
-    <header id="header">
+    <button class="back-btn" onclick="window.location.href = 'menuGerente1.html';">Atrás</button>
+    <div id="app">
+        <header id="header">
+            <h1>Mis Ventas</h1>
+        </header>
+        <div class="container">
+            <div class="ventas-dia">
+                <h2>Ventas del Día: <span id="fecha-dia">{{ currentDate }}</span></h2>
+                <ul>
+                    <li>Plato 1: <span>{{ ventasDia.plato1 }}</span></li>
+                    <li>Plato 2: <span>{{ ventasDia.plato2 }}</span></li>
+                    <li>Plato 3: <span>{{ ventasDia.plato3 }}</span></li>
+                    <li>Refresco 1: <span>{{ ventasDia.refresco1 }}</span></li>
+                    <li>Total: <span>{{ ventasDia.total }}</span></li>
+                </ul>
+            </div>
 
-        <button class="atras" onclick="window.location.href = 'menuGerente1.html';">Atrás</button>
-        <h1>Mis Ventas</h1>
-    </header>
-    <div class="container">
-        
-
-        <div class="ventas-dia">
-            <h2>Ventas del Día: <span id="fecha-dia"></span></h2>
-            <ul>
-                <li>Plato 1: <span id="plato1-dia"></span></li>
-                <li>Plato 2: <span id="plato2-dia"></span></li>
-                <li>Plato 3: <span id="plato3-dia"></span></li>
-                <li>Refresco 1: <span id="refresco1-dia"></span></li>
-                <li>Total: <span id="total-dia"></span></li>
-            </ul>
-        </div>
-
-        <div class="ventas-mes">
-            <h2>Ventas Mensuales</h2>
-            <ul>
-                <li>Plato más vendido: <span id="plato-mas-vendido"></span></li>
-                <li>Plato menos vendido: <span id="plato-menos-vendido"></span></li>
-                <li>Refresco más vendido: <span id="refresco-mas-vendido"></span></li>
-                <li>Refresco menos vendido: <span id="refresco-menos-vendido"></span></li>
-                <li>Total: <span id="total-mes"></span></li>
-                <li>Ganancias Mensuales: <span id="ganancias-mensuales"></span></li>
-            </ul>
+            <div class="ventas-mes">
+                <h2>Ventas Mensuales</h2>
+                <ul>
+                    <li>Plato más vendido: <span>{{ ventasMes.platoMasVendido }}</span></li>
+                    <li>Plato menos vendido: <span>{{ ventasMes.platoMenosVendido }}</span></li>
+                    <li>Refresco más vendido: <span>{{ ventasMes.refrescoMasVendido }}</span></li>
+                    <li>Refresco menos vendido: <span>{{ ventasMes.refrescoMenosVendido }}</span></li>
+                    <li>Total: <span>{{ ventasMes.total }}</span></li>
+                    <li>Ganancias Mensuales: <span>{{ ventasMes.gananciasMensuales }}</span></li>
+                </ul>
+            </div>
         </div>
     </div>
-    <script src="script.js"></script>
-</div>
-<script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.js"
-    integrity="sha512-nqIFZC8560+CqHgXKez61MI0f9XSTKLkm0zFVm/99Wt0jSTZ7yeeYwbzyl0SGn/s8Mulbdw+ScCG41hmO2+FKw=="
-    crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.0.2/dist/sweetalert2.all.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.js" integrity="sha512-nqIFZC8560+CqHgXKez61MI0f9XSTKLkm0zFVm/99Wt0jSTZ7yeeYwbzyl0SGn/s8Mulbdw+ScCG41hmO2+FKw==" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.0.2/dist/sweetalert2.all.min.js"></script>
 
-  <script>
-    let url = 'http://localhost:4000/reservas';
-    new Vue({
-      el: '#app',
-      vuetify: new Vuetify(),
-      data() {
-        return {
-          reservas: [],
-          dialog: false,
-          operacion: '',
-          reserva: {
-            id: null,
-            mesaBol: '',
-            nro_mesa: '',
-            
-          }
-        }
-      },
-      created() {
-        this.mostrar()
-      },
-      methods: {
-        mostrar: function () {
-          axios.get(url)
-            .then(response => {
-              this.reservas = response.data;
-            })
-        },
-        openDialog(user) {
-          this.operacion = 'editar';
-          this.reserva = Object.assign({}, user);
-          this.dialog = true;
-        },
-        openDialog2() {
-          this.operacion = 'crear';
-          this.dialog = true;
-        },
-        closeDialog() {
-          this.dialog = false;
-          
-        },
-        saveUser() {
-          if (this.operacion === 'editar') {
-            this.editar();
-          } else {
-            this.crear();
-          }
-          this.closeDialog();
-        },
-        crear: function () {
-          let parametros = {
-            mesaBol: '',
-            nro_mesa: '',
-          };
-          axios.post(url, parametros)
-            .then(response => {
-              this.mostrar();
-            });
-        },
-        editar: function () {
-          let parametros = {
-            mesaBol: '',
-            nro_mesa: '',
-          };
-          axios.put(url + "/" + this.users.id, parametros)
-            .then(response => {
-              this.mostrar();
-            })
-            .catch(error => {
-              console.log(error);
-            });
-        },
-        borrar: function (id) {
-          Swal.fire({
-            title: '¿Confirma eliminar el registro?',
-            confirmButtonText: 'Confirmar',
-            showCancelButton: true,
-          }).then((result) => {
-            if (result.isConfirmed) {
-              axios.delete(url + "/" + id)
-                .then(response => {
-                  this.mostrar();
-                });
-              Swal.fire('¡Eliminado!', '', 'success')
+    <script>
+        let urlVentasDia = 'http://localhost:4000/ventasDia';
+        let urlVentasMes = 'http://localhost:4000/ventasMes';
+        new Vue({
+            el: '#app',
+            vuetify: new Vuetify(),
+            data() {
+                return {
+                    currentDate: new Date().toLocaleDateString(),
+                    ventasDia: {
+                        plato1: 0,
+                        plato2: 0,
+                        plato3: 0,
+                        refresco1: 0,
+                        total: 0
+                    },
+                    ventasMes: {
+                        platoMasVendido: '',
+                        platoMenosVendido: '',
+                        refrescoMasVendido: '',
+                        refrescoMenosVendido: '',
+                        total: 0,
+                        gananciasMensuales: 0
+                    }
+                }
+            },
+            created() {
+                this.fetchVentasDia();
+                this.fetchVentasMes();
+            },
+            methods: {
+                fetchVentasDia() {
+                    axios.get(urlVentasDia)
+                        .then(response => {
+                            this.ventasDia = response.data;
+                        })
+                        .catch(error => {
+                            console.log(error);
+                        });
+                },
+                fetchVentasMes() {
+                    axios.get(urlVentasMes)
+                        .then(response => {
+                            this.ventasMes = response.data;
+                        })
+                        .catch(error => {
+                            console.log(error);
+                        });
+                }
             }
-          });
-        },
-      }
-    });
-  </script>   
+        });
+    </script>   
 </body>
 </html>
