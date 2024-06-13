@@ -138,6 +138,7 @@
           };
           axios.post(url, parametros)
             .then(response => {
+              console.log(response.data);
               Swal.fire({
                 icon: "success",
                 title: "Agregado",

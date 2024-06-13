@@ -1,7 +1,7 @@
 const { Pool } = require('pg');
 
 const pool = new Pool({
-    connectionString: process.env.DATABASE_URL|| 'postgres://postgres:admin@localhost:5432/restaurante',
+    connectionString: process.env.DATABASE_URL|| 'postgres://postgres:nimda@localhost:5433/restaurante',
     ssl: process.env.DATABASE_URL ? true : false
 })
 
@@ -210,21 +210,21 @@ const getOrdenes = async(req,res)=>{
     
     const getOrdeneById = async (req, res) => {
         const id = req.params.id;
-        const response = await pool.query('SELECT * FROM ordenes WHERE id = $1', [id]);
+        const response = await pool.query('SELECT * FROM ordenes WHERE usuarios_id = $1 ORDER BY id DESC LIMIT 1', [id]);
         res.json(response.rows);
     };
     
     const createOrdene = async (req, res) => {
-        const {fecha,total } = req.body;
+        const {fecha,total,usuarios_id,entrega } = req.body;
         const response = await pool.query(
-            'INSERT INTO ordenes (fecha, total) VALUES ($1, $2)',
-            [fecha,total]
+            'INSERT INTO ordenes (fecha,total,usuarios_id,entrega) VALUES ($1, $2,$3, $4)',
+            [ffecha,total,usuarios_id,entrega]
         );
         console.log(response);
         res.json({
             message: 'Orden Added Successfully',
             body: {
-                ordenes: {fecha, total }
+                ordenes: {fecha,total,usuarios_id,entrega }
             }
         });
     };
@@ -238,10 +238,10 @@ const getOrdenes = async(req,res)=>{
     
     const updateOrdene = async (req, res) => {
         const id = req.params.id;
-        const { fecha,total } = req.body;
+        const { fecha,total,usuarios_id,entrega } = req.body;
         const response = await pool.query(
-            'UPDATE ordenes SET fehca = $2, total = $3 WHERE id = $1',
-            [id,fecha,total]
+            'UPDATE ordenes SET fecha = $2, total = $3 fecha = $4, total = $5 WHERE id = $1',
+            [id,fecha,total,usuarios_id,entrega]
         );
         console.log(response);
         res.json('Orden updated successfully');

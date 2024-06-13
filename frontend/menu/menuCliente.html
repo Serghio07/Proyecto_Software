@@ -433,6 +433,38 @@
                 })
                 
             },
+            crearorden: function () {
+                var fechaActual = new Date();
+                var dia = fechaActual.getDate();
+                var mes = fechaActual.getMonth() + 1;
+                var año = fechaActual.getFullYear();
+                var fechaFormateada = dia + '/' + mes + '/' + año;
+                let parametros = {
+                    fecha: fechaFormateada,
+                    total: this.totalfin,
+                    usuarios_id: localStorage.getItem('miDato'),
+                    entrega: 0
+                };
+                axios.post(url2, parametros)
+                    .then(response => {
+                    this.mostrar();
+                    });
+            },
+            creardetorden: function () {
+                this.lista.forEach(element => {
+                    
+                    let parametros = {
+                        comida_ID: element.id,
+                        ordenes_id: '',
+                        cantidad: element.cantidad
+                    };
+                    axios.post(url3, parametros)
+                        .then(response => {
+                        this.mostrar();
+                        });
+                });
+                
+            },
             openDialog(item) {
                 this.comida = Object.assign({}, item);
                 Swal.fire({
