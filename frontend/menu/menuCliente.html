@@ -218,6 +218,7 @@
             <div class="carrito-items">
                 <div v-for="list in lista" :key="list.id" class="carrito-item">
                     <img :src="getComidaImage(list.tipocomida_id)" :alt="list.nombre" width="80px" alt="">
+                    <span class="carrito-item-precio">x{{ list.cantidad }}</span>
                     <div class="carrito-item-detalles">
                         <span class="carrito-item-titulo">{{ list.nombre }}</span>
                         <span class="carrito-item-precio">Bs.{{ list.precio }}</span>
@@ -332,7 +333,8 @@
                         nombre: '',
                         descripcion: '',
                         precio: '',
-                        tipocomida_id: null
+                        tipocomida_id: null,
+                        cantidad: 0
                     },
                     tiposComida: [
                         { text: 'Asado', value: 1 },
@@ -380,20 +382,24 @@
                     denyButtonText: `Cancelar`
                     }).then((result) => {
                     if (result.isConfirmed) {
-                        // Obtiene el valor numérico ingresado
                         const cantidad = result.value;
-
-                        // Asegúrate de que el valor ingresado sea válido (puedes ajustar esta validación según tus necesidades)
+                        var flag = true;
                         if (cantidad && !isNaN(cantidad) && cantidad > 0) {
-                        // Puedes añadir el valor de cantidad a la comida, si es necesario
-                        this.comida.cantidad = cantidad;
-
-                        for (let index = 0; index < cantidad; index++) {
+                        
+                        this.lista.forEach(element => {
+                            if (element.id==this.comida.id) {
+                                element.cantidad=parseFloat(element.cantidad)+parseFloat(cantidad);
+                                flag = false;
+                            }
+                        });
+                        if (flag) {
+                            this.comida.cantidad = cantidad;
                             this.lista.push(this.comida);
                         }
+                        
                         this.totalfin=0;
                         this.lista.forEach(element => {
-                            this.totalfin=this.totalfin+element.precio;
+                            this.totalfin=this.totalfin+element.precio*element.cantidad;
                         });
                         } else {
                         Swal.fire('Por favor ingresa una cantidad válida');
@@ -403,10 +409,11 @@
                 },
                 opendialogdel(item) {
                     var flaga = true;
+                    var itemPosition;
                     this.lista.forEach(element => {
-                        if (item==element) {
+                        if (item.id==element.id) {
                             if (flaga) {
-                                this.lista.splice(element, 1);
+                                this.lista = this.lista.filter(dat => dat.id !== item.id);
                                 flaga = false;
                             }
                             
@@ -415,7 +422,7 @@
                     });
                     this.totalfin=0;
                     this.lista.forEach(element => {
-                        this.totalfin=this.totalfin+element.precio;
+                        this.totalfin=this.totalfin+element.precio*element.cantidad;
                     });
                 },
                 closeDialog() {
