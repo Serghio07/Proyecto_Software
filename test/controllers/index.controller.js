@@ -218,7 +218,7 @@ const getOrdenes = async(req,res)=>{
         const {fecha,total,usuarios_id,entrega } = req.body;
         const response = await pool.query(
             'INSERT INTO ordenes (fecha,total,usuarios_id,entrega) VALUES ($1, $2,$3, $4)',
-            [ffecha,total,usuarios_id,entrega]
+            [fecha,total,usuarios_id,entrega]
         );
         console.log(response);
         res.json({

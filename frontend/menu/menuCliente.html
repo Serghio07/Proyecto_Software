@@ -233,7 +233,7 @@
                     <strong>Tu Total</strong>
                     <span class="carrito-precio-total">Bs.{{ totalfin }}</span>
                 </div>
-                <button class="btn-confirmar">Confirmar <i class="fa-solid fa-bag-shopping"></i> </button>
+                <button class="btn-confirmar" @click="crearorden()">Confirmar <i class="fa-solid fa-bag-shopping"></i> </button>
             </div>
         </div>
 
@@ -401,12 +401,9 @@
             inicio: function () {
                 axios.get(url4)
                 .then(response => {
-                    console.log(localStorage.getItem('miDato'));
                     var idtoken = localStorage.getItem('miDato');
                     var flagtok = false;
                     response.data.forEach(usuario => {
-                    console.log(idtoken);
-                    console.log(usuario.id);
                     if (idtoken == usuario.id) {
                         flagtok = true;
                         this.users.id= usuario.id;
@@ -421,11 +418,11 @@
                     if (flagtok) {
                     if (this.users.tipo == 2) {
                         
-                        window.location.href = "../../MenuGerente/menuGerente1.html";
+                        window.location.href = "../MenuGerente/menuGerente1.html";
                     }
                     if (this.users.tipo == 3) {
                         
-                        window.location.href = "../../menuTrab/menuTrab.html";
+                        window.location.href = "../menuTrab/menuTrab.html";
                     }
                     }else{
                         window.location.href = "../login/loginUsuarios/login.html";
@@ -439,30 +436,44 @@
                 var mes = fechaActual.getMonth() + 1;
                 var año = fechaActual.getFullYear();
                 var fechaFormateada = dia + '/' + mes + '/' + año;
+                var idusa = localStorage.getItem('miDato');
                 let parametros = {
                     fecha: fechaFormateada,
                     total: this.totalfin,
-                    usuarios_id: localStorage.getItem('miDato'),
-                    entrega: 0
+                    usuarios_id: idusa,
+                    entrega: 1,
                 };
                 axios.post(url2, parametros)
                     .then(response => {
-                    this.mostrar();
+                    this.creardetorden();
                     });
             },
             creardetorden: function () {
-                this.lista.forEach(element => {
-                    
-                    let parametros = {
-                        comida_ID: element.id,
-                        ordenes_id: '',
-                        cantidad: element.cantidad
-                    };
-                    axios.post(url3, parametros)
-                        .then(response => {
-                        this.mostrar();
-                        });
-                });
+                var idusa = localStorage.getItem('miDato');
+                console.log(idusa);
+                axios.get(url2+"/"+idusa)
+                    .then(response => {
+                    this.lista.forEach(element => {
+                        
+                        let parametros = {
+                            comida_ID: element.id,
+                            ordenes_id: response.data[0].id,
+                            cantidad: element.cantidad
+                        };
+                        axios.post(url3, parametros)
+                            .then(response => {
+                                Swal.fire({
+                                timerProgressBar: true,
+                                title: "Tu pedido esta siendo procesado",
+                                showConfirmButton: false,
+                                timer: 3000
+                                });
+                                this.lista = [];
+                                this.totalfin=0;    
+                            });
+                    });
+                    })
+                
                 
             },
             openDialog(item) {
